@@ -39,7 +39,7 @@ gulp.task('postcss', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(["src/**/*.css", "!*.bundle*.css"], ["postcss"]).on('change', logChanges);
+  gulp.watch(["src/**/*.css", "!src/**/*.bundle.css"], ["postcss"]).on('change', logChanges);
   gulp.watch(["src/**/*.vue"], ["vueify"]).on('change', logChanges);
 });
 
