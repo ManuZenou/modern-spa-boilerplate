@@ -21,3 +21,14 @@ gulp.task('postcss', function() {
     pipe(connect.reload());
 });
 
+gulp.task('watch', function() {
+  gulp.watch("src", ["postcss"]).on('change', logChanges);
+
+});
+
+function logChanges(event) {
+  util.log(
+    util.colors.green('File ' + event.type + ': ') +
+    util.colors.magenta(path.basename(event.path))
+  );
+}
