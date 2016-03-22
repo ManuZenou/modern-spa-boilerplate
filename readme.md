@@ -1,4 +1,4 @@
-# Boilerplate for 
+# Modern Boilerplate for Single Page Applications
 
 ## Copyright
 
