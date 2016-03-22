@@ -24,7 +24,9 @@
     "gulp-rename": "^1.2.2",
     "jspm": "^0.17.0-beta.11",
     "postcss-import": "^8.0.2",
+    "postcss-modules": "^0.4.0",
     "postcss-nested": "^1.0.0",
+    "posthtml-css-modules": "^0.1.0",
     "s15e-javascript": "^0.1.13"
   },
   "jspm": {
