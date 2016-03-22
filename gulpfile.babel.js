@@ -58,7 +58,8 @@ var deindent = require('de-indent');
 var File = require('vinyl');
 var postcss = require('postcss');
 
-function vueifyPlugin() {
+function vueifyPlugin()
+{
   var transform = function(file, encoding, callback)
   {
     var content = file.contents.toString('utf8');
@@ -69,12 +70,22 @@ function vueifyPlugin() {
     var filePath = file.path;
     var id = "";
     var hasScopedStyle = false;
+    var stream = this;
 
-    Promise.all(fragment.childNodes.map((node) => {
-      switch (node.nodeName) {
+    Promise.all(fragment.childNodes.map((node) =>
+    {
+      // Ignore text nodes - typically just white space
+      if (node.nodeName === "#text") {
+        return;
+      }
+
+      console.log("- Vue Process: " + node.nodeName);
+
+      switch (node.nodeName)
+      {
         case 'template':
           var segmentContent = deindent(parse5.serialize(node.content));
-          this.push(new File({
+          stream.push(new File({
             contents: new Buffer(segmentContent),
             path: filePath.replace(".vue", ".html")
           }));
@@ -83,34 +94,35 @@ function vueifyPlugin() {
         case 'style':
           var segmentContent = deindent(parse5.serialize(node));
 
-          postcss([
+          return postcss([
             require('postcss-modules')({
               getJSON: function(cssFileName, json) {
                 console.log("Module Mapping Config: ", json)
               }
             })
-          ]).process(segmentContent).then(function(transformedCSS) {
-            console.log("Transformed CSS: ", transformedCSS);
+          ]).
+          process(segmentContent).
+          then(function(transformedCSS) {
+            stream.push(new File({
+              contents: new Buffer(transformedCSS.css),
+              path: filePath.replace(".vue", ".css")
+            }));
+          }).catch(function(ex) {
+            console.error("Ooops: " + ex);
           })
 
-
-
-
-          this.push(new File({
-            contents: new Buffer(segmentContent),
-            path: filePath.replace(".vue", ".css")
-          }));
           break;
 
         case 'script':
           var segmentContent = deindent(parse5.serialize(node));
-          this.push(new File({
+          stream.push(new File({
             contents: new Buffer(segmentContent),
             path: filePath.replace(".vue", ".js")
           }));
           break;
       }
-    })).then(callback);
+    })).
+    then(callback);
   };
 
   return through.obj(transform);
