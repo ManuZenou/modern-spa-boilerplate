@@ -8,6 +8,7 @@
   <h1 class="red">{{msg}}</h1>
 </template>
 
+<!-- Ho? -->
 <script>
   export default {
     data: function () {
