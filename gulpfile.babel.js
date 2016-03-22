@@ -74,8 +74,8 @@ function vueifyPlugin()
 
     Promise.all(fragment.childNodes.map((node) =>
     {
-      // Ignore text nodes - typically just white space
-      if (node.nodeName === "#text") {
+      // Ignore text (typically just white space) and comment nodes
+      if (node.nodeName === "#text" || node.nodeName === "#comment") {
         return;
       }
 
