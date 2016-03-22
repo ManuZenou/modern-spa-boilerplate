@@ -56,6 +56,7 @@ var through = require('through2');
 var parse5 = require('parse5');
 var deindent = require('de-indent');
 var File = require('vinyl');
+var postcss = require('postcss');
 
 function vueifyPlugin() {
   var transform = function(file, encoding, callback)
@@ -81,6 +82,20 @@ function vueifyPlugin() {
 
         case 'style':
           var segmentContent = deindent(parse5.serialize(node));
+
+          postcss([
+            require('postcss-modules')({
+              getJSON: function(cssFileName, json) {
+                console.log("Module Mapping Config: ", json)
+              }
+            })
+          ]).process(segmentContent).then(function(transformedCSS) {
+            console.log("Transformed CSS: ", transformedCSS);
+          })
+
+
+
+
           this.push(new File({
             contents: new Buffer(segmentContent),
             path: filePath.replace(".vue", ".css")
