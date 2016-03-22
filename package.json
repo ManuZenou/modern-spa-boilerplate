@@ -16,6 +16,7 @@
   "author": "Sebastian Werner",
   "license": "Apache-2.0",
   "dependencies": {
+    "jspm": "^0.16.31",
     "s15e-javascript": "^0.1.13"
   }
 }
