@@ -18,5 +18,19 @@
   "dependencies": {
     "jspm": "^0.17.0-beta.11",
     "s15e-javascript": "^0.1.13"
+  },
+  "jspm": {
+    "name": "app",
+    "directories": {
+      "packages": "src/jspm_packages"
+    },
+    "configFiles": {
+      "jspm:browser": "src/jspm.browser.js",
+      "jspm": "src/jspm.config.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.8"
+    }
   }
 }
