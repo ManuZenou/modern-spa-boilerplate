@@ -30,7 +30,7 @@ gulp.task('postcss', function() {
   gulp.src("src/main.css").
     pipe(postcss(postcss_processors, postcss_options)).
     pipe(rename({
-      extname : ".csso"
+      extname : ".bundle.css"
     })).
     pipe(gulp.dest("src")).
     pipe(connect.reload());
