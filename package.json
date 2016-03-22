@@ -1,0 +1,18 @@
+{
+  "name": "modern-spa-boilerplate",
+  "version": "1.0.0",
+  "description": "Modern Boilerplate for Single Page Applications",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "boilerplate",
+    "es6",
+    "jspm",
+    "babel",
+    "postcss"
+  ],
+  "author": "Sebastian Werner",
+  "license": "Apache-2.0"
+}
