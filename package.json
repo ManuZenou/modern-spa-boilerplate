@@ -14,5 +14,8 @@
     "postcss"
   ],
   "author": "Sebastian Werner",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "s15e-javascript": "^0.1.13"
+  }
 }
