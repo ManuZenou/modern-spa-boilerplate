@@ -39,8 +39,8 @@ gulp.task('postcss', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch("src/main.css", ["postcss"]).on('change', logChanges);
-  gulp.watch("src/test.vue", ["vueify"]).on('change', logChanges);
+  gulp.watch(["src/**/*.css", "!*.bundle*.css"], ["postcss"]).on('change', logChanges);
+  gulp.watch(["src/**/*.vue"], ["vueify"]).on('change', logChanges);
 });
 
 function logChanges(event) {
