@@ -1,5 +1,12 @@
 node_modules
 jspm_packages
 npm-debug.log
+
+# Ignore bundled files
 *.bundle.css
 *.bundle.js
+
+# These are dynamically generated from .vue files
+src/components/*.css
+src/components/*.html
+src/components/*.js
