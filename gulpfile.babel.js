@@ -71,6 +71,8 @@ function vueifyPlugin()
     var id = "";
     var hasScopedStyle = false;
     var stream = this;
+    var moduleMapping = null;
+
 
     Promise.all(fragment.childNodes.map((node) =>
     {
@@ -85,6 +87,13 @@ function vueifyPlugin()
       {
         case 'template':
           var segmentContent = deindent(parse5.serialize(node.content));
+
+          if (moduleMapping != null) {
+            console.log("Transforming template using mapping data!");
+          }
+
+          console.log("XXX: ", moduleMapping)
+
           stream.push(new File({
             contents: new Buffer(segmentContent),
             path: filePath.replace(".vue", ".html")
@@ -98,6 +107,7 @@ function vueifyPlugin()
             require('postcss-modules')({
               getJSON: function(cssFileName, json) {
                 console.log("Module Mapping Config: ", json)
+                moduleMapping = json;
               }
             })
           ]).
