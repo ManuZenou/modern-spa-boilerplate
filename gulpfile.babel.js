@@ -81,6 +81,10 @@ function getContentFromNode(node) {
   return deindent(parse5.serialize(node.content || node));
 }
 
+function cleanTemplateText(text) {
+  return text.split("\n").map((line) => line.trim()).join("\n");
+}
+
 function vueifyPlugin()
 {
   var processStyle = function(done, text, path)
@@ -125,21 +129,20 @@ function vueifyPlugin()
     }
 
     console.log("Processing TEMPLATE...", text);
-    console.log(path.replace(".vue", ".css.json"))
     posthtml([
       posthtmlCssModules(path.replace(".vue", ".css.json"))
     ]).
     process(text).
-    then(function (result) {
+    then((result) => {
       var htmlObj = new File({
-        contents: new Buffer(result.html),
+        contents: new Buffer(cleanTemplateText(result.html)),
         path: path.replace(".vue", ".html")
       });
 
       done(htmlObj);
     }).
     catch(function(ex) {
-      throw new Error(ex);
+      console.error("Error while transforming template: ", ex)
     });
   };
 
