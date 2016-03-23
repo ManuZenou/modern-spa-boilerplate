@@ -60,6 +60,7 @@ var postcss = require('postcss');
 var ASQ = require("asynquence");
 var posthtml = require('posthtml');
 var posthtmlCssModules = require('posthtml-css-modules');
+var templateValidate = require('vue-template-validator');
 
 var htmlMinifier = require('html-minifier')
 
@@ -146,6 +147,11 @@ function vueifyPlugin()
     if (!text) {
       return done();
     }
+
+    var warnings = templateValidate(text);
+    warnings.forEach((msg) => {
+      console.warn(msg)
+    });
 
     console.log("Processing TEMPLATE...");
     posthtml([
