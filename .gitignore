@@ -8,5 +8,6 @@ npm-debug.log
 
 # These are dynamically generated from .vue files
 src/components/*.css
+src/components/*.css.json
 src/components/*.html
 src/components/*.js
