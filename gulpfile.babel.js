@@ -139,6 +139,8 @@ function vueifyPlugin()
     });
   };
 
+  var minifyTemplate = true;
+
   var processTemplate = function(done, text, path)
   {
     if (!text) {
@@ -151,9 +153,7 @@ function vueifyPlugin()
     ]).
     process(text).
     then((result) => {
-      var html = htmlMinifier.minify(result.html, templateMinifyOptions);
-      // cleanTemplateText(result.html);
-
+      var html = minifyTemplate ? htmlMinifier.minify(result.html, templateMinifyOptions) : cleanTemplateText(result.html);
       var htmlObj = new File({
         contents: new Buffer(html),
         path: path.replace(".vue", ".html")
