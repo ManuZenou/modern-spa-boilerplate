@@ -11,16 +11,18 @@
     width: auto;
   }
 
+  /*
   %base-button{
     border: 1px solid black;
     padding: 2px 4px;
   }
+  */
   .cancel{
-    @extend %base-button;
+    /*@extend %base-button;*/
     background: red;
   }
   .okay{
-    @extend %base-button;
+    /*@extend %base-button;*/
     background: green;
   }
 </style>
