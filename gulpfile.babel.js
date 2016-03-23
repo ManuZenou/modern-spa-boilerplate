@@ -61,6 +61,23 @@ var ASQ = require("asynquence");
 var posthtml = require('posthtml');
 var posthtmlCssModules = require('posthtml-css-modules');
 
+var htmlMinifier = require('html-minifier')
+
+// required for Vue 1.0 shorthand syntax
+var templateMinifyOptions = {
+  customAttrSurround: [[/@/, new RegExp('')], [/:/, new RegExp('')]],
+  collapseWhitespace: true,
+  removeComments: true,
+  collapseBooleanAttributes: true,
+  removeAttributeQuotes: true,
+  // this is disabled by default to avoid removing
+  // "type" on <input type="text">
+  removeRedundantAttributes: false,
+  useShortDoctype: true,
+  removeEmptyAttributes: true,
+  removeOptionalTags: true
+}
+
 function convertFragmentIntoNodeMap(fragment)
 {
   var nodes = {};
@@ -128,14 +145,17 @@ function vueifyPlugin()
       return done();
     }
 
-    console.log("Processing TEMPLATE...", text);
+    console.log("Processing TEMPLATE...");
     posthtml([
       posthtmlCssModules(path.replace(".vue", ".css.json"))
     ]).
     process(text).
     then((result) => {
+      var html = htmlMinifier.minify(result.html, templateMinifyOptions);
+      // cleanTemplateText(result.html);
+
       var htmlObj = new File({
-        contents: new Buffer(cleanTemplateText(result.html)),
+        contents: new Buffer(html),
         path: path.replace(".vue", ".html")
       });
 
