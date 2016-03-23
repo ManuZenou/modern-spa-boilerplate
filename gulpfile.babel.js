@@ -196,7 +196,7 @@ function vueifyPlugin()
 };
 
 gulp.task('vueify', function() {
-  gulp.src("src/**/*.vue").
+  return gulp.src("src/**/*.vue").
     pipe(vueifyPlugin()).
     pipe(gulp.dest("."));
 });
