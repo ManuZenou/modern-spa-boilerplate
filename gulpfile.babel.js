@@ -213,24 +213,14 @@ function vueifyPlugin()
     ASQ(function(done) {
       processStyle(done, nodes.style, filePath)
     }).
-    then(function(done, styleFile, mappingFile)
+    then(function(done, ...files)
     {
-      if (styleFile) {
-        stream.push(styleFile);
-      }
-
-      if (mappingFile) {
-        stream.push(mappingFile);
-      }
-
+      files.forEach((file) => stream.push(file))
       processTemplate(done, nodes.template, filePath)
     }).
-    then(function(done, htmlFile)
+    then(function(done, ...files)
     {
-      if (htmlFile) {
-        stream.push(htmlFile);
-      }
-
+      files.forEach((file) => stream.push(file))
       processScript(done, nodes.script, filePath)
     }).
     then(function(done, scriptFile)
