@@ -165,7 +165,13 @@ function vueifyPlugin()
         path: path.replace(".vue", ".html")
       });
 
-      done(htmlObj);
+      var js = `export default ${JSON.stringify(html)}`;
+      var jsObj = new File({
+        contents: new Buffer(js),
+        path: path.replace(".vue", ".html.js")
+      });
+
+      done(htmlObj, jsObj);
     }).
     catch(function(ex) {
       console.error("Error while transforming template: ", ex)
