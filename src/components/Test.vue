@@ -27,12 +27,11 @@
   </div>
 </template>
 
-<!-- Ho? -->
 <script>
   export default {
     data: function () {
       return {
-        msg: 'Hello world!'
+        msg: "Hello world!"
       }
     }
   }
