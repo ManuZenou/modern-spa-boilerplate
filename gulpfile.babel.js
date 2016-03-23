@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var fs = require('fs');
 var connect = require('gulp-connect');
 var gulpPostcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
@@ -128,12 +129,18 @@ function vueifyPlugin()
         path: path.replace(".vue", ".css")
       });
 
+      /*
       var mappingObj = new File({
         contents: new Buffer(JSON.stringify(moduleMapping)),
         path: path.replace(".vue", ".css.json")
       })
+      */
 
-      done(cssObj, mappingObj);
+      // We need to write this file directly to have it available for posthtml-css-modules
+      // Unfortunately the API there does not seem to support using a JS object instead.
+      fs.writeFileSync(path.replace(".vue", ".css.json"), JSON.stringify(moduleMapping))
+
+      done(cssObj);
     }).
     catch(function(ex) {
       console.error("Error while transforming style: " + ex);
