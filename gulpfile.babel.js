@@ -136,7 +136,7 @@ function vueifyPlugin()
       done(cssObj, mappingObj);
     }).
     catch(function(ex) {
-      throw new Error(ex);
+      console.error("Error while transforming style: " + ex);
     });
   };
 
