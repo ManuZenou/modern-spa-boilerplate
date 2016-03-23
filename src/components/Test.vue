@@ -5,10 +5,13 @@
   .title {
     font-size: 3em;
   }
-  .button.cancel{
+  .buttonbar{
+    width: auto;
+  }
+  .cancel{
     background: red;
   }
-  .button.okay{
+  .okay{
     background: green;
   }
 </style>
@@ -17,9 +20,9 @@
   <div css-module="message">
     <h1 css-module="title">{{msg}}</h1>
     <p>Intro text</p>
-    <div css-module="button-bar">
-      <button css-module="button.cancel">Cancel</button>
-      <button css-module="button.okay">Save</button>
+    <div css-module="buttonbar">
+      <button css-module="cancel">Cancel</button>
+      <button css-module="okay">Save</button>
     </div>
   </div>
 </template>
