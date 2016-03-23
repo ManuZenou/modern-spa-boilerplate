@@ -58,6 +58,8 @@ var deindent = require('de-indent');
 var File = require('vinyl');
 var postcss = require('postcss');
 var ASQ = require("asynquence");
+var posthtml = require('posthtml');
+var posthtmlCssModules = require('posthtml-css-modules');
 
 function convertFragmentIntoNodeMap(fragment)
 {
@@ -99,32 +101,46 @@ function vueifyPlugin()
     ]).
     process(text).
     then(function(result) {
-      var fileObj = new File({
+      var cssObj = new File({
         contents: new Buffer(result.css),
         path: path.replace(".vue", ".css")
       });
-      done(fileObj, moduleMapping);
+
+      var mappingObj = new File({
+        contents: new Buffer(JSON.stringify(moduleMapping)),
+        path: path.replace(".vue", ".css.json")
+      })
+
+      done(cssObj, mappingObj);
     }).
     catch(function(ex) {
       throw new Error(ex);
     });
   };
 
-  var processTemplate = function(done, text, path, mapping)
+  var processTemplate = function(done, text, path)
   {
     if (!text) {
       return done();
     }
 
-    console.log("Processing TEMPLATE...");
-    console.log("Using mapping: ", mapping)
+    console.log("Processing TEMPLATE...", text);
+    console.log(path.replace(".vue", ".css.json"))
+    posthtml([
+      posthtmlCssModules(path.replace(".vue", ".css.json"))
+    ]).
+    process(text).
+    then(function (result) {
+      var htmlObj = new File({
+        contents: new Buffer(result.html),
+        path: path.replace(".vue", ".html")
+      });
 
-    var fileObj = new File({
-      contents: new Buffer(text),
-      path: path.replace(".vue", ".html")
+      done(htmlObj);
+    }).
+    catch(function(ex) {
+      throw new Error(ex);
     });
-
-    done(fileObj);
   };
 
   var processScript = function(done, text, path)
@@ -162,13 +178,17 @@ function vueifyPlugin()
     ASQ(function(done) {
       processStyle(done, nodes.style, filePath)
     }).
-    then(function(done, styleFile, mappingInfo)
+    then(function(done, styleFile, mappingFile)
     {
       if (styleFile) {
         stream.push(styleFile);
       }
 
-      processTemplate(done, nodes.template, filePath, mappingInfo)
+      if (mappingFile) {
+        stream.push(mappingFile);
+      }
+
+      processTemplate(done, nodes.template, filePath)
     }).
     then(function(done, htmlFile)
     {
