@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
-var postcss = require('gulp-postcss');
+var gulpPostcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var nested = require('postcss-nested');
 var atImport = require("postcss-import");
@@ -30,7 +30,7 @@ var postcss_options = {
 
 gulp.task('postcss', function() {
   gulp.src("src/main.css").
-    pipe(postcss(postcss_processors, postcss_options)).
+    pipe(gulpPostcss(postcss_processors, postcss_options)).
     pipe(rename({
       extname : ".bundle.css"
     })).
