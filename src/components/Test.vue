@@ -2,12 +2,15 @@
   .message{
     border: 2px solid red;
   }
+
   .title {
     font-size: 3em;
   }
+
   .buttonbar{
     width: auto;
   }
+
   %base-button{
     border: 1px solid black;
     padding: 2px 4px;
