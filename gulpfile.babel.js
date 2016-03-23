@@ -7,6 +7,18 @@ var atImport = require("postcss-import");
 var rename = require("gulp-rename");
 var path = require('path');
 var util = require('gulp-util');
+var through = require('through2');
+var parse5 = require('parse5');
+var deindent = require('de-indent');
+var File = require('vinyl');
+var postcss = require('postcss');
+var ASQ = require("asynquence");
+var posthtml = require('posthtml');
+var posthtmlCssModules = require('posthtml-css-modules');
+var templateValidate = require('vue-template-validator');
+var htmlMinifier = require('html-minifier');
+
+
 
 // Start local dev server.
 gulp.task('serve', function () {
@@ -51,18 +63,6 @@ function logChanges(event) {
 }
 
 
-
-var through = require('through2');
-var parse5 = require('parse5');
-var deindent = require('de-indent');
-var File = require('vinyl');
-var postcss = require('postcss');
-var ASQ = require("asynquence");
-var posthtml = require('posthtml');
-var posthtmlCssModules = require('posthtml-css-modules');
-var templateValidate = require('vue-template-validator');
-
-var htmlMinifier = require('html-minifier')
 
 // required for Vue 1.0 shorthand syntax
 var templateMinifyOptions = {
