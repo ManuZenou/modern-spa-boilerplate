@@ -57,82 +57,139 @@ var parse5 = require('parse5');
 var deindent = require('de-indent');
 var File = require('vinyl');
 var postcss = require('postcss');
+var ASQ = require("asynquence");
+
+function convertFragmentIntoNodeMap(fragment)
+{
+  var nodes = {};
+  fragment.childNodes.forEach(function(child) {
+    // Ignore text (typically just white space) and comment nodes
+    if (child.nodeName === "#text" || child.nodeName === "#comment") {
+      return;
+    }
+
+    var content = deindent(parse5.serialize(child.content || child)).trim();
+    nodes[child.nodeName] = content;
+  })
+
+  return nodes;
+}
+
+function getContentFromNode(node) {
+  return deindent(parse5.serialize(node.content || node));
+}
 
 function vueifyPlugin()
 {
+  var processStyle = function(done, text, path)
+  {
+    if (!text) {
+      return done();
+    }
+
+    console.log("Processing STYLE...");
+
+    var moduleMapping = null;
+    postcss([
+      require('postcss-modules')({
+        getJSON: function(cssFileName, json) {
+          moduleMapping = json;
+        }
+      })
+    ]).
+    process(text).
+    then(function(result) {
+      var fileObj = new File({
+        contents: new Buffer(result.css),
+        path: path.replace(".vue", ".css")
+      });
+      done(fileObj, moduleMapping);
+    }).
+    catch(function(ex) {
+      throw new Error(ex);
+    });
+  };
+
+  var processTemplate = function(done, text, path, mapping)
+  {
+    if (!text) {
+      return done();
+    }
+
+    console.log("Processing TEMPLATE...");
+    console.log("Using mapping: ", mapping)
+
+    var fileObj = new File({
+      contents: new Buffer(text),
+      path: path.replace(".vue", ".html")
+    });
+
+    done(fileObj);
+  };
+
+  var processScript = function(done, text, path)
+  {
+    if (!text) {
+      return done();
+    }
+
+    console.log("Processing SCRIPT...");
+
+    var fileObj = new File({
+      contents: new Buffer(text),
+      path: path.replace(".vue", ".js")
+    });
+
+    done(fileObj);
+  }
+
+
   var transform = function(file, encoding, callback)
   {
     var content = file.contents.toString('utf8');
     var fragment = parse5.parseFragment(content, {
       locationInfo: true
     });
-
-    var filePath = file.path;
-    var id = "";
-    var hasScopedStyle = false;
+    var nodes = convertFragmentIntoNodeMap(fragment);
     var stream = this;
+    var filePath = file.path;
     var moduleMapping = null;
 
+    var styleNode = nodes.style;
+    var htmlNode = nodes.html;
+    var scriptNode = nodes.script;
 
-    Promise.all(fragment.childNodes.map((node) =>
+    ASQ(function(done) {
+      processStyle(done, nodes.style, filePath)
+    }).
+    then(function(done, styleFile, mappingInfo)
     {
-      // Ignore text (typically just white space) and comment nodes
-      if (node.nodeName === "#text" || node.nodeName === "#comment") {
-        return;
+      if (styleFile) {
+        stream.push(styleFile);
       }
 
-      console.log("- Vue Process: " + node.nodeName);
-
-      switch (node.nodeName)
-      {
-        case 'template':
-          var segmentContent = deindent(parse5.serialize(node.content));
-
-          if (moduleMapping != null) {
-            console.log("Transforming template using mapping data!");
-          }
-
-          console.log("XXX: ", moduleMapping)
-
-          stream.push(new File({
-            contents: new Buffer(segmentContent),
-            path: filePath.replace(".vue", ".html")
-          }));
-          break;
-
-        case 'style':
-          var segmentContent = deindent(parse5.serialize(node));
-
-          return postcss([
-            require('postcss-modules')({
-              getJSON: function(cssFileName, json) {
-                console.log("Module Mapping Config: ", json)
-                moduleMapping = json;
-              }
-            })
-          ]).
-          process(segmentContent).
-          then(function(transformedCSS) {
-            stream.push(new File({
-              contents: new Buffer(transformedCSS.css),
-              path: filePath.replace(".vue", ".css")
-            }));
-          }).catch(function(ex) {
-            console.error("Ooops: " + ex);
-          })
-
-          break;
-
-        case 'script':
-          var segmentContent = deindent(parse5.serialize(node));
-          stream.push(new File({
-            contents: new Buffer(segmentContent),
-            path: filePath.replace(".vue", ".js")
-          }));
-          break;
+      processTemplate(done, nodes.template, filePath, mappingInfo)
+    }).
+    then(function(done, htmlFile)
+    {
+      if (htmlFile) {
+        stream.push(htmlFile);
       }
-    })).
-    then(callback);
+
+      processScript(done, nodes.script, filePath)
+    }).
+    then(function(done, scriptFile)
+    {
+      if (scriptFile) {
+        stream.push(scriptFile);
+      }
+
+      console.log("ALL DONE")
+      callback();
+    }).
+    or(function(ex) {
+      console.error("ERROR: " + ex);
+    });
   };
 
   return through.obj(transform);
