@@ -1,13 +1,13 @@
-var gulp = require('gulp');
-var connect = require('gulp-connect');
-var gulpPostcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var nested = require('postcss-nested');
-var atImport = require("postcss-import");
-var rename = require("gulp-rename");
-var path = require('path');
-var util = require('gulp-util');
-var vuesplitPlugin = require('gulp-vuesplit').default;
+import gulp from 'gulp'
+import connect from 'gulp-connect'
+import gulpPostcss from 'gulp-postcss'
+import autoprefixer from 'autoprefixer'
+import nested from 'postcss-nested'
+import atImport from "postcss-import"
+import rename from "gulp-rename"
+import path from 'path'
+import util from 'gulp-util'
+import vuesplitPlugin from 'gulp-vuesplit'
 
 // Start local dev server.
 gulp.task('serve', function () {
