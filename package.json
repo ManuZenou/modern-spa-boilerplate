@@ -4,7 +4,9 @@
   "description": "Modern Boilerplate for Single Page Applications",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --cache *.js src/components/*.js",
+    "autofix": "eslint --cache --fix *.js src/components/*.js"
   },
   "keywords": [
     "boilerplate",
