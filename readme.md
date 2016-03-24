@@ -6,6 +6,9 @@
 - [JSPM](http://jspm.io) Package Manager for client side package management
 - [PostCSS](http://postcss.org) for advanced CSS features, automatic prefixes and compression
 - Linting JavaScript sources with [ESLint](http://eslint.org)
+- [VueJS](http://vuejs.org) for client side view management and components
+- Support for `.vue`-files during development ("transpiled" by a file watcher)
+- [CSS Modules](https://github.com/css-modules/css-modules) for preventing conflicts between VueJS components
 
 
 ## Copyright
