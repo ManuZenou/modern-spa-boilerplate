@@ -13,6 +13,7 @@
     "babel",
     "postcss"
   ],
+  "repository": "https://github.com/sebastian-software/modern-spa-boilerplate.git",
   "author": "Sebastian Werner",
   "license": "Apache-2.0",
   "dependencies": {
