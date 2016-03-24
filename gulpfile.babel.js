@@ -3,6 +3,9 @@ import connect from "gulp-connect"
 import rename from "gulp-rename"
 import path from "path"
 import util from "gulp-util"
+import del from "del";
+
+import jspm from "jspm";
 
 import postcss from "gulp-postcss"
 import autoprefixer from "autoprefixer"
@@ -10,6 +13,8 @@ import nested from "postcss-nested"
 import atImport from "postcss-import"
 
 import splitPlugin from "gulp-vuesplit"
+import layoutSelector from "postcss-layout-selector";
+import fontSystem from "postcss-font-system";
 
 // Start local dev server.
 gulp.task("serve", function() {
