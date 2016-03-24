@@ -11,3 +11,5 @@ src/components/*.css
 src/components/*.css.json
 src/components/*.html
 src/components/*.js
+
+.eslintcache
