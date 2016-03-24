@@ -51,7 +51,7 @@ var postcss_processors =
   postcss_assets,
   postcss_calc,
   postcss_transparentFix,
-  postcss_easings
+  postcss_easings,
   postcss_colorFunction,
   postcss_colorHexAlpha,
 
