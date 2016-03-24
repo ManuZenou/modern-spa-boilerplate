@@ -6,6 +6,7 @@ import util from "gulp-util"
 import del from "del";
 
 import jspm from "jspm";
+const builder = new jspm.Builder("src", "jspm.config.js");
 
 import postcss from "gulp-postcss"
 import postcss_import from "postcss-import"
