@@ -51,7 +51,13 @@ gulp.task('postcss', function() {
     pipe(connect.reload());
 });
 
-gulp.task('watch', function() {
+gulp.task('vueify', function() {
+  return gulp.src("src/**/*.vue").
+    pipe(vueifyPlugin()).
+    pipe(gulp.dest("."));
+});
+
+gulp.task('watch', ["vueify", "postcss"], function() {
   gulp.watch(["src/**/*.css", "!src/**/*.bundle.css"], ["postcss"]).on('change', logChanges);
   gulp.watch(["src/**/*.vue"], ["vueify"]).on('change', logChanges);
 });
@@ -255,8 +261,3 @@ function vueifyPlugin()
   return through.obj(transform);
 };
 
-gulp.task('vueify', function() {
-  return gulp.src("src/**/*.vue").
-    pipe(vueifyPlugin()).
-    pipe(gulp.dest("."));
-});
