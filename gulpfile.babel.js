@@ -13,7 +13,7 @@ var parse5 = require('parse5');
 var deindent = require('de-indent');
 var File = require('vinyl');
 var postcss = require('postcss');
-var ASQ = require("asynquence");
+var series = require("async/series");
 var posthtml = require('posthtml');
 var posthtmlCssModules = require('posthtml-css-modules');
 var templateValidate = require('vue-template-validator');
@@ -140,10 +140,10 @@ function vueifyPlugin()
       // Unfortunately the API there does not seem to support using a JS object instead.
       fs.writeFileSync(path.replace(".vue", ".css.json"), JSON.stringify(moduleMapping))
 
-      done(cssObj);
+      done(null, cssObj);
     }).
     catch(function(ex) {
-      console.error("Error while transforming style: " + ex);
+      done("Error while transforming style: " + ex);
     });
   };
 
@@ -178,10 +178,10 @@ function vueifyPlugin()
         path: path.replace(".vue", ".html.js")
       });
 
-      done(htmlObj, jsObj);
+      done(null, htmlObj, jsObj);
     }).
     catch(function(ex) {
-      console.error("Error while transforming template: ", ex)
+      done("Error while transforming template: ", ex)
     });
   };
 
@@ -198,7 +198,7 @@ function vueifyPlugin()
       path: path.replace(".vue", ".js")
     });
 
-    done(fileObj);
+    done(null, fileObj);
   }
 
 
@@ -217,30 +217,38 @@ function vueifyPlugin()
     var htmlNode = nodes.html;
     var scriptNode = nodes.script;
 
-    ASQ(function(done) {
-      processStyle(done, nodes.style, filePath)
-    }).
-    then(function(done, ...files)
-    {
-      files.forEach((file) => stream.push(file))
-      processTemplate(done, nodes.template, filePath)
-    }).
-    then(function(done, ...files)
-    {
-      files.forEach((file) => stream.push(file))
-      processScript(done, nodes.script, filePath)
-    }).
-    then(function(done, scriptFile)
-    {
-      if (scriptFile) {
-        stream.push(scriptFile);
+    series(
+    [
+      function(done) {
+        processStyle(done, nodes.style, filePath)
+      },
+      function(done, ...files)
+      {
+        files.forEach((file) => stream.push(file))
+        processTemplate(done, nodes.template, filePath)
+      },
+      function(done, ...files)
+      {
+        files.forEach((file) => stream.push(file))
+        processScript(done, nodes.script, filePath)
+      },
+      function(done, ...files)
+      {
+        files.forEach((file) => stream.push(file))
+        done(null);
       }
-
-      console.log("ALL DONE")
-      callback();
-    }).
-    or(function(ex) {
-      console.error("ERROR: " + ex);
+    ],
+    function(err, results)
+    {
+      if (err)
+      {
+        console.error(err);
+      }
+      else
+      {
+        console.log("ALL DONE")
+        callback();
+      }
     });
   };
 
