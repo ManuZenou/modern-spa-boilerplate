@@ -1,13 +1,15 @@
 import gulp from "gulp"
 import connect from "gulp-connect"
-import gulpPostcss from "gulp-postcss"
-import autoprefixer from "autoprefixer"
-import nested from "postcss-nested"
-import atImport from "postcss-import"
 import rename from "gulp-rename"
 import path from "path"
 import util from "gulp-util"
-import vuesplitPlugin from "gulp-vuesplit"
+
+import postcss from "gulp-postcss"
+import autoprefixer from "autoprefixer"
+import nested from "postcss-nested"
+import atImport from "postcss-import"
+
+import splitPlugin from "gulp-vuesplit"
 
 // Start local dev server.
 gulp.task("serve", function() {
@@ -31,7 +33,7 @@ var postcss_options = {
 
 gulp.task("postcss", function() {
   gulp.src("src/main.css").
-    pipe(gulpPostcss(postcss_processors, postcss_options)).
+    pipe(postcss(postcss_processors, postcss_options)).
     pipe(rename({
       extname : ".bundle.css"
     })).
@@ -41,7 +43,7 @@ gulp.task("postcss", function() {
 
 gulp.task("vuesplit", function() {
   return gulp.src("src/**/*.vue").
-    pipe(vuesplitPlugin()).
+    pipe(splitPlugin()).
     pipe(gulp.dest("."))
 })
 
