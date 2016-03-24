@@ -81,14 +81,16 @@ gulp.task("vuesplit", function() {
     pipe(gulp.dest("."))
 })
 
-gulp.task("watch", [ "vuesplit", "postcss" ], function() {
-  gulp.watch([ "src/**/*.css", "!src/**/*.bundle.css" ], [ "postcss" ]).on("change", logChanges)
-  gulp.watch([ "src/**/*.vue" ], [ "vuesplit" ]).on("change", logChanges)
-})
+gulp.task("watch", [ "vuesplit", "postcss" ], function()
+{
+  function log(event)
+  {
+    util.log(
+      util.colors.green("File " + event.type + ": ") +
+      util.colors.magenta(path.basename(event.path))
+    )
+  }
 
-function logChanges(event) {
-  util.log(
-    util.colors.green("File " + event.type + ": ") +
-    util.colors.magenta(path.basename(event.path))
-  )
-}
+  gulp.watch([ "src/**/*.css", "!src/**/*.bundle.css" ], [ "postcss" ]).on("change", log)
+  gulp.watch([ "src/**/*.vue" ], [ "vuesplit" ]).on("change", log)
+})
