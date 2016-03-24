@@ -2,11 +2,10 @@
 
 ## Features
 
-- Gulp with ES6 support
-- JSPM Package Manager for client side package management
-- PostCSS for advanced CSS features, automatic prefixes and compression
-- Linting JavaScript sources with ESLint
--
+- [Gulp](http://gulpjs.com/) with ES6 support
+- [JSPM](http://jspm.io) Package Manager for client side package management
+- [PostCSS](http://postcss.org) for advanced CSS features, automatic prefixes and compression
+- Linting JavaScript sources with [ESLint](http://eslint.org)
 
 
 ## Copyright
