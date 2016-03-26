@@ -65,6 +65,7 @@
       "jspm": "src/jspm.config.js"
     },
     "dependencies": {
+      "normalize.css": "github:necolas/normalize.css@^4.0.0",
       "vue": "npm:vue@^1.0.18"
     },
     "devDependencies": {
