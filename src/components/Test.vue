@@ -13,7 +13,12 @@
 
   %base-button{
     border: 1px solid black;
-    padding: 2px 4px;
+    padding: 8px 12px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    font-size: inherit;
+    color: white;
   }
 
   .cancel{
