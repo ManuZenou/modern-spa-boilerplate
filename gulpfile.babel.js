@@ -71,14 +71,18 @@ gulp.task("postcss", function() {
     pipe(rename({
       extname : ".bundle.css"
     })).
-    pipe(gulp.dest("src")).
-    pipe(connect.reload())
+    pipe(gulp.dest("src"))
 })
 
 gulp.task("vuesplit", function() {
   return gulp.src("src/**/*.vue").
     pipe(splitPlugin()).
     pipe(gulp.dest("."))
+})
+
+gulp.task("reload", function() {
+  gulp.src([ "src/*.html", "src/*.bundle.*" ]).
+    pipe(connect.reload())
 })
 
 gulp.task("watch", [ "vuesplit", "postcss" ], function()
@@ -93,4 +97,6 @@ gulp.task("watch", [ "vuesplit", "postcss" ], function()
 
   gulp.watch([ "src/**/*.css", "!src/**/*.bundle.css" ], [ "postcss" ]).on("change", log)
   gulp.watch([ "src/**/*.vue" ], [ "vuesplit" ]).on("change", log)
+
+  gulp.watch([ "src/*.html", "src/*.bundle.*" ], ["reload"]).on("change", log)
 })
