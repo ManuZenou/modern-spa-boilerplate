@@ -1,5 +1,4 @@
 import gulp from "gulp"
-import connect from "gulp-connect"
 import rename from "gulp-rename"
 import path from "path"
 import util from "gulp-util"
@@ -29,14 +28,23 @@ import splitPlugin from "gulp-vuesplit"
 import layoutSelector from "postcss-layout-selector";
 import fontSystem from "postcss-font-system";
 
+import browserSync from "browser-sync";
+
+var browserSyncServer = browserSync.create();
+
 // Start local dev server.
 gulp.task("serve", function() {
-  connect.server({
-    root: "src",
+  browserSyncServer.init({
+    open: false,
+    logConnections: true,
+    logFileChanges: true,
+    reloadOnRestart: true,
+    notify: false,
     port: 8085,
-    https: false,
-    livereload: true
-  })
+    server: {
+      baseDir: "./src"
+    }
+  });
 })
 
 var postcss_processors =
@@ -80,25 +88,30 @@ gulp.task("vuesplit", function() {
     pipe(gulp.dest("."))
 })
 
-gulp.task("reload", function() {
-  gulp.src([ "src/*.html", "src/*.bundle.*" ]).
-    pipe(connect.reload())
-})
-
 gulp.task("watch", [ "vuesplit", "postcss" ], function()
 {
   function log(event)
   {
     util.log(
-      util.colors.green("File " + event.type + ": ") +
+      util.colors.green("Changed: ") +
       util.colors.magenta(path.basename(event.path))
     )
   }
 
-  gulp.watch([ "src/**/*.css", "!src/**/*.bundle.css" ], [ "postcss" ]).on("change", log)
-  gulp.watch([ "src/**/*.vue" ], [ "vuesplit" ]).on("change", log)
+  gulp.watch([
+    "src/**/*.css",
+    "!src/**/*.bundle.css"
+  ], [ "postcss" ]).on("change", log)
 
-  gulp.watch([ "src/*.html", "src/*.bundle.*" ], ["reload"]).on("change", log)
+  gulp.watch([
+    "src/**/*.vue"
+  ], [ "vuesplit" ]).on("change", log)
+
+  gulp.watch([
+    "src/*.html",
+    "src/*.bundle.css",
+    "src/*.bundle.js"
+  ]).on('change', browserSyncServer.reload).on("change", log)
 })
 
 gulp.task("default", [ "serve", "watch" ]);
