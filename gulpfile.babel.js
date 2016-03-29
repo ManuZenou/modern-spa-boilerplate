@@ -66,7 +66,7 @@ var postcss_options = {
 }
 
 gulp.task("postcss", function() {
-  gulp.src("src/main.css").
+  return gulp.src("src/main.css").
     pipe(postcss(postcss_processors, postcss_options)).
     pipe(rename({
       extname : ".bundle.css"
