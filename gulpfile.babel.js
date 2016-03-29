@@ -100,3 +100,5 @@ gulp.task("watch", [ "vuesplit", "postcss" ], function()
 
   gulp.watch([ "src/*.html", "src/*.bundle.*" ], ["reload"]).on("change", log)
 })
+
+gulp.task("default", [ "serve", "watch" ]);
