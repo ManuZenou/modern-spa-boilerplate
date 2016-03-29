@@ -125,3 +125,24 @@ gulp.task("jspm", function() {
 
   builder.bundle("app/main", "src/main.bundle.js", { minify : false, mangle : false, sourceMaps: true })
 })
+
+import resolve from "jspm-resolve";
+
+gulp.task("jspmtest", function() {
+  resolve("react", {}, (err, result) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log(result) // path to jspm react
+  })
+
+})
+
+gulp.task("jspmtest2", function() {
+  var result = resolve.sync("normalize.css");
+  console.log(result);
+
+  var result = resolve.sync("vue");
+  console.log(result);
+});
