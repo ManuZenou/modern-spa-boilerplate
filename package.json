@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "lint": "eslint --cache *.js src/components/*.js",
-    "autofix": "eslint --cache --fix *.js src/components/*.js"
+    "autofix": "eslint --cache --fix *.js src/components/*.js",
+    "depupdate": "updtr"
   },
   "keywords": [
     "boilerplate",
@@ -51,6 +52,7 @@
     "posthtml": "^0.8.3",
     "posthtml-css-modules": "^0.1.0",
     "s15e-javascript": "^0.1.13",
+    "updtr": "^0.1.10",
     "vue-template-validator": "^1.1.5"
   },
   "jspm": {
