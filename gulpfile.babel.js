@@ -88,7 +88,7 @@ gulp.task("vuesplit", function() {
     pipe(gulp.dest("."))
 })
 
-gulp.task("watch", [ "vuesplit", "postcss" ], function()
+gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
 {
   function log(event)
   {
@@ -104,6 +104,11 @@ gulp.task("watch", [ "vuesplit", "postcss" ], function()
   ], [ "postcss" ]).on("change", log)
 
   gulp.watch([
+    "src/**/*.js",
+    "!src/**/*.bundle.js"
+  ], [ "jspm" ]).on("change", log)
+
+  gulp.watch([
     "src/**/*.vue"
   ], [ "vuesplit" ]).on("change", log)
 
@@ -115,3 +120,8 @@ gulp.task("watch", [ "vuesplit", "postcss" ], function()
 })
 
 gulp.task("default", [ "serve", "watch" ]);
+
+gulp.task("jspm", function() {
+
+  builder.bundle("app/main", "src/main.bundle.js", { minify : false, mangle : false, sourceMaps: true })
+})
