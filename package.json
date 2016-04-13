@@ -67,6 +67,7 @@
       "jspm": "src/jspm.config.js"
     },
     "dependencies": {
+      "lodash": "npm:lodash@^4.11.0",
       "normalize.css": "github:necolas/normalize.css@^4.0.0",
       "vue": "npm:vue@^1.0.18"
     },

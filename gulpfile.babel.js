@@ -186,7 +186,8 @@ function crossResolver(id)
             if (err)
             {
               let resolvedExt = path.extname(jspmResult);
-              if (idFileExt !== resolvedExt) {
+              if (idFileExt !== resolvedExt)
+              {
                 let jspmResultFixed = jspmResult.slice(0, -resolvedExt.length)
                 fs.lstat(jspmResultFixed, function(err)
                 {
@@ -200,13 +201,12 @@ function crossResolver(id)
                 return;
               }
 
-              rejectCallback(err);
+              rejectCallback("No such file or directory: " + jspmResult);
             }
             else
             {
               let resolvedToFile = statResult.isFile();
               if (!resolvedToFile) {
-                console.log("No file request... asking NPM for ID: ", id)
                 return resolveFile(jspmResult, resolveCallback, rejectCallback);
               }
 
@@ -233,7 +233,8 @@ gulp.task("oh", function()
     crossResolver("jspm"),
     crossResolver("vue"),
     crossResolver("normalize.css"),
-    crossResolver("normalize.css/normalize.css")
+    crossResolver("normalize.css/normalize.css"),
+    crossResolver("lodash/map")
   ]).then(function(values) {
     return values.map(function(entry) {
       return entry;
