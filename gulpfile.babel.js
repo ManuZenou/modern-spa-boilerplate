@@ -237,8 +237,7 @@ gulp.task("oh", function()
     crossResolver("lodash/map")
   ]).then(function(values) {
     return values.map(function(entry) {
-      return entry;
-      //return path.relative(__dirname, entry)
+      return path.relative(__dirname, entry)
     })
   }).then(function(relativeValues) {
     console.log("Resolved: ", relativeValues);
@@ -246,60 +245,4 @@ gulp.task("oh", function()
     console.error("Error: ", err);
   })
 });
-
-
-
-
-gulp.task("play", function(done) {
-  jspm.normalize("normalize.css").then(function(res) {
-    res = res.replace("file://", "");
-    console.log("Result: ", res);
-
-    npmResolve("jspm", { basedir: __dirname }, function (err, res) {
-      if (err)
-        console.error(err)
-      else
-        console.log("NPM-Result JSPM: ", res);
-    })
-
-    npmResolve("normalize.css", { basedir: res }, function (err, res) {
-      if (err)
-        console.error(err)
-      else
-        console.log("NPM-Result normalize1: ", res);
-    })
-
-    npmResolve(".", { basedir: res }, function (err, res) {
-      if (err)
-        console.error(err)
-      else
-        console.log("NPM-Result normalize2: ", res);
-    })
-
-    npmResolve("./normalize.css", { basedir: res }, function (err, res) {
-      if (err)
-        console.error(err)
-      else
-        console.log("NPM-Result normalize3: ", res);
-    })
-
-
-  })
-
-  jspm.normalize("vue").then(function(res) {
-    res = res.replace("file://", "");
-    console.log("Vue-Result: ", res);
-
-    npmResolve(".", { basedir: res }, function (err, res) {
-      if (err)
-        console.error(err)
-      else
-        console.log("NPM-Result vue: ", res);
-    })
-
-
-  })
-
-})
-
 
