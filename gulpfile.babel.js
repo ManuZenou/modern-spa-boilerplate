@@ -126,23 +126,144 @@ gulp.task("jspm", function() {
   builder.bundle("app/main", "src/main.bundle.js", { minify : false, mangle : false, sourceMaps: true })
 })
 
-import resolve from "jspm-resolve";
+import npmResolve from "resolve";
+import fs from "fs";
 
-gulp.task("jspmtest", function() {
-  resolve("react", {}, (err, result) => {
-    if (err) {
-      throw err;
-    }
 
-    console.log(result) // path to jspm react
+
+
+function crossResolver(id)
+{
+  console.log("Query for: ", id);
+
+  return new Promise(function(resolve, reject)
+  {
+    npmResolve(id, {
+      basedir: __dirname
+    },
+    function (err, npmResult)
+    {
+      if (err)
+      {
+        var isFileRequest = id.indexOf("/") !== -1;
+        var idFileExt = isFileRequest && path.extname(id) || null;
+
+        // console.log("NPM Lookup Failed: ", err);
+        jspm.normalize(id).then(function(jspmResult)
+        {
+          // Convert to non-url real usable file system path
+          jspmResult = jspmResult.replace("file://", "");
+
+          // The JSPM normalization falls back to working directory + ID even if the
+          // file / directory does not exist.
+          fs.lstat(jspmResult, function(err)
+          {
+            if (err) {
+
+              let resolvedExt = path.extname(jspmResult);
+              if (idFileExt !== resolvedExt) {
+                let jspmResultFixed = jspmResult.slice(0, -resolvedExt.length)
+                fs.lstat(jspmResultFixed, function(err) {
+                  if (err) {
+                    reject(err);
+                  } else {
+                    resolve(jspmResultFixed)
+                  }
+                })
+
+                return;
+              }
+
+              reject(err);
+            } else {
+              resolve(jspmResult)
+            }
+          })
+        }).
+        catch(function(jspmError) {
+          reject(jspmError);
+        })
+      }
+      else
+      {
+        resolve(npmResult);
+      }
+    })
+  })
+}
+
+
+gulp.task("oh", function()
+{
+  return Promise.all([
+    crossResolver("jspm"),
+    crossResolver("vue"),
+    crossResolver("normalize.css"),
+    crossResolver("normalize.css/normalize.css")
+  ]).then(function(values) {
+    return values.map(function(entry) {
+      return path.relative(__dirname, entry)
+    })
+  }).then(function(relativeValues) {
+    console.log("Resolved: ", relativeValues);
+  }).catch(function(err) {
+    console.error("Error: ", err);
+  })
+});
+
+
+
+
+gulp.task("play", function(done) {
+  jspm.normalize("normalize.css").then(function(res) {
+    res = res.replace("file://", "");
+    console.log("Result: ", res);
+
+    npmResolve("jspm", { basedir: __dirname }, function (err, res) {
+      if (err)
+        console.error(err)
+      else
+        console.log("NPM-Result JSPM: ", res);
+    })
+
+    npmResolve("normalize.css", { basedir: res }, function (err, res) {
+      if (err)
+        console.error(err)
+      else
+        console.log("NPM-Result normalize1: ", res);
+    })
+
+    npmResolve(".", { basedir: res }, function (err, res) {
+      if (err)
+        console.error(err)
+      else
+        console.log("NPM-Result normalize2: ", res);
+    })
+
+    npmResolve("./normalize.css", { basedir: res }, function (err, res) {
+      if (err)
+        console.error(err)
+      else
+        console.log("NPM-Result normalize3: ", res);
+    })
+
+
+  })
+
+  jspm.normalize("vue").then(function(res) {
+    res = res.replace("file://", "");
+    console.log("Vue-Result: ", res);
+
+    npmResolve(".", { basedir: res }, function (err, res) {
+      if (err)
+        console.error(err)
+      else
+        console.log("NPM-Result vue: ", res);
+    })
+
+
   })
 
 })
 
-gulp.task("jspmtest2", function() {
-  var result = resolve.sync("normalize.css");
-  console.log(result);
 
-  var result = resolve.sync("vue");
-  console.log(result);
-});
