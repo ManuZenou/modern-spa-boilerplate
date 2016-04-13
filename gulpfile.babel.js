@@ -142,13 +142,12 @@ function crossResolver(id)
     {
       basedir: path,
       extensions: [ ".js", ".css", ".scss", ".sss", ".sass", ".less", ".woff2", ".woff", ".ttf", ".otf", ".svg", ".png", ".jpeg", ".webp" ],
-      packageFilter: function processPackage(pkg) {
+      packageFilter: function processPackage(pkg)
+      {
         if (pkg.style) {
           pkg.main = pkg.style
         }
-        else if (!pkg.main || !/\.css$/.test(pkg.main)) {
-          pkg.main = "index.css"
-        }
+
         return pkg;
       }
     },
