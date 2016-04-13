@@ -134,9 +134,35 @@ import fs from "fs";
 
 function crossResolver(id)
 {
-  console.log("Query for: ", id);
+  // This is required because JSPM does not return files based on "main" or "style"
+  // attributes from "package.json" but expect this in most cases.
+  var resolveFile = function(path, resolveCallback, rejectCallback)
+  {
+    npmResolve(".",
+    {
+      basedir: path,
+      extensions: [ ".js", ".css", ".scss", ".sss", ".sass", ".less", ".woff2", ".woff", ".ttf", ".otf", ".svg", ".png", ".jpeg", ".webp" ],
+      packageFilter: function processPackage(pkg) {
+        if (pkg.style) {
+          pkg.main = pkg.style
+        }
+        else if (!pkg.main || !/\.css$/.test(pkg.main)) {
+          pkg.main = "index.css"
+        }
+        return pkg;
+      }
+    },
+    function(err, result)
+    {
+      if (err) {
+        rejectCallback(err)
+      } else {
+        resolveCallback(result)
+      }
+    })
+  };
 
-  return new Promise(function(resolve, reject)
+  return new Promise(function(resolveCallback, rejectCallback)
   {
     npmResolve(id, {
       basedir: __dirname
@@ -156,37 +182,46 @@ function crossResolver(id)
 
           // The JSPM normalization falls back to working directory + ID even if the
           // file / directory does not exist.
-          fs.lstat(jspmResult, function(err)
+          fs.lstat(jspmResult, function(err, statResult)
           {
-            if (err) {
-
+            if (err)
+            {
               let resolvedExt = path.extname(jspmResult);
               if (idFileExt !== resolvedExt) {
                 let jspmResultFixed = jspmResult.slice(0, -resolvedExt.length)
-                fs.lstat(jspmResultFixed, function(err) {
+                fs.lstat(jspmResultFixed, function(err)
+                {
                   if (err) {
-                    reject(err);
+                    rejectCallback(err);
                   } else {
-                    resolve(jspmResultFixed)
+                    resolveCallback(jspmResultFixed)
                   }
                 })
 
                 return;
               }
 
-              reject(err);
-            } else {
-              resolve(jspmResult)
+              rejectCallback(err);
+            }
+            else
+            {
+              let resolvedToFile = statResult.isFile();
+              if (!resolvedToFile) {
+                console.log("No file request... asking NPM for ID: ", id)
+                return resolveFile(jspmResult, resolveCallback, rejectCallback);
+              }
+
+              resolveCallback(jspmResult)
             }
           })
         }).
         catch(function(jspmError) {
-          reject(jspmError);
+          rejectCallback(jspmError);
         })
       }
       else
       {
-        resolve(npmResult);
+        resolveCallback(npmResult);
       }
     })
   })
@@ -202,7 +237,8 @@ gulp.task("oh", function()
     crossResolver("normalize.css/normalize.css")
   ]).then(function(values) {
     return values.map(function(entry) {
-      return path.relative(__dirname, entry)
+      return entry;
+      //return path.relative(__dirname, entry)
     })
   }).then(function(relativeValues) {
     console.log("Resolved: ", relativeValues);
