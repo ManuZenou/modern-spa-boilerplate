@@ -27,7 +27,7 @@ import postcss_cssnano from "cssnano"
 import postcss_transparentFix from "postcss-gradient-transparency-fix"
 import postcss_easings from "postcss-easings"
 
-import splitPlugin from "gulp-vuesplit"
+import vueSplit from "gulp-vuesplit"
 import layoutSelector from "postcss-layout-selector";
 import fontSystem from "postcss-font-system";
 
@@ -89,7 +89,7 @@ gulp.task("postcss", function() {
 
 gulp.task("vuesplit", function() {
   return gulp.src("src/**/*.vue").
-    pipe(splitPlugin()).
+    pipe(vueSplit()).
     pipe(gulp.dest("."))
 })
 
