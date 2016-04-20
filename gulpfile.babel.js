@@ -8,6 +8,8 @@ import jspm from "jspm";
 const builder = new jspm.Builder("src", "jspm.config.js");
 import resolve from "pkg-resolve";
 
+import sourcemaps from "gulp-sourcemaps";
+
 import postcss from "gulp-postcss"
 import postcss_import from "postcss-import"
 import postcss_assets from "postcss-assets"
@@ -76,10 +78,12 @@ var postcss_options = {
 
 gulp.task("postcss", function() {
   return gulp.src("src/main.css").
+    pipe(sourcemaps.init()).
     pipe(postcss(postcss_processors, postcss_options)).
     pipe(rename({
       extname : ".bundle.css"
     })).
+    pipe(sourcemaps.write()).
     pipe(gulp.dest("src"))
 })
 
