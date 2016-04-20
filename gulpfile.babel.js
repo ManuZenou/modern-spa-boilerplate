@@ -86,7 +86,9 @@ gulp.task("postcss", function() {
     pipe(rename({
       extname : ".bundle.css"
     })).
-    pipe(sourcemaps.write()).
+    pipe(sourcemaps.write(".", {
+      includeContent: false
+    })).
     pipe(gulp.dest("src"))
 })
 
