@@ -123,26 +123,5 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
 gulp.task("default", [ "serve", "watch" ]);
 
 gulp.task("jspm", function() {
-
   builder.bundle("app/main", "src/main.bundle.js", { minify : false, mangle : false, sourceMaps: true })
 })
-
-gulp.task("oh", function()
-{
-  return Promise.all([
-    resolve("jspm"),
-    resolve("vue"),
-    resolve("normalize.css"),
-    resolve("normalize.css/normalize.css"),
-    resolve("lodash/map")
-  ]).then(function(values) {
-    return values.map(function(entry) {
-      return path.relative(__dirname, entry)
-    })
-  }).then(function(relativeValues) {
-    console.log("Resolved: ", relativeValues);
-  }).catch(function(err) {
-    console.error("Error: ", err);
-  })
-});
-
