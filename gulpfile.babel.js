@@ -132,5 +132,10 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
 gulp.task("default", [ "serve", "watch" ]);
 
 gulp.task("jspm", function() {
-  builder.bundle("app/main", "src/main.bundle.js", { minify : false, mangle : false, sourceMaps: true })
+  builder.bundle("app/main", "src/main.bundle.js", {
+    minify : false,
+    mangle : false,
+    sourceMaps: true,
+    lowResSourceMaps: true
+  })
 })
