@@ -39,6 +39,7 @@
     "postcss-calc": "^5.2.1",
     "postcss-color-function": "^2.0.1",
     "postcss-color-hex-alpha": "^2.0.0",
+    "postcss-csso": "^1.1.1",
     "postcss-discard-comments": "^2.0.4",
     "postcss-easings": "^0.3.0",
     "postcss-extend": "^1.0.1",

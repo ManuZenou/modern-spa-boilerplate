@@ -26,6 +26,7 @@ import postcss_autoprefixer from "autoprefixer"
 import postcss_cssnano from "cssnano"
 import postcss_transparentFix from "postcss-gradient-transparency-fix"
 import postcss_easings from "postcss-easings"
+import postcss_csso from "postcss-csso"
 
 import vueSplit from "gulp-vuesplit"
 import layoutSelector from "postcss-layout-selector";
@@ -69,7 +70,9 @@ var postcss_processors =
 
   postcss_nested,
   postcss_autoprefixer,
-  postcss_cssnano,
+  postcss_csso({
+    sourceMap: true
+  }),
 ]
 
 var postcss_options = {
