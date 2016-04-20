@@ -6,6 +6,7 @@ import del from "del";
 
 import jspm from "jspm";
 const builder = new jspm.Builder("src", "jspm.config.js");
+import resolve from "pkg-resolve";
 
 import postcss from "gulp-postcss"
 import postcss_import from "postcss-import"
@@ -126,115 +127,14 @@ gulp.task("jspm", function() {
   builder.bundle("app/main", "src/main.bundle.js", { minify : false, mangle : false, sourceMaps: true })
 })
 
-import npmResolve from "resolve";
-import fs from "fs";
-
-
-
-
-function crossResolver(id)
-{
-  // This is required because JSPM does not return files based on "main" or "style"
-  // attributes from "package.json" but expect this in most cases.
-  var resolveFile = function(path, resolveCallback, rejectCallback)
-  {
-    npmResolve(".",
-    {
-      basedir: path,
-      extensions: [ ".js", ".css", ".scss", ".sss", ".sass", ".less", ".woff2", ".woff", ".ttf", ".otf", ".svg", ".png", ".jpeg", ".webp" ],
-      packageFilter: function processPackage(pkg)
-      {
-        if (pkg.style) {
-          pkg.main = pkg.style
-        }
-
-        return pkg;
-      }
-    },
-    function(err, result)
-    {
-      if (err) {
-        rejectCallback(err)
-      } else {
-        resolveCallback(result)
-      }
-    })
-  };
-
-  return new Promise(function(resolveCallback, rejectCallback)
-  {
-    npmResolve(id, {
-      basedir: __dirname
-    },
-    function (err, npmResult)
-    {
-      if (err)
-      {
-        var isFileRequest = id.indexOf("/") !== -1;
-        var idFileExt = isFileRequest && path.extname(id) || null;
-
-        // console.log("NPM Lookup Failed: ", err);
-        jspm.normalize(id).then(function(jspmResult)
-        {
-          // Convert to non-url real usable file system path
-          jspmResult = jspmResult.replace("file://", "");
-
-          // The JSPM normalization falls back to working directory + ID even if the
-          // file / directory does not exist.
-          fs.lstat(jspmResult, function(err, statResult)
-          {
-            if (err)
-            {
-              let resolvedExt = path.extname(jspmResult);
-              if (idFileExt !== resolvedExt)
-              {
-                let jspmResultFixed = jspmResult.slice(0, -resolvedExt.length)
-                fs.lstat(jspmResultFixed, function(err)
-                {
-                  if (err) {
-                    rejectCallback(err);
-                  } else {
-                    resolveCallback(jspmResultFixed)
-                  }
-                })
-
-                return;
-              }
-
-              rejectCallback("No such file or directory: " + jspmResult);
-            }
-            else
-            {
-              let resolvedToFile = statResult.isFile();
-              if (!resolvedToFile) {
-                return resolveFile(jspmResult, resolveCallback, rejectCallback);
-              }
-
-              resolveCallback(jspmResult)
-            }
-          })
-        }).
-        catch(function(jspmError) {
-          rejectCallback(jspmError);
-        })
-      }
-      else
-      {
-        resolveCallback(npmResult);
-      }
-    })
-  })
-}
-
-
 gulp.task("oh", function()
 {
   return Promise.all([
-    crossResolver("jspm"),
-    crossResolver("vue"),
-    crossResolver("normalize.css"),
-    crossResolver("normalize.css/normalize.css"),
-    crossResolver("lodash/map")
+    resolve("jspm"),
+    resolve("vue"),
+    resolve("normalize.css"),
+    resolve("normalize.css/normalize.css"),
+    resolve("lodash/map")
   ]).then(function(values) {
     return values.map(function(entry) {
       return path.relative(__dirname, entry)
