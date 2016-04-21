@@ -98,6 +98,31 @@ gulp.task("vuesplit", function() {
     pipe(gulp.dest("."))
 })
 
+
+gulp.task("jspm", function() {
+  builder.bundle("app/main", "main.bundle.js", {
+    minify : false,
+    mangle : false,
+    sourceMaps: true,
+    lowResSourceMaps: true
+  })
+})
+
+gulp.task("jspm:deps", function() {
+  builder.bundle("app/main - app/**/*", "deps.bundle.js", {
+    minify : false,
+    mangle : false,
+    sourceMaps: true,
+    lowResSourceMaps: true
+  })
+})
+
+
+
+
+
+
+
 gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
 {
   function log(event)
@@ -130,21 +155,3 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
 })
 
 gulp.task("default", [ "serve", "watch" ]);
-
-gulp.task("jspm", function() {
-  builder.bundle("app/main", "main.bundle.js", {
-    minify : false,
-    mangle : false,
-    sourceMaps: true,
-    lowResSourceMaps: true
-  })
-})
-
-gulp.task("jspm:deps", function() {
-  builder.bundle("app/main - app/**/*", "deps.bundle.js", {
-    minify : false,
-    mangle : false,
-    sourceMaps: true,
-    lowResSourceMaps: true
-  })
-})
