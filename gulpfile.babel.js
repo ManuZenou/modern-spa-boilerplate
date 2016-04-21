@@ -111,7 +111,7 @@ gulp.task("postcss", function() {
 
 
 gulp.task("jspm:prep", function() {
-  gulp.src([
+  return gulp.src([
     "jspm_packages/system.src.js",
     "jspm.browser.js",
     "jspm.config.js"
@@ -121,7 +121,7 @@ gulp.task("jspm:prep", function() {
 });
 
 gulp.task("jspm:main", function() {
-  builder.bundle("app/main", "main.bundle.js", {
+  return builder.bundle("app/main", "main.bundle.js", {
     minify : false,
     mangle : false,
     sourceMaps: true,
@@ -130,7 +130,7 @@ gulp.task("jspm:main", function() {
 })
 
 gulp.task("jspm:deps", function() {
-  builder.bundle("app/main - app/**/*", "deps.bundle.js", {
+  return builder.bundle("app/main - app/**/*", "deps.bundle.js", {
     minify : false,
     mangle : false,
     sourceMaps: true,
