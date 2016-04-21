@@ -139,3 +139,12 @@ gulp.task("jspm", function() {
     lowResSourceMaps: true
   })
 })
+
+gulp.task("jspm:deps", function() {
+  builder.bundle("app/main - app/**/*", "src/deps.bundle.js", {
+    minify : false,
+    mangle : false,
+    sourceMaps: true,
+    lowResSourceMaps: true
+  })
+})
