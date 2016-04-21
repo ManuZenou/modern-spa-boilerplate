@@ -141,6 +141,8 @@ gulp.task("jspm:deps", function() {
 
 
 
+
+
 gulp.task("watch", [ "vuesplit", "postcss", "jspm:prep", "jspm:main" ], function()
 {
   function log(event)
@@ -152,22 +154,22 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm:prep", "jspm:main" ], function
   }
 
   gulp.watch([
+    "src/**/*.vue"
+  ], [ "vuesplit" ]).on("change", log)
+
+  gulp.watch([
     "jspm_packages/system.src.js",
     "jspm.browser.js",
     "jspm.config.js"
   ], [ "jspm:prep"]).on("change", log)
 
   gulp.watch([
+    "src/**/*.js"
+  ], [ "jspm:main" ]).on("change", log)
+
+  gulp.watch([
     "src/**/*.css"
   ], [ "postcss" ]).on("change", log)
-
-  gulp.watch([
-    "src/**/*.js"
-  ], [ "jspm" ]).on("change", log)
-
-  gulp.watch([
-    "src/**/*.vue"
-  ], [ "vuesplit" ]).on("change", log)
 
   gulp.watch([
     "*.bundle.css"
