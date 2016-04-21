@@ -95,14 +95,15 @@ var postcss_options = {
 }
 
 gulp.task("postcss", function() {
-  return gulp.src("src/main.css").
+  return gulp.src("src/main.css", { base: "src" }).
     pipe(sourcemaps.init()).
     pipe(postcss(postcss_processors, postcss_options)).
     pipe(rename({
       extname : ".bundle.css"
     })).
     pipe(sourcemaps.write(".", {
-      includeContent: false
+      includeContent: false,
+      sourceRoot: "src"
     })).
     pipe(gulp.dest("."))
 })
