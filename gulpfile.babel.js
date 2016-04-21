@@ -139,13 +139,11 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
   }
 
   gulp.watch([
-    "src/**/*.css",
-    "!src/**/*.bundle.css"
+    "src/**/*.css"
   ], [ "postcss" ]).on("change", log)
 
   gulp.watch([
-    "src/**/*.js",
-    "!src/**/*.bundle.js"
+    "src/**/*.js"
   ], [ "jspm" ]).on("change", log)
 
   gulp.watch([
@@ -153,9 +151,9 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
   ], [ "vuesplit" ]).on("change", log)
 
   gulp.watch([
-    "src/*.html",
-    "src/*.bundle.css",
-    "src/*.bundle.js"
+    "*.html",
+    "*.bundle.css",
+    "*.bundle.js"
   ]).on('change', browserSyncServer.reload).on("change", log)
 })
 
