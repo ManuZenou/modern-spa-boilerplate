@@ -61,11 +61,11 @@
   "jspm": {
     "name": "app",
     "directories": {
-      "packages": "src/jspm_packages"
+      "packages": "jspm_packages"
     },
     "configFiles": {
-      "jspm:browser": "src/jspm.browser.js",
-      "jspm": "src/jspm.config.js"
+      "jspm:browser": "jspm.browser.js",
+      "jspm": "jspm.config.js"
     },
     "dependencies": {
       "lodash": "npm:lodash@^4.11.0",

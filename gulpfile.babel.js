@@ -46,7 +46,7 @@ gulp.task("serve", function() {
     notify: false,
     port: 8085,
     server: {
-      baseDir: "./src"
+      baseDir: "./"
     }
   });
 })
@@ -89,7 +89,7 @@ gulp.task("postcss", function() {
     pipe(sourcemaps.write(".", {
       includeContent: false
     })).
-    pipe(gulp.dest("src"))
+    pipe(gulp.dest("."))
 })
 
 gulp.task("vuesplit", function() {
@@ -132,7 +132,7 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
 gulp.task("default", [ "serve", "watch" ]);
 
 gulp.task("jspm", function() {
-  builder.bundle("app/main", "src/main.bundle.js", {
+  builder.bundle("app/main", "main.bundle.js", {
     minify : false,
     mangle : false,
     sourceMaps: true,
@@ -141,7 +141,7 @@ gulp.task("jspm", function() {
 })
 
 gulp.task("jspm:deps", function() {
-  builder.bundle("app/main - app/**/*", "src/deps.bundle.js", {
+  builder.bundle("app/main - app/**/*", "deps.bundle.js", {
     minify : false,
     mangle : false,
     sourceMaps: true,
