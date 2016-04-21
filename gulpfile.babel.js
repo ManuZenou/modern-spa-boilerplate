@@ -43,7 +43,8 @@ gulp.task("serve", function() {
     logConnections: true,
     logFileChanges: true,
     reloadOnRestart: true,
-    notify: false,
+    injectChanges: true,
+    notify: true,
     port: 8085,
     server: {
       baseDir: "./"
