@@ -9,6 +9,8 @@ const builder = new jspm.Builder("src", "jspm.config.js");
 import resolve from "pkg-resolve";
 
 import sourcemaps from "gulp-sourcemaps";
+import uglify from "gulp-uglify";
+import concat from "gulp-concat";
 
 import postcss from "gulp-postcss"
 import postcss_import from "postcss-import"
@@ -107,8 +109,17 @@ gulp.task("postcss", function() {
 
 
 
+gulp.task("jspm:prep", function() {
+  gulp.src([
+    "jspm_packages/system.src.js",
+    "jspm.browser.js",
+    "jspm.config.js"
+  ]).
+  pipe(concat("prep.bundle.js")).
+  pipe(gulp.dest("."))
+});
 
-gulp.task("jspm", function() {
+gulp.task("jspm:main", function() {
   builder.bundle("app/main", "main.bundle.js", {
     minify : false,
     mangle : false,
@@ -129,7 +140,7 @@ gulp.task("jspm:deps", function() {
 
 
 
-gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
+gulp.task("watch", [ "vuesplit", "postcss", "jspm:prep", "jspm:main" ], function()
 {
   function log(event)
   {
@@ -138,6 +149,12 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
       util.colors.magenta(path.basename(event.path))
     )
   }
+
+  gulp.watch([
+    "jspm_packages/system.src.js",
+    "jspm.browser.js",
+    "jspm.config.js"
+  ], [ "jspm:prep"]).on("change", log)
 
   gulp.watch([
     "src/**/*.css"
