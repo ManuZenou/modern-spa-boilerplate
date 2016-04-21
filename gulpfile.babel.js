@@ -152,8 +152,14 @@ gulp.task("watch", [ "vuesplit", "postcss", "jspm" ], function()
   ], [ "vuesplit" ]).on("change", log)
 
   gulp.watch([
+    "*.bundle.css"
+  ], function() {
+    gulp.src("*.bundle.css").
+      pipe(browserSyncServer.stream());
+  })
+
+  gulp.watch([
     "*.html",
-    "*.bundle.css",
     "*.bundle.js"
   ]).on('change', browserSyncServer.reload).on("change", log)
 })
