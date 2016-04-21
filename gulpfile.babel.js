@@ -51,6 +51,18 @@ gulp.task("serve", function() {
   });
 })
 
+
+
+
+gulp.task("vuesplit", function() {
+  return gulp.src("src/**/*.vue").
+    pipe(vueSplit()).
+    pipe(gulp.dest("."))
+})
+
+
+
+
 var postcss_processors =
 [
   postcss_import,
@@ -92,11 +104,7 @@ gulp.task("postcss", function() {
     pipe(gulp.dest("."))
 })
 
-gulp.task("vuesplit", function() {
-  return gulp.src("src/**/*.vue").
-    pipe(vueSplit()).
-    pipe(gulp.dest("."))
-})
+
 
 
 gulp.task("jspm", function() {
@@ -116,9 +124,6 @@ gulp.task("jspm:deps", function() {
     lowResSourceMaps: true
   })
 })
-
-
-
 
 
 
