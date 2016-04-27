@@ -1,18 +1,25 @@
-import gulp from "gulp"
-import rename from "gulp-rename"
 import path from "path"
-import util from "gulp-util"
 import del from "del";
 
+import postcss from "gulp-postcss"
+import gulp from "gulp"
+
+import gulpPlugins from "gulp-load-plugins"
+import cssPlugins from "postcss-load-plugins"
+
+const $ = gulpPlugins()
+const $css = cssPlugins()
+
 import jspm from "jspm";
-const builder = new jspm.Builder("src", "jspm.config.js");
+const builder = new jspm.Builder("src", "jspm.config.js")
 import resolve from "pkg-resolve";
 
-import sourcemaps from "gulp-sourcemaps";
-import uglify from "gulp-uglify";
-import concat from "gulp-concat";
+// import sourcemaps from "gulp-sourcemaps";
+// import uglify from "gulp-uglify";
+// import concat from "gulp-concat";
+// import rename from "gulp-rename"
+// import util from "gulp-util"
 
-import postcss from "gulp-postcss"
 import postcss_import from "postcss-import"
 import postcss_assets from "postcss-assets"
 import postcss_discardComments from "postcss-discard-comments"
@@ -30,7 +37,7 @@ import postcss_transparentFix from "postcss-gradient-transparency-fix"
 import postcss_easings from "postcss-easings"
 import postcss_csso from "postcss-csso"
 
-import vueSplit from "gulp-vuesplit"
+// import vueSplit from "gulp-vuesplit"
 import layoutSelector from "postcss-layout-selector";
 import fontSystem from "postcss-font-system";
 

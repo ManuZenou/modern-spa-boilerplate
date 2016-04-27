@@ -50,6 +50,7 @@
     "postcss-gradient-transparency-fix": "^1.0.2",
     "postcss-import": "github:sebastian-software/postcss-import",
     "postcss-layout-selector": "^0.2.5",
+    "postcss-load-plugins": "^1.0.1",
     "postcss-modules": "^0.4.1",
     "postcss-nested": "^1.0.0",
     "postcss-sassy-mixins": "^2.0.0",
