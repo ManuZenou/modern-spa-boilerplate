@@ -66,7 +66,7 @@ gulp.task("serve", function() {
 
 gulp.task("vuesplit", function() {
   return gulp.src("src/**/*.vue").
-    pipe(vueSplit()).
+    pipe($.vuesplit.default()).
     pipe(gulp.dest("."))
 })
 
@@ -103,12 +103,12 @@ var postcss_options = {
 
 gulp.task("postcss", function() {
   return gulp.src("src/main.css", { base: "src" }).
-    pipe(sourcemaps.init()).
+    pipe($.sourcemaps.init()).
     pipe(postcss(postcss_processors, postcss_options)).
-    pipe(rename({
+    pipe($.rename({
       extname : ".bundle.css"
     })).
-    pipe(sourcemaps.write(".", {
+    pipe($.sourcemaps.write(".", {
       includeContent: false,
       sourceRoot: "src"
     })).
@@ -123,7 +123,7 @@ gulp.task("jspm:prep", function() {
     "jspm.browser.js",
     "jspm.config.js"
   ]).
-  pipe(concat("prep.bundle.js")).
+  pipe($.concat("prep.bundle.js")).
   pipe(gulp.dest("."))
 });
 
