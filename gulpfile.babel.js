@@ -14,12 +14,6 @@ import jspm from "jspm";
 const builder = new jspm.Builder("src", "jspm.config.js")
 import resolve from "pkg-resolve";
 
-// import sourcemaps from "gulp-sourcemaps";
-// import uglify from "gulp-uglify";
-// import concat from "gulp-concat";
-// import rename from "gulp-rename"
-// import util from "gulp-util"
-
 import postcss_import from "postcss-import"
 import postcss_assets from "postcss-assets"
 import postcss_discardComments from "postcss-discard-comments"
@@ -154,9 +148,9 @@ gulp.task("watch", [ "build" ], function()
 {
   function log(event)
   {
-    util.log(
-      util.colors.green("Changed: ") +
-      util.colors.magenta(path.basename(event.path))
+    $.util.log(
+      $.util.colors.green("Changed: ") +
+      $.util.colors.magenta(path.basename(event.path))
     )
   }
 
