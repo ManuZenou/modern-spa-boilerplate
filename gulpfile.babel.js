@@ -1,5 +1,5 @@
 import path from "path"
-import del from "del";
+import del from "del"
 
 import gulp from "gulp"
 import postcss from "gulp-postcss"
@@ -10,9 +10,9 @@ import postcssPlugins from "postcss-load-plugins"
 const $ = gulpPlugins()
 const $css = postcssPlugins()
 
-import jspm from "jspm";
+import jspm from "jspm"
 const builder = new jspm.Builder("src", "jspm.config.js")
-import resolve from "pkg-resolve";
+import resolve from "pkg-resolve"
 
 import postcss_import from "postcss-import"
 import postcss_assets from "postcss-assets"
@@ -30,12 +30,12 @@ import postcss_cssnano from "cssnano"
 import postcss_transparentFix from "postcss-gradient-transparency-fix"
 import postcss_easings from "postcss-easings"
 import postcss_csso from "postcss-csso"
-import layoutSelector from "postcss-layout-selector";
-import fontSystem from "postcss-font-system";
+import layoutSelector from "postcss-layout-selector"
+import fontSystem from "postcss-font-system"
 
-import browserSync from "browser-sync";
+import browserSync from "browser-sync"
 
-var browserSyncServer = browserSync.create();
+var browserSyncServer = browserSync.create()
 
 // Start local dev server.
 gulp.task("serve", function() {
@@ -50,7 +50,7 @@ gulp.task("serve", function() {
     server: {
       baseDir: "./"
     }
-  });
+  })
 })
 
 
@@ -117,7 +117,7 @@ gulp.task("jspm:prep", function() {
   ]).
   pipe($.concat("prep.bundle.js")).
   pipe(gulp.dest("."))
-});
+})
 
 gulp.task("jspm:main", function() {
   return builder.bundle("app/main", "main.bundle.js", {
@@ -160,7 +160,7 @@ gulp.task("watch", [ "build" ], function()
     "jspm_packages/system.src.js",
     "jspm.browser.js",
     "jspm.config.js"
-  ], [ "jspm:prep"]).on("change", log)
+  ], [ "jspm:prep" ]).on("change", log)
 
   gulp.watch([
     "src/**/*.js"
@@ -174,17 +174,17 @@ gulp.task("watch", [ "build" ], function()
     "*.bundle.css"
   ], function() {
     gulp.src("*.bundle.css").
-      pipe(browserSyncServer.stream());
+      pipe(browserSyncServer.stream())
   })
 
   gulp.watch([
     "*.html",
     "*.bundle.js"
-  ]).on('change', browserSyncServer.reload).on("change", log)
+  ]).on("change", browserSyncServer.reload).on("change", log)
 
   // protip: stop old version of gulp watch from running when you modify the gulpfile
   // via: https://gist.github.com/pornel/ca9631f5348383b61bc7b359e96ced38
-  gulp.watch("gulpfile.babel.js").on("change", () => process.exit(0));
+  gulp.watch("gulpfile.babel.js").on("change", () => process.exit(0))
 })
 
-gulp.task("default", [ "serve", "watch" ]);
+gulp.task("default", [ "serve", "watch" ])
