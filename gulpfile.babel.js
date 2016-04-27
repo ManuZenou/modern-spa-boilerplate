@@ -147,10 +147,10 @@ gulp.task("jspm:deps", function() {
 
 
 
+gulp.task("build", [ "vuesplit", "postcss", "jspm:prep", "jspm:main" ])
 
 
-
-gulp.task("watch", [ "vuesplit", "postcss", "jspm:prep", "jspm:main" ], function()
+gulp.task("watch", [ "build" ], function()
 {
   function log(event)
   {
