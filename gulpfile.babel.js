@@ -1,14 +1,14 @@
 import path from "path"
 import del from "del";
 
-import postcss from "gulp-postcss"
 import gulp from "gulp"
+import postcss from "gulp-postcss"
 
 import gulpPlugins from "gulp-load-plugins"
-import cssPlugins from "postcss-load-plugins"
+import postcssPlugins from "postcss-load-plugins"
 
 const $ = gulpPlugins()
-const $css = cssPlugins()
+const $css = postcssPlugins()
 
 import jspm from "jspm";
 const builder = new jspm.Builder("src", "jspm.config.js")
@@ -30,8 +30,6 @@ import postcss_cssnano from "cssnano"
 import postcss_transparentFix from "postcss-gradient-transparency-fix"
 import postcss_easings from "postcss-easings"
 import postcss_csso from "postcss-csso"
-
-// import vueSplit from "gulp-vuesplit"
 import layoutSelector from "postcss-layout-selector";
 import fontSystem from "postcss-font-system";
 
