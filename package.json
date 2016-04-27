@@ -34,7 +34,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-uglify": "^1.5.3",
-    "gulp-vuesplit": "^0.3.0",
+    "gulp-vuesplit": "^0.3.3",
     "html-minifier": "^2.1.0",
     "jspm": "^0.17.0-beta.13",
     "pkg-resolve": "^0.1.7",
