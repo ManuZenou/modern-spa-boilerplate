@@ -6,6 +6,11 @@
   "scripts": {
     "lint": "eslint --cache *.js src/components/*.js",
     "autofix": "eslint --cache --fix *.js src/components/*.js",
+    "test": "ava",
+    "test:watch": "ava --watch",
+    "release": "release-it --github.release --npm.publish --non-interactive",
+    "release-minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
+    "release-major": "release-it --github.release --npm.publish --non-interactive --increment major",
     "depupdate": "updtr"
   },
   "keywords": [
