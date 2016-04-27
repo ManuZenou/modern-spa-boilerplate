@@ -189,6 +189,10 @@ gulp.task("watch", [ "build" ], function()
     "*.html",
     "*.bundle.js"
   ]).on('change', browserSyncServer.reload).on("change", log)
+
+  // protip: stop old version of gulp watch from running when you modify the gulpfile
+  // via: https://gist.github.com/pornel/ca9631f5348383b61bc7b359e96ced38
+  gulp.watch("gulpfile.babel.js").on("change", () => process.exit(0));
 })
 
 gulp.task("default", [ "serve", "watch" ]);
