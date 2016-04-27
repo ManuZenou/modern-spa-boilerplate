@@ -8,6 +8,7 @@ const $ = plugins()
 
 test("Successfully loaded", (t) => {
   t.is(typeof gulp.task, "function")
+  t.is(typeof gulp.start, "function")
 })
 
 test("Plugins Ready", (t) => {
