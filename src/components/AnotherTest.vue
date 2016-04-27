@@ -17,6 +17,7 @@
     @extend %base-button;
     background: red;
   }
+
   .okay{
     @extend %base-button;
     background: green;
@@ -38,7 +39,8 @@
   import template from "./Test.html";
   export default {
     template: template,
-    data: function () {
+    data: function ()
+    {
       return {
         msg: "Hello world!"
       }
