@@ -35,6 +35,17 @@ import fontSystem from "postcss-font-system"
 
 import browserSync from "browser-sync"
 
+
+
+var smartError = function(err)
+{
+  console.error(err.message);
+  browserSync.notify(err.message, 3000); // Display error in the browser
+  this.emit('end'); // Prevent gulp from catching the error and exiting the watch process
+}
+
+
+
 var browserSyncServer = browserSync.create()
 
 // Start local dev server.
@@ -96,7 +107,7 @@ var postcss_options = {
 gulp.task("postcss", function() {
   return gulp.src("src/main.css", { base: "src" }).
     pipe($.sourcemaps.init()).
-    pipe(postcss(postcss_processors, postcss_options)).
+    pipe(postcss(postcss_processors, postcss_options).on("error", smartError)).
     pipe($.rename({
       extname : ".bundle.css"
     })).
@@ -115,7 +126,7 @@ gulp.task("jspm:prep", function() {
     "jspm.browser.js",
     "jspm.config.js"
   ]).
-  pipe($.concat("prep.bundle.js")).
+  pipe($.concat("prep.bundle.js").on("error", smartError)).
   pipe(gulp.dest("."))
 })
 
