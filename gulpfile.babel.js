@@ -62,7 +62,9 @@ gulp.task("vue:split", function() {
 
 var postcss_processors =
 [
-  $css.import,
+  $css.import({
+    extensions: [".css", ".sss"]
+  }),
   $css.discardComments,
 
   $css.advancedVariables,

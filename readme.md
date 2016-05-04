@@ -9,6 +9,7 @@
 - [VueJS](http://vuejs.org) for client side view management and components
 - Support for `.vue`-files during development ("transpiled" by a file watcher)
 - [CSS Modules](https://github.com/css-modules/css-modules) for preventing conflicts between VueJS components
+- Support [SugarSS](https://github.com/postcss/sugarss) for all imports.
 
 
 ## Copyright

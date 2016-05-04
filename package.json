@@ -52,7 +52,7 @@
     "postcss-extend": "^1.0.1",
     "postcss-font-system": "0.0.2",
     "postcss-gradient-transparency-fix": "^1.0.2",
-    "postcss-import": "github:sebastian-software/postcss-import",
+    "postcss-import": "git+https://github.com/sebastian-software/postcss-import.git",
     "postcss-layout-selector": "^0.2.5",
     "postcss-load-plugins": "^1.0.1",
     "postcss-modules": "^0.4.1",
