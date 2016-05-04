@@ -48,31 +48,19 @@ gulp.task("serve", function() {
   })
 })
 
-
-gulp.task("css:lint", function() {
-  return gulp.src("src/**/*.css", { base: "src" }).
-    pipe($.stylelint({
-      reporters: [
-        {formatter: 'string', console: true}
-      ]
-    }))
-})
-
-gulp.task("css:format", function() {
-  return gulp.src("src/**/*.css", { base: "src" }).
-    pipe(postcss([
-      stylefmt
-    ], postcss_options).on("error", smartError)).
-    pipe(gulp.dest("src"))
-})
-
-
-
 gulp.task("vuesplit", function() {
   return gulp.src("src/**/*.vue").
     pipe($.vuesplit.default()).
     pipe(gulp.dest("."))
 })
+
+
+
+/*
+========================================================================
+   CSS Support
+========================================================================
+*/
 
 var postcss_processors =
 [
@@ -98,11 +86,29 @@ var postcss_processors =
   })
 ]
 
-var postcss_options = {
+var postcss_options =
+{
 
 }
 
-gulp.task("postcss", function() {
+gulp.task("css:lint", function() {
+  return gulp.src("src/**/*.css", { base: "src" }).
+    pipe($.stylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }))
+})
+
+gulp.task("css:format", function() {
+  return gulp.src("src/**/*.css", { base: "src" }).
+    pipe(postcss([
+      stylefmt
+    ], postcss_options).on("error", smartError)).
+    pipe(gulp.dest("src"))
+})
+
+gulp.task("css:build", function() {
   return gulp.src("src/main.css", { base: "src" }).
     pipe($.sourcemaps.init()).
     pipe(postcss(postcss_processors, postcss_options).on("error", smartError)).
@@ -117,6 +123,13 @@ gulp.task("postcss", function() {
 })
 
 
+
+
+/*
+========================================================================
+   JS Support
+========================================================================
+*/
 
 gulp.task("jspm:prep", function() {
   return gulp.src([
@@ -148,8 +161,19 @@ gulp.task("jspm:deps", function() {
 
 
 
-gulp.task("build", [ "vuesplit", "postcss", "jspm:prep", "jspm:main" ])
 
+/*
+========================================================================
+   Combined Tasks
+========================================================================
+*/
+
+gulp.task("build", [
+  "vuesplit",
+  "css:build",
+  "jspm:prep",
+  "jspm:main"
+])
 
 gulp.task("watch", [ "build" ], function()
 {
@@ -177,7 +201,7 @@ gulp.task("watch", [ "build" ], function()
 
   gulp.watch([
     "src/**/*.css"
-  ], [ "postcss" ]).on("change", log)
+  ], [ "css:build" ]).on("change", log)
 
   gulp.watch([
     "*.bundle.css"
