@@ -3,33 +3,20 @@ import del from "del"
 
 import gulp from "gulp"
 import postcss from "gulp-postcss"
+import loadPlugins from "load-plugins"
 
-import gulpPlugins from "gulp-load-plugins"
-import postcssPlugins from "postcss-load-plugins"
 
-const $ = gulpPlugins()
-const $css = postcssPlugins()
+const $ = loadPlugins("gulp-*")
+const $css = loadPlugins("postcss-*")
+
+import autoprefixer from "autoprefixer"
+$css.autoprefixer = autoprefixer
 
 import jspm from "jspm"
 const builder = new jspm.Builder("src", "jspm.config.js")
 import resolve from "pkg-resolve"
+import stylefmt from "stylefmt"
 
-import postcss_import from "postcss-import"
-import postcss_assets from "postcss-assets"
-import postcss_discardComments from "postcss-discard-comments"
-import postcss_sassyMixins from "postcss-sassy-mixins"
-import postcss_colorFunction from "postcss-color-function"
-import postcss_colorHexAlpha from "postcss-color-hex-alpha"
-import postcss_advancedVariables from "postcss-advanced-variables"
-import postcss_willChange from "postcss-will-change"
-import postcss_calc from "postcss-calc"
-import postcss_nested from "postcss-nested"
-import postcss_extend from "postcss-extend"
-import postcss_autoprefixer from "autoprefixer"
-import postcss_cssnano from "cssnano"
-import postcss_transparentFix from "postcss-gradient-transparency-fix"
-import postcss_easings from "postcss-easings"
-import postcss_csso from "postcss-csso"
 import layoutSelector from "postcss-layout-selector"
 import fontSystem from "postcss-font-system"
 
@@ -72,8 +59,6 @@ gulp.task("css:lint", function() {
     }))
 })
 
-import stylefmt from "stylefmt"
-
 gulp.task("css:format", function() {
   return gulp.src("src/**/*.css", { base: "src" }).
     pipe(postcss([
@@ -90,31 +75,28 @@ gulp.task("vuesplit", function() {
     pipe(gulp.dest("."))
 })
 
-
-
-
 var postcss_processors =
 [
-  postcss_import,
-  postcss_discardComments,
+  $css.import,
+  $css.discardComments,
 
-  postcss_advancedVariables,
-  postcss_sassyMixins,
-  postcss_willChange,
-  postcss_extend,
+  $css.advancedVariables,
+  $css.sassyMixins,
+  $css.willChange,
+  $css.extend,
 
-  postcss_assets,
-  postcss_calc,
-  postcss_transparentFix,
-  postcss_easings,
-  postcss_colorFunction,
-  postcss_colorHexAlpha,
+  $css.assets,
+  $css.calc,
+  $css.gradientTransparencyFix,
+  $css.easings,
+  $css.colorFunction,
+  $css.colorHexAlpha,
 
-  postcss_nested,
-  postcss_autoprefixer,
-  postcss_csso({
+  $css.nested,
+  $css.autoprefixer,
+  $css.csso({
     sourceMap: true
-  }),
+  })
 ]
 
 var postcss_options = {
