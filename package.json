@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --cache *.js src/components/*.js && gulp css:lint",
     "autofix": "eslint --cache --fix *.js src/components/*.js && gulp css:format",
-    "test": "ava && npm run lint",
+    "test": "ava",
     "test:watch": "ava --watch",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
