@@ -103,6 +103,8 @@
     }
   },
   "devDependencies": {
-    "ava": "^0.14.0"
+    "ava": "^0.14.0",
+    "stylelint": "^6.2.2",
+    "stylelint-config-standard": "^6.0.0"
   }
 }
