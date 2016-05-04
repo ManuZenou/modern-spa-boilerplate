@@ -1,4 +1,4 @@
 @import "normalize.css";
 @import "components/Layout";
 @import "components/Test";
-@import "./sugar";
+@import "sugar";
