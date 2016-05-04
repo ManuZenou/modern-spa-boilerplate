@@ -72,12 +72,14 @@ gulp.task("css:lint", function() {
     }))
 })
 
+import stylefmt from "stylefmt"
+
 gulp.task("css:format", function() {
   return gulp.src("src/**/*.css", { base: "src" }).
     pipe(postcss([
       stylefmt
-    ]))
-    pipe(gulp.dest("."))
+    ], postcss_options).on("error", smartError)).
+    pipe(gulp.dest("src"))
 })
 
 
