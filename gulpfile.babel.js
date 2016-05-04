@@ -1,27 +1,35 @@
 import path from "path"
 import del from "del"
-
 import gulp from "gulp"
-import postcss from "gulp-postcss"
-import loadPlugins from "load-plugins"
 
+import loadPlugins from "load-plugins"
 
 const $ = loadPlugins("gulp-*")
 const $css = loadPlugins("postcss-*")
 
+import postcss from "gulp-postcss"
+
+// Load Autoprefixer and register with plugin loader
 import autoprefixer from "autoprefixer"
 $css.autoprefixer = autoprefixer
 
-import jspm from "jspm"
-const builder = new jspm.Builder("src", "jspm.config.js")
 import stylefmt from "stylefmt"
-
 import layoutSelector from "postcss-layout-selector"
 import fontSystem from "postcss-font-system"
 
+import jspm from "jspm"
+
 import browserSync from "browser-sync"
 
-var smartError = function(err)
+
+
+/*
+========================================================================
+   Common Features
+========================================================================
+*/
+
+function smartError(err)
 {
   console.error(err.message);
   browserSync.notify(err.message, 3000); // Display error in the browser
@@ -30,29 +38,19 @@ var smartError = function(err)
 
 
 
-var browserSyncServer = browserSync.create()
 
-// Start local dev server.
-gulp.task("serve", function() {
-  browserSyncServer.init({
-    open: false,
-    logConnections: true,
-    logFileChanges: true,
-    reloadOnRestart: true,
-    injectChanges: true,
-    notify: true,
-    port: 8085,
-    server: {
-      baseDir: "./"
-    }
-  })
-})
+/*
+========================================================================
+   VueJS Support
+========================================================================
+*/
 
-gulp.task("vuesplit", function() {
+gulp.task("vue:split", function() {
   return gulp.src("src/**/*.vue").
     pipe($.vuesplit.default()).
     pipe(gulp.dest("."))
 })
+
 
 
 
@@ -131,6 +129,8 @@ gulp.task("css:build", function() {
 ========================================================================
 */
 
+const jspmBuilder = new jspm.Builder("src", "jspm.config.js")
+
 gulp.task("jspm:prep", function() {
   return gulp.src([
     "jspm_packages/system.src.js",
@@ -142,7 +142,7 @@ gulp.task("jspm:prep", function() {
 })
 
 gulp.task("jspm:main", function() {
-  return builder.bundle("app/main", "main.bundle.js", {
+  return jspmBuilder.bundle("app/main", "main.bundle.js", {
     minify : false,
     mangle : false,
     sourceMaps: true,
@@ -151,7 +151,7 @@ gulp.task("jspm:main", function() {
 })
 
 gulp.task("jspm:deps", function() {
-  return builder.bundle("app/main - app/**/*", "deps.bundle.js", {
+  return jspmBuilder.bundle("app/main - app/**/*", "deps.bundle.js", {
     minify : false,
     mangle : false,
     sourceMaps: true,
@@ -218,6 +218,24 @@ gulp.task("watch", [ "build" ], function()
   // protip: stop old version of gulp watch from running when you modify the gulpfile
   // via: https://gist.github.com/pornel/ca9631f5348383b61bc7b359e96ced38
   gulp.watch("gulpfile.babel.js").on("change", () => process.exit(0))
+})
+
+var browserSyncServer = browserSync.create()
+
+gulp.task("serve", function()
+{
+  browserSyncServer.init({
+    open: false,
+    logConnections: true,
+    logFileChanges: true,
+    reloadOnRestart: true,
+    injectChanges: true,
+    notify: true,
+    port: 8085,
+    server: {
+      baseDir: "./"
+    }
+  })
 })
 
 gulp.task("default", [ "serve", "watch" ])
