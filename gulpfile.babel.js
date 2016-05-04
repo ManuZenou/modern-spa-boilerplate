@@ -169,7 +169,7 @@ gulp.task("jspm:deps", function() {
 */
 
 gulp.task("build", [
-  "vuesplit",
+  "vue:split",
   "css:build",
   "jspm:prep",
   "jspm:main"
@@ -187,7 +187,7 @@ gulp.task("watch", [ "build" ], function()
 
   gulp.watch([
     "src/**/*.vue"
-  ], [ "vuesplit" ]).on("change", log)
+  ], [ "vue:split" ]).on("change", log)
 
   gulp.watch([
     "jspm_packages/system.src.js",
