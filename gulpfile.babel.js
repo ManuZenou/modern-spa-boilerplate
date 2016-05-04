@@ -89,7 +89,7 @@ var postcss_options =
 
 }
 
-gulp.task("css:lint", function() {
+gulp.task("css:lint", [ "vue:split" ], function() {
   return gulp.src("src/**/*.css", { base: "src" }).
     pipe($.stylelint({
       reporters: [
