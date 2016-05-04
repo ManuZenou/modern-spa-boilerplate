@@ -1,7 +1,7 @@
 <style>
   @import "Features.css";
 
-  .message{
+  .message {
     border: 2px solid red;
   }
 
@@ -9,16 +9,16 @@
     font-size: 3em;
   }
 
-  .buttonbar{
+  .buttonbar {
     width: auto;
   }
 
-  .cancel{
+  .cancel {
     @extend %base-button;
     background: red;
   }
 
-  .okay{
+  .okay {
     @extend %base-button;
     background: green;
   }
