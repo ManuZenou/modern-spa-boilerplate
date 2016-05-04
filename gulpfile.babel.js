@@ -35,8 +35,6 @@ import fontSystem from "postcss-font-system"
 
 import browserSync from "browser-sync"
 
-
-
 var smartError = function(err)
 {
   console.error(err.message);
@@ -64,6 +62,23 @@ gulp.task("serve", function() {
   })
 })
 
+
+gulp.task("css:lint", function() {
+  return gulp.src("src/**/*.css", { base: "src" }).
+    pipe($.stylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }))
+})
+
+gulp.task("css:format", function() {
+  return gulp.src("src/**/*.css", { base: "src" }).
+    pipe(postcss([
+      stylefmt
+    ]))
+    pipe(gulp.dest("."))
+})
 
 
 
