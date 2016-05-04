@@ -14,7 +14,6 @@ $css.autoprefixer = autoprefixer
 
 import jspm from "jspm"
 const builder = new jspm.Builder("src", "jspm.config.js")
-import resolve from "pkg-resolve"
 import stylefmt from "stylefmt"
 
 import layoutSelector from "postcss-layout-selector"
