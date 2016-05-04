@@ -31,9 +31,9 @@ import browserSync from "browser-sync"
 
 function smartError(err)
 {
-  console.error(err.message);
-  browserSync.notify(err.message, 3000); // Display error in the browser
-  this.emit('end'); // Prevent gulp from catching the error and exiting the watch process
+  console.error(err.message)
+  browserSync.notify(err.message, 3000) // Display error in the browser
+  this.emit("end") // Prevent gulp from catching the error and exiting the watch process
 }
 
 
@@ -63,7 +63,7 @@ gulp.task("vue:split", function() {
 var postcss_processors =
 [
   $css.import({
-    extensions: [".css", ".sss"]
+    extensions: [ ".css", ".sss" ]
   }),
   $css.discardComments,
 
@@ -80,8 +80,8 @@ var postcss_processors =
   $css.colorHexAlpha,
 
   $css.nested,
-  $css.autoprefixer,
-  /*$css.csso({
+  $css.autoprefixer
+  /* $css.csso({
     sourceMap: true
   })*/
 ]
@@ -95,7 +95,7 @@ gulp.task("css:lint", [ "vue:split" ], function() {
   return gulp.src("src/**/*.css", { base: "src" }).
     pipe($.stylelint({
       reporters: [
-        {formatter: 'string', console: true}
+        { formatter: "string", console: true }
       ]
     }))
 })
