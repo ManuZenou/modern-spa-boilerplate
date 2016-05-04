@@ -202,7 +202,9 @@ gulp.task("watch", [ "build" ], function()
   ], [ "jspm:main" ]).on("change", log)
 
   gulp.watch([
-    "src/**/*.css"
+    "src/**/*.css",
+    "src/**/*.scss",
+    "src/**/*.sss"
   ], [ "css:build" ]).on("change", log)
 
   gulp.watch([
