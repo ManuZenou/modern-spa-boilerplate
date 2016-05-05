@@ -10,8 +10,7 @@
     "test:watch": "ava --watch",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
-    "release:major": "release-it --github.release --npm.publish --non-interactive --increment major",
-    "depupdate": "updtr -e jspm"
+    "release:major": "release-it --github.release --npm.publish --non-interactive --increment major"
   },
   "keywords": [
     "boilerplate",
@@ -62,7 +61,6 @@
     "posthtml": "^0.8.7",
     "posthtml-css-modules": "^0.1.0",
     "s15e-javascript": "^0.1.17",
-    "updtr": "^0.1.10",
     "vue-template-validator": "^1.1.5"
   },
   "jspm": {
