@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 import path from "path"
 import del from "del"
 import gulp from "gulp"
@@ -91,7 +93,8 @@ var postcss_options =
 
 }
 
-gulp.task("css:lint", [ "vue:split" ], function() {
+gulp.task("css:lint", [ "vue:split" ], () =>
+{
   return gulp.src("src/**/*.css", { base: "src" }).
     pipe($.stylelint({
       reporters: [
@@ -100,7 +103,8 @@ gulp.task("css:lint", [ "vue:split" ], function() {
     }))
 })
 
-gulp.task("css:format", function() {
+gulp.task("css:format", () =>
+{
   return gulp.src("src/**/*.css", { base: "src" }).
     pipe(postcss([
       stylefmt
@@ -108,7 +112,8 @@ gulp.task("css:format", function() {
     pipe(gulp.dest("src"))
 })
 
-gulp.task("css:build", function() {
+gulp.task("css:build", () =>
+{
   return gulp.src("src/main.css", { base: "src" }).
     pipe($.sourcemaps.init()).
     pipe(postcss(postcss_processors, postcss_options).on("error", smartError)).
@@ -133,47 +138,53 @@ gulp.task("css:build", function() {
 
 const jspmBuilder = new jspm.Builder("src", "jspm.config.js")
 
-gulp.task("js:prep", function()
-{
-  return gulp.src([
+gulp.task("js:prep", () =>
+  gulp.src([
     "jspm_packages/system.src.js",
     "jspm.browser.js",
     "jspm.config.js"
   ]).
   pipe($.concat("prep.bundle.js").on("error", smartError)).
   pipe(gulp.dest("."))
-})
+)
 
-gulp.task("js:main", function()
-{
-  return jspmBuilder.bundle("app/main", "main.bundle.js", {
-    minify : false,
-    mangle : false,
+gulp.task("js:main", () =>
+  jspmBuilder.bundle("app/main", "main.bundle.js", {
+    minify: false,
+    mangle: false,
     sourceMaps: true,
     lowResSourceMaps: true
   })
-})
+)
 
-gulp.task("js:deps", function()
-{
-  return jspmBuilder.bundle("app/main - app/**/*", "deps.bundle.js", {
-    minify : false,
-    mangle : false,
+gulp.task("js:deps", () =>
+  jspmBuilder.bundle("app/main - app/**/*", "deps.bundle.js", {
+    minify: false,
+    mangle: false,
     sourceMaps: true,
     lowResSourceMaps: true
   })
-})
+)
 
-gulp.task("js:lint", [ "vue:split" ], function()
-{
-  return gulp.src([
+gulp.task("js:lint", [ "vue:split" ], () =>
+  gulp.src([
     "gulpfile*.js",
     "src/**/*.js"
   ]).
   pipe($.eslint()).
   pipe($.eslint.format()).
   pipe($.eslint.failAfterError())
-})
+)
+
+gulp.task("js:format", [ "vue:split" ], () =>
+  gulp.src([
+    "gulpfile*.js",
+    "src/**/*.js"
+  ]).
+  pipe($.eslint({ fix: true })).
+  pipe($.eslint.format()).
+  pipe($.eslint.failAfterError())
+)
 
 
 
