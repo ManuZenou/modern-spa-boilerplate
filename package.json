@@ -4,8 +4,8 @@
   "description": "Modern Boilerplate for Single Page Applications",
   "main": "index.html",
   "scripts": {
-    "lint": "eslint --cache *.js src/components/*.js && gulp css:lint",
-    "autofix": "eslint --cache --fix *.js src/components/*.js && gulp css:format",
+    "lint": "gulp js:lint && gulp css:lint",
+    "autofix": "gulp js:format && gulp css:format",
     "test": "ava",
     "test:watch": "ava --watch",
     "release": "release-it --github.release --npm.publish --non-interactive",
