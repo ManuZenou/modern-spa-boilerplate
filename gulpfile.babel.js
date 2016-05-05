@@ -140,7 +140,14 @@ gulp.task("css:build", () =>
 ========================================================================
 */
 
-const jspmBuilder = new jspm.Builder("src", "jspm.config.js")
+
+
+var jspm_options = {
+  minify: false,
+  mangle: false,
+  sourceMaps: true,
+  lowResSourceMaps: true
+}
 
 gulp.task("js:prep", () =>
   gulp.src([
@@ -152,23 +159,20 @@ gulp.task("js:prep", () =>
   pipe(gulp.dest("."))
 )
 
+
 gulp.task("js:main", () =>
-  jspmBuilder.bundle("app/main", "main.bundle.js", {
-    minify: false,
-    mangle: false,
-    sourceMaps: true,
-    lowResSourceMaps: true
-  })
-)
+{
+  // Re-init Builder instance is currently required as it seems.
+  // See also: https://github.com/systemjs/builder/issues/579
+  var jspmBuilder = new jspm.Builder("src", "jspm.config.js")
+  jspmBuilder.bundle("app/main", "main.bundle.js", jspm_options)
+})
 
 gulp.task("js:deps", () =>
-  jspmBuilder.bundle("app/main - app/**/*", "deps.bundle.js", {
-    minify: false,
-    mangle: false,
-    sourceMaps: true,
-    lowResSourceMaps: true
-  })
-)
+{
+  var jspmBuilder = new jspm.Builder("src", "jspm.config.js")
+  jspmBuilder.bundle("app/main - app/**/*", "deps.bundle.js", jspm_options)
+})
 
 gulp.task("js:lint", [ "vue:split" ], () =>
   gulp.src([
