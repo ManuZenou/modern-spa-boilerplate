@@ -184,8 +184,7 @@ gulp.task("js:format", [ "vue:split" ], () =>
     "src/**/*.js"
   ]).
   pipe($.eslint({ fix: true })).
-  pipe($.eslint.format()).
-  pipe($.eslint.failAfterError())
+  pipe($.eslint.format())
 )
 
 
