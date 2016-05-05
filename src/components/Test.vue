@@ -36,10 +36,10 @@
 </template>
 
 <script>
-  import template from "./Test.html";
+  import template from "./Test.html"
   export default {
     template: template,
-    data: function ()
+    data: function()
     {
       return {
         msg: "Hello world!"

@@ -34,8 +34,12 @@ import browserSync from "browser-sync"
 function smartError(err)
 {
   console.error(err.message)
-  browserSync.notify(err.message, 3000) // Display error in the browser
-  this.emit("end") // Prevent gulp from catching the error and exiting the watch process
+
+  // Display error in the browser
+  browserSync.notify(err.message, 3000)
+
+  // Prevent gulp from catching the error and exiting the watch process
+  this.emit("end")
 }
 
 
@@ -47,11 +51,11 @@ function smartError(err)
 ========================================================================
 */
 
-gulp.task("vue:split", function() {
-  return gulp.src("src/**/*.vue").
+gulp.task("vue:split", () =>
+  gulp.src("src/**/*.vue").
     pipe($.vuesplit.default()).
     pipe(gulp.dest("."))
-})
+)
 
 
 
@@ -82,10 +86,10 @@ var postcss_processors =
   $css.colorHexAlpha,
 
   $css.nested,
-  $css.autoprefixer
-  /* $css.csso({
+  $css.autoprefixer,
+  $css.csso({
     sourceMap: true
-  })*/
+  })
 ]
 
 var postcss_options =
@@ -94,38 +98,35 @@ var postcss_options =
 }
 
 gulp.task("css:lint", [ "vue:split" ], () =>
-{
-  return gulp.src("src/**/*.css", { base: "src" }).
+  gulp.src("src/**/*.css", { base: "src" }).
     pipe($.stylelint({
       reporters: [
         { formatter: "string", console: true }
       ]
     }))
-})
+)
 
 gulp.task("css:format", () =>
-{
-  return gulp.src("src/**/*.css", { base: "src" }).
+  gulp.src("src/**/*.css", { base: "src" }).
     pipe(postcss([
       stylefmt
     ], postcss_options).on("error", smartError)).
     pipe(gulp.dest("src"))
-})
+)
 
 gulp.task("css:build", () =>
-{
-  return gulp.src("src/main.css", { base: "src" }).
+  gulp.src("src/main.css", { base: "src" }).
     pipe($.sourcemaps.init()).
     pipe(postcss(postcss_processors, postcss_options).on("error", smartError)).
     pipe($.rename({
-      extname : ".bundle.css"
+      extname: ".bundle.css"
     })).
     pipe($.sourcemaps.write(".", {
       includeContent: false,
       sourceRoot: "src"
     })).
     pipe(gulp.dest("."))
-})
+)
 
 
 
