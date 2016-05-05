@@ -88,7 +88,8 @@ var postcss_processors =
   $css.nested,
   $css.autoprefixer,
   $css.csso({
-    sourceMap: true
+    sourceMap: true,
+    restructure: false
   })
 ]
 
