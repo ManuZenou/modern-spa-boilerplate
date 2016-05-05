@@ -133,7 +133,8 @@ gulp.task("css:build", function() {
 
 const jspmBuilder = new jspm.Builder("src", "jspm.config.js")
 
-gulp.task("jspm:prep", function() {
+gulp.task("js:prep", function()
+{
   return gulp.src([
     "jspm_packages/system.src.js",
     "jspm.browser.js",
@@ -143,7 +144,8 @@ gulp.task("jspm:prep", function() {
   pipe(gulp.dest("."))
 })
 
-gulp.task("jspm:main", function() {
+gulp.task("js:main", function()
+{
   return jspmBuilder.bundle("app/main", "main.bundle.js", {
     minify : false,
     mangle : false,
@@ -152,7 +154,8 @@ gulp.task("jspm:main", function() {
   })
 })
 
-gulp.task("jspm:deps", function() {
+gulp.task("js:deps", function()
+{
   return jspmBuilder.bundle("app/main - app/**/*", "deps.bundle.js", {
     minify : false,
     mangle : false,
@@ -184,8 +187,8 @@ gulp.task("js:lint", [ "vue:split" ], function()
 gulp.task("build", [
   "vue:split",
   "css:build",
-  "jspm:prep",
-  "jspm:main"
+  "js:prep",
+  "js:main"
 ])
 
 gulp.task("watch", [ "build" ], function()
@@ -206,11 +209,11 @@ gulp.task("watch", [ "build" ], function()
     "jspm_packages/system.src.js",
     "jspm.browser.js",
     "jspm.config.js"
-  ], [ "jspm:prep" ]).on("change", log)
+  ], [ "js:prep" ]).on("change", log)
 
   gulp.watch([
     "src/**/*.js"
-  ], [ "jspm:main" ]).on("change", log)
+  ], [ "js:main" ]).on("change", log)
 
   gulp.watch([
     "src/**/*.css",
