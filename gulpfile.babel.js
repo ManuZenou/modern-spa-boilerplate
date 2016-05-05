@@ -161,6 +161,17 @@ gulp.task("jspm:deps", function() {
   })
 })
 
+gulp.task("js:lint", [ "vue:split" ], function()
+{
+  return gulp.src([
+    "gulpfile*.js",
+    "src/**/*.js"
+  ]).
+  pipe($.eslint()).
+  pipe($.eslint.format()).
+  pipe($.eslint.failAfterError())
+})
+
 
 
 
