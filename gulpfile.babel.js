@@ -98,6 +98,11 @@ var postcss_options =
 
 }
 
+var sourcemap_options = {
+  includeContent: false,
+  sourceRoot: "src"
+}
+
 gulp.task("css:lint", [ "vue:split" ], () =>
   gulp.src("src/**/*.css", { base: "src" }).
     pipe($.stylelint({
@@ -122,10 +127,7 @@ gulp.task("css:build", () =>
     pipe($.rename({
       extname: ".bundle.css"
     })).
-    pipe($.sourcemaps.write(".", {
-      includeContent: false,
-      sourceRoot: "src"
-    })).
+    pipe($.sourcemaps.write(".", sourcemap_options)).
     pipe(gulp.dest("."))
 )
 
