@@ -102,7 +102,9 @@ var postcss_processors =
   $css.csso({
     sourceMap: true,
     restructure: false
-  })
+  }),
+
+  $css.reporter
 ]
 
 var postcss_options =
