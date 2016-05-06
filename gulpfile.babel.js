@@ -16,7 +16,18 @@ import postcss from "gulp-postcss"
 import autoprefixer from "autoprefixer"
 $css.autoprefixer = autoprefixer
 
+// Load doiuse and register with plugin loader
+import doiuse from "doiuse"
+$css.doiuse = doiuse
+
+// Load stylelint and register with plugin loader
+import stylelint from "stylelint"
+$css.stylelint = stylelint
+
+// Load stylefmt and register with plugin loader
 import stylefmt from "stylefmt"
+$css.stylefmt = stylefmt
+
 import layoutSelector from "postcss-layout-selector"
 import fontSystem from "postcss-font-system"
 
@@ -118,12 +129,18 @@ var sourcemap_options = {
 }
 
 gulp.task("css:lint", [ "vue:split" ], () =>
-  gulp.src("src/**/*.css", { base: "src" }).
-    pipe($.stylelint({
-      reporters: [
-        { formatter: "string", console: true }
-      ]
-    }))
+  gulp.src("src/main.css", { base: "src" }).
+    pipe(postcss(
+    [
+      $css.import({
+        extensions: [ ".css", ".sss" ]
+      }),
+      $css.stylelint(),
+      $css.doiuse({
+        browsers: ['ie >= 7', 'last 2 versions']
+      }),
+      $css.reporter
+    ]))
 )
 
 gulp.task("css:format", () =>
