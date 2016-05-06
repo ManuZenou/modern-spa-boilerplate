@@ -32,12 +32,14 @@ import browserSync from "browser-sync"
 ========================================================================
 */
 
+const AppShortTitle = "MSB"
+
 function smartError(err)
 {
   console.error(err.message)
 
   notify.notify({
-    title: "MSB: Error",
+    title: `${AppShortTitle}: Error`,
     message: err.message
   });
 
@@ -48,6 +50,10 @@ function smartError(err)
   this.emit("end")
 }
 
+function getPath(event)
+{
+  return path.relative(__dirname, event.path)
+}
 
 
 
@@ -219,15 +225,16 @@ gulp.task("watch", [ "build" ], function()
 {
   function log(event)
   {
-    var cleanPath = path.basename(event.path);
+    var cleanPath = getPath(event);
 
     $.util.log(
       $.util.colors.green("Changed: ") +
       $.util.colors.magenta(cleanPath)
     )
 
-    notify.notify({
-      title: "MSB: Change",
+    notify.notify(
+    {
+      title: `${AppShortTitle}: File was changed`,
       message: cleanPath
     })
   }
@@ -240,33 +247,43 @@ gulp.task("watch", [ "build" ], function()
     "jspm_packages/system.src.js",
     "jspm.browser.js",
     "jspm.config.js"
-  ], [ "js:prep" ]).on("change", log)
+  ], [ "js:prep" ]).
+    on("change", log)
 
   gulp.watch([
     "src/**/*.js"
-  ], [ "js:main" ]).on("change", log)
+  ], [ "js:main" ]).
+    on("change", log)
 
   gulp.watch([
     "src/**/*.css",
     "src/**/*.scss",
     "src/**/*.sss"
-  ], [ "css:build" ]).on("change", log)
+  ], [ "css:build" ]).
+    on("change", log)
 
   gulp.watch([
     "*.bundle.css"
-  ], function(x) {
-    gulp.src("*.bundle.css").
-      pipe(browserSyncServer.stream())
-  }).on("change", log)
+  ]).
+    on("change", (event) =>
+      gulp.src(getPath(event)).
+        pipe(browserSyncServer.stream())
+    ).
+    on("change", log)
 
   gulp.watch([
     "*.html",
     "*.bundle.js"
-  ]).on("change", browserSyncServer.reload).on("change", log)
+  ]).
+    on("change", browserSyncServer.reload).
+    on("change", log)
 
   // protip: stop old version of gulp watch from running when you modify the gulpfile
   // via: https://gist.github.com/pornel/ca9631f5348383b61bc7b359e96ced38
-  gulp.watch("gulpfile.babel.js").on("change", () => process.exit(0))
+  gulp.watch("gulpfile.babel.js").
+    on("change", () =>
+      process.exit(0)
+    )
 })
 
 var browserSyncServer = browserSync.create()
