@@ -3,6 +3,7 @@
 import path from "path"
 import del from "del"
 import gulp from "gulp"
+import notify from "node-notifier"
 
 import loadPlugins from "load-plugins"
 
@@ -34,6 +35,11 @@ import browserSync from "browser-sync"
 function smartError(err)
 {
   console.error(err.message)
+
+  notify.notify({
+    title: "MSB: Error",
+    message: err.message
+  });
 
   // Display error in the browser
   browserSync.notify(err.message, 3000)
@@ -213,10 +219,17 @@ gulp.task("watch", [ "build" ], function()
 {
   function log(event)
   {
+    var cleanPath = path.basename(event.path);
+
     $.util.log(
       $.util.colors.green("Changed: ") +
-      $.util.colors.magenta(path.basename(event.path))
+      $.util.colors.magenta(cleanPath)
     )
+
+    notify.notify({
+      title: "MSB: Change",
+      message: cleanPath
+    })
   }
 
   gulp.watch([
@@ -241,10 +254,10 @@ gulp.task("watch", [ "build" ], function()
 
   gulp.watch([
     "*.bundle.css"
-  ], function() {
+  ], function(x) {
     gulp.src("*.bundle.css").
       pipe(browserSyncServer.stream())
-  })
+  }).on("change", log)
 
   gulp.watch([
     "*.html",
