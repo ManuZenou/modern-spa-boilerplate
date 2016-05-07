@@ -72,6 +72,13 @@ function getPath(event)
   return path.relative(__dirname, event.path)
 }
 
+var autoprefixer_settings =
+{
+  browsers: ["> 2% in DE", "IE 10", "IE 11", "last 3 Chrome versions", "last 3 Firefox versions"],
+  cascade: false,
+  flexbox: "no-2009"
+}
+
 
 
 /*
@@ -115,7 +122,7 @@ var postcss_processors =
   $css.colorHexAlpha,
 
   $css.nested,
-  $css.autoprefixer,
+  $css.autoprefixer(autoprefixer_settings),
   $css.csso({
     sourceMap: true,
     restructure: false
@@ -150,7 +157,7 @@ gulp.task("css:lint", [ "vue:split" ], () =>
 
       $css.stylelint(),
       $css.doiuse({
-        browsers: [ "last 2 versions" ]
+        browsers: autoprefixer_settings.browsers
       }),
       $css.immutable(),
       $css.reporter({
