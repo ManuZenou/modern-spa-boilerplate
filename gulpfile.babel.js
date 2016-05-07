@@ -141,6 +141,13 @@ gulp.task("css:lint", [ "vue:split" ], () =>
       $css.import({
         extensions: [ ".css", ".sss" ]
       }),
+
+      $css.advancedVariables,
+      $css.sassyMixins,
+      $css.willChange,
+      $css.calc,
+      $css.nested,
+
       $css.stylelint(),
       $css.doiuse({
         browsers: [ "last 2 versions" ]
