@@ -1,6 +1,6 @@
 {
   "name": "modern-spa-boilerplate",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Modern Boilerplate for Single Page Applications",
   "main": "index.html",
   "scripts": {
