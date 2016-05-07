@@ -1,6 +1,7 @@
 /* eslint no-console: 0 */
 
 import path from "path"
+import fs from "fs"
 import del from "del"
 import gulp from "gulp"
 import notify from "node-notifier"
@@ -11,6 +12,7 @@ const $ = loadPlugins("gulp-*")
 const $css = loadPlugins("postcss-*")
 
 import postcss from "gulp-postcss"
+import cssstats from "cssstats"
 
 // Load Autoprefixer and register with plugin loader
 import autoprefixer from "autoprefixer"
@@ -144,6 +146,17 @@ gulp.task("css:lint", [ "vue:split" ], () =>
       })
     ]))
 )
+
+gulp.task("css:stats", [ "css:build" ], () =>
+{
+  var css = fs.readFileSync("main.bundle.css", "utf8")
+  var stats = cssstats(css)
+  console.log(`- Size: ${stats.humanizedSize} (${stats.humanizedGzipSize} zipped)`)
+  console.log(`- Rules: ${stats.rules.total}`)
+  console.log(`- Selectors: ${stats.selectors.total} (ID: ${stats.selectors.id}) (Type: ${stats.selectors.type})`)
+  console.log(`- Declarations: ${stats.declarations.total}`)
+  console.log(`- Media Queries: ${stats.mediaQueries.total}`)
+})
 
 gulp.task("css:format", () =>
   gulp.src("src/**/*.css", { base: "src" }).
