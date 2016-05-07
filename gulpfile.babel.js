@@ -30,6 +30,10 @@ $css.stylelint = stylelint
 import stylefmt from "stylefmt"
 $css.stylefmt = stylefmt
 
+// Load immutable-css and register with plugin loader
+import immutable from "immutable-css"
+$css.immutable = immutable
+
 import layoutSelector from "postcss-layout-selector"
 import fontSystem from "postcss-font-system"
 
@@ -141,6 +145,7 @@ gulp.task("css:lint", [ "vue:split" ], () =>
       $css.doiuse({
         browsers: [ "last 2 versions" ]
       }),
+      $css.immutable(),
       $css.reporter({
         clearMessages: true
       })

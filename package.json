@@ -41,6 +41,7 @@
     "gulp-util": "^3.0.7",
     "gulp-vuesplit": "^0.4.1",
     "html-minifier": "^2.1.2",
+    "immutable-css": "^1.1.1",
     "jspm": "^0.17.0-beta.14",
     "load-plugins": "^2.1.0",
     "node-notifier": "^4.5.0",
