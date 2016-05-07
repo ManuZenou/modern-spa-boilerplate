@@ -66,6 +66,7 @@
     "postcss-will-change": "^1.1.0",
     "posthtml": "^0.8.7",
     "posthtml-css-modules": "^0.1.0",
+    "require-dir": "^0.3.0",
     "s15e-javascript": "^0.1.17",
     "vue-template-validator": "^1.1.5"
   },
