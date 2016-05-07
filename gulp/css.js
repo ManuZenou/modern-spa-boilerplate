@@ -50,6 +50,12 @@ import fontSystem from "postcss-font-system"
 
 var postcss_processors =
 [
+  /*
+  // Log execution time for each plugin in a PostCSS instance.
+  $css.devtools({
+    silent: true
+  }),
+  */
   $css.import({
     extensions: [ ".css", ".sss" ]
   }),
