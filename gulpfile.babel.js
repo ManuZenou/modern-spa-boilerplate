@@ -157,7 +157,8 @@ gulp.task("css:lint", [ "vue:split" ], () =>
 
       $css.stylelint(),
       $css.doiuse({
-        browsers: autoprefixer_settings.browsers
+        browsers: autoprefixer_settings.browsers,
+        ignore: ["css-appearance", "text-size-adjust"]
       }),
       $css.immutable(),
       $css.reporter({
