@@ -139,7 +139,7 @@ gulp.task("css:lint", [ "vue:split" ], () =>
       }),
       $css.stylelint(),
       $css.doiuse({
-        browsers: ['ie >= 9', 'last 2 versions']
+        browsers: [ "last 2 versions" ]
       }),
       $css.reporter({
         clearMessages: true
