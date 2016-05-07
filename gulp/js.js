@@ -6,7 +6,7 @@
 ========================================================================
 */
 
-import { $, smartError, logChange, browserSyncServer } from "./common";
+import { $, logError, logChange, devServer } from "./common";
 
 import gulp from "gulp"
 import jspm from "jspm"
@@ -25,7 +25,7 @@ gulp.task("js:prep", () =>
     "jspm.browser.js",
     "jspm.config.js"
   ]).
-  pipe($.concat("prep.bundle.js").on("error", smartError)).
+  pipe($.concat("prep.bundle.js").on("error", logError)).
   pipe(gulp.dest("."))
 )
 
@@ -84,6 +84,6 @@ gulp.task("js:watch", () =>
   gulp.watch([
     "*.bundle.js"
   ]).
-    on("change", browserSyncServer.reload).
+    on("change", devServer.reload).
     on("change", logChange)
 })

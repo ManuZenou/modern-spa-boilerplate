@@ -12,7 +12,7 @@ import notify from "node-notifier"
 import loadPlugins from "load-plugins"
 import browserSync from "browser-sync"
 
-export const browserSyncServer = browserSync.create()
+export const devServer = browserSync.create()
 
 export const $ = loadPlugins("gulp-*")
 
@@ -20,7 +20,7 @@ export const AppShortTitle = "MSB"
 
 export const CWD = process.cwd()
 
-export function smartError(err)
+export function logError(err)
 {
   console.error(err.message)
 

@@ -4,7 +4,7 @@
 ========================================================================
 */
 
-import { $, smartError, logChange, browserSyncServer } from "./common";
+import { $, logError, logChange, devServer } from "./common";
 
 import fs from "fs"
 import gulp from "gulp"
@@ -128,14 +128,14 @@ gulp.task("css:format", () =>
   gulp.src("src/**/*.css", { base: "src" }).
     pipe(postcss([
       stylefmt
-    ], postcss_options).on("error", smartError)).
+    ], postcss_options).on("error", logError)).
     pipe(gulp.dest("src"))
 )
 
 gulp.task("css:build", () =>
   gulp.src("src/main.css", { base: "src" }).
     pipe($.sourcemaps.init()).
-    pipe(postcss(postcss_processors, postcss_options).on("error", smartError)).
+    pipe(postcss(postcss_processors, postcss_options).on("error", logError)).
     pipe($.rename({
       extname: ".bundle.css"
     })).
@@ -157,7 +157,7 @@ gulp.task("css:watch", () =>
   ]).
     on("change", (event) =>
       gulp.src(getPath(event)).
-        pipe(browserSyncServer.stream())
+        pipe(devServer.stream())
     ).
     on("change", logChange)
 })

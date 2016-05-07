@@ -9,7 +9,7 @@
 import gulp from "gulp"
 import notify from "node-notifier"
 
-import { $, smartError, AppShortTitle, getPath, logChange, browserSyncServer } from "./common";
+import { $, logError, AppShortTitle, getPath, logChange, devServer } from "./common";
 
 gulp.task("build",
 [
@@ -25,7 +25,7 @@ gulp.task("watch", [ "build" ], function()
   gulp.start("js:watch")
 
   gulp.watch("*.html").
-    on("change", browserSyncServer.reload).
+    on("change", devServer.reload).
     on("change", logChange)
 
   // protip: stop old version of gulp watch from running when you modify the gulpfile
@@ -41,7 +41,7 @@ gulp.task("watch", [ "build" ], function()
 
 gulp.task("serve", function()
 {
-  browserSyncServer.init({
+  devServer.init({
     open: false,
     logConnections: true,
     logFileChanges: true,
