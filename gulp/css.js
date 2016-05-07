@@ -26,21 +26,12 @@ import cssstats from "cssstats"
 import autoprefixer from "autoprefixer"
 $css.autoprefixer = autoprefixer
 
-// Load doiuse and register with plugin loader
+// Load linting tools
 import doiuse from "doiuse"
-$css.doiuse = doiuse
-
-// Load stylelint and register with plugin loader
 import stylelint from "stylelint"
-$css.stylelint = stylelint
-
-// Load stylefmt and register with plugin loader
 import stylefmt from "stylefmt"
-$css.stylefmt = stylefmt
-
-// Load immutable-css and register with plugin loader
 import immutable from "immutable-css"
-$css.immutable = immutable
+import colorguard from "colorguard"
 
 import layoutSelector from "postcss-layout-selector"
 import fontSystem from "postcss-font-system"
@@ -110,12 +101,14 @@ gulp.task("css:lint", [ "vue:split" ], () =>
       $css.calc,
       $css.nested,
 
-      $css.stylelint(),
-      $css.doiuse({
+      stylelint(),
+      doiuse({
         browsers: autoprefixer_settings.browsers,
         ignore: ["css-appearance", "text-size-adjust"]
       }),
-      $css.immutable(),
+      immutable(),
+      colorguard(),
+
       $css.reporter({
         clearMessages: true
       })
