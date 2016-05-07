@@ -1,4 +1,15 @@
-# Modern Boilerplate for Single Page Applications
+# Modern Boilerplate for Single Page Applications<br/>[![Sponsored by][sponsor-img]][sponsor] [![Version][npm-version-img]][npm] [![Downloads][npm-downloads-img]][npm] [![Build Status][ci-img]][ci] [![Dependencies][deps-img]][deps]
+
+[sponsor-img]: https://img.shields.io/badge/Sponsored%20by-Sebastian%20Software-692446.svg
+[sponsor]: https://www.sebastian-software.de
+[ci-img]: https://travis-ci.org/sebastian-software/modern-spa-boilerplate.svg
+[ci]: https://travis-ci.org/sebastian-software/modern-spa-boilerplate
+[deps]: https://david-dm.org/sebastian-software/modern-spa-boilerplate
+[deps-img]: https://david-dm.org/sebastian-software/modern-spa-boilerplate.svg
+[npm]: https://www.npmjs.com/package/modern-spa-boilerplate
+[npm-downloads-img]: https://img.shields.io/npm/dm/modern-spa-boilerplate.svg
+[npm-version-img]: https://img.shields.io/npm/v/modern-spa-boilerplate.svg
+
 
 ## Features
 
