@@ -2,10 +2,10 @@
 import test from "ava"
 import "babel-register"
 import gulp from "gulp"
-import plugins from "gulp-load-plugins"
+import loadPlugins from "load-plugins"
 import "./gulpfile.babel"
 
-const $ = plugins()
+const $ = loadPlugins("gulp-*")
 
 test("Successfully loaded", (t) =>
 {
