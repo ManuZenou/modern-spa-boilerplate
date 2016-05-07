@@ -60,6 +60,7 @@
     "postcss-import": "git+https://github.com/sebastian-software/postcss-import.git",
     "postcss-layout-selector": "^0.2.5",
     "postcss-load-plugins": "^1.0.1",
+    "postcss-media-minmax": "^2.1.2",
     "postcss-modules": "^0.4.1",
     "postcss-nested": "^1.0.0",
     "postcss-reporter": "^1.3.3",

@@ -67,6 +67,9 @@ var postcss_processors =
   $css.colorFunction,
   $css.colorHexAlpha,
 
+  // Support for CSS Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#mq-range-context
+  $css.mediaMinmax,
+
   $css.nested,
   $css.autoprefixer(autoprefixer_settings),
   $css.csso({
