@@ -2,6 +2,7 @@ node_modules
 jspm_packages
 npm-debug.log
 .eslintcache
+dist
 
 # Ignore bundled files
 *.bundle.css*
