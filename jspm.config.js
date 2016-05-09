@@ -3,7 +3,7 @@ SystemJS.config({
   packages: {
     "app": {
       "format": "esm",
-      "main": "app.js",
+      "main": "main.js",
       "meta": {
         "*.js": {
           "loader": "plugin-babel"
