@@ -1,0 +1,23 @@
+@import "Features.css";
+
+.message-1be8ba25 {
+  border: 2px solid red;
+}
+
+.title-1be8ba25 {
+  font-size: 3em;
+}
+
+.buttonbar-1be8ba25 {
+  width: auto;
+}
+
+.cancel-1be8ba25 {
+  @extend %base-button;
+  background: red;
+}
+
+.okay-1be8ba25 {
+  @extend %base-button;
+  background: green;
+}

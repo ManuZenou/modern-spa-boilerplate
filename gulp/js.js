@@ -21,17 +21,16 @@ var jspmOptions =
 
 gulp.task("js:prep", () =>
   gulp.src([
-    "jspm_packages/system.src.js",
-    "jspm.browser.js",
-    "jspm.config.js"
-  ], { base : "." }).
+    "src/jspm_packages/system.src.js",
+    "src/jspm.browser.js",
+    "src/jspm.config.js"
+  ], { base : "src" }).
   pipe($.sourcemaps.init()).
   pipe($.concat("prep.bundle.js").on("error", logError)).
   pipe($.sourcemaps.write(".", {
-    includeContent: false,
-    destPath: "."
+    includeContent: false
   })).
-  pipe(gulp.dest("."))
+  pipe(gulp.dest("src"))
 )
 
 var jspmBuilder = new jspm.Builder("src", "jspm.config.js")
@@ -40,12 +39,12 @@ gulp.task("js:main", () =>
 {
   // Re-init Builder instance is currently required as it seems.
   // See also: https://github.com/systemjs/builder/issues/579
-  jspmBuilder.bundle("app", "main.bundle.js", jspmOptions)
+  jspmBuilder.bundle("app", "src/main.bundle.js", jspmOptions)
 })
 
 gulp.task("js:deps", () =>
 {
-  jspmBuilder.bundle("app/main - app/**/*", "deps.bundle.js", jspmOptions)
+  jspmBuilder.bundle("app - app/**/*", "src/deps.bundle.js", jspmOptions)
 })
 
 gulp.task("js:build", [ "js:prep", "js:main" ])
@@ -72,9 +71,9 @@ gulp.task("js:format", [ "vue:split" ], () =>
 gulp.task("js:watch", () =>
 {
   gulp.watch([
-    "jspm_packages/system.src.js",
-    "jspm.browser.js",
-    "jspm.config.js"
+    "src/jspm_packages/system.src.js",
+    "src/jspm.browser.js",
+    "src/jspm.config.js"
   ], [ "js:prep" ]).
     on("change", logChange)
 
@@ -87,7 +86,7 @@ gulp.task("js:watch", () =>
     })
 
   gulp.watch([
-    "*.bundle.js"
+    "src/*.bundle.js"
   ]).
     on("change", devServer.reload).
     on("change", logChange)

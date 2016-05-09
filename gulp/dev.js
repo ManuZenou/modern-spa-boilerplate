@@ -22,7 +22,7 @@ gulp.task("watch", [ "build" ], function()
   gulp.start("css:watch")
   gulp.start("js:watch")
 
-  gulp.watch("*.html").
+  gulp.watch("src/*.html").
     on("change", devServer.reload).
     on("change", logChange)
 
@@ -48,7 +48,7 @@ gulp.task("serve", function()
     notify: true,
     port: 8085,
     server: {
-      baseDir: "./"
+      baseDir: "./src"
     }
   })
 })

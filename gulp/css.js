@@ -112,7 +112,7 @@ gulp.task("css:lint", [ "vue:split" ], () =>
 
 gulp.task("css:stats", [ "css:build" ], () =>
 {
-  var css = fs.readFileSync("main.bundle.css", "utf8")
+  var css = fs.readFileSync("src/main.bundle.css", "utf8")
   var stats = cssstats(css)
   console.log(`- Size: ${stats.humanizedSize} (${stats.humanizedGzipSize} zipped)`)
   console.log(`- Rules: ${stats.rules.total}`)
@@ -122,7 +122,7 @@ gulp.task("css:stats", [ "css:build" ], () =>
 })
 
 gulp.task("css:format", () =>
-  gulp.src("src/**/*.css", { base: "src" }).
+  gulp.src("src/app/**/*.css", { base: "src" }).
     pipe(postcss([
       stylefmt
     ], postcss_options).on("error", logError)).
@@ -130,27 +130,30 @@ gulp.task("css:format", () =>
 )
 
 gulp.task("css:build", () =>
-  gulp.src("src/main.css", { base: "src" }).
+  gulp.src("src/app/main.css", { base: "src/app" }).
     pipe($.sourcemaps.init()).
     pipe(postcss(postcss_processors, postcss_options).on("error", logError)).
     pipe($.rename({
       extname: ".bundle.css"
     })).
-    pipe($.sourcemaps.write(".", sourceMapOptions)).
-    pipe(gulp.dest("."))
+    pipe($.sourcemaps.write(".", {
+  includeContent: false,
+  destPath: "src"
+})).
+    pipe(gulp.dest("src"))
 )
 
 gulp.task("css:watch", () =>
 {
   gulp.watch([
-    "src/**/*.css",
-    "src/**/*.scss",
-    "src/**/*.sss"
+    "src/app/**/*.css",
+    "src/app/**/*.scss",
+    "src/app/**/*.sss"
   ], [ "css:build" ]).
     on("change", logChange)
 
   gulp.watch([
-    "*.bundle.css"
+    "src/*.bundle.css"
   ]).
     on("change", (event) =>
       gulp.src(getPath(event)).

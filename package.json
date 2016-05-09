@@ -85,13 +85,13 @@
     "vue-template-validator": "^1.1.5"
   },
   "jspm": {
-    "name": "app",
+    "name": "modern-spa-boilerplate",
     "directories": {
-      "packages": "jspm_packages"
+      "packages": "src/jspm_packages"
     },
     "configFiles": {
-      "jspm:browser": "jspm.browser.js",
-      "jspm": "jspm.config.js"
+      "jspm:browser": "src/jspm.browser.js",
+      "jspm": "src/jspm.config.js"
     },
     "dependencies": {
       "lodash": "npm:lodash@^4.11.0",
