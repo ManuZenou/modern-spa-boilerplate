@@ -9,17 +9,20 @@
 import gulp from "gulp"
 import notify from "node-notifier"
 import assetgraph from "assetgraph"
+import del from "del"
+import run from "run-sequence"
 
 import { $, logError, AppShortTitle, getPath, logChange, devServer } from "./common";
 
-gulp.task("build",
-[
-  "vue:split",
-  "css:build",
-  "js:build"
-])
+gulp.task("build", (done) =>
+  run("vue:split", [ "css:build", "js:build" ], done)
+);
 
-gulp.task("dist", [ "build" ], function(done)
+gulp.task("clean-dist", () =>
+  del([ "dist" ])
+)
+
+gulp.task("dist", [ "clean-dist", "build" ], function(done)
 {
   var query = assetgraph.query;
 
