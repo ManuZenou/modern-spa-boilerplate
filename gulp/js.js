@@ -37,7 +37,7 @@ gulp.task("js:main", () =>
 {
   // Re-init Builder instance is currently required as it seems.
   // See also: https://github.com/systemjs/builder/issues/579
-  jspmBuilder.bundle("app/main", "main.bundle.js", jspmOptions)
+  jspmBuilder.bundle("app", "main.bundle.js", jspmOptions)
 })
 
 gulp.task("js:deps", () =>
