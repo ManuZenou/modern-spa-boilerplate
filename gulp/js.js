@@ -6,7 +6,7 @@
 ========================================================================
 */
 
-import { $, logError, logChange, devServer } from "./common";
+import { $, logError, logChange, devServer, sourceMapOptions } from "./common";
 
 import gulp from "gulp"
 import jspm from "jspm"
@@ -25,7 +25,9 @@ gulp.task("js:prep", () =>
     "jspm.browser.js",
     "jspm.config.js"
   ]).
+  pipe($.sourcemaps.init()).
   pipe($.concat("prep.bundle.js").on("error", logError)).
+  pipe($.sourcemaps.write(".", sourceMapOptions)).
   pipe(gulp.dest("."))
 )
 

@@ -18,6 +18,11 @@ export const $ = loadPlugins("gulp-*")
 
 export const AppShortTitle = "MSB"
 
+export const sourceMapOptions = {
+  includeContent: false,
+  sourceRoot: "src"
+}
+
 export const CWD = process.cwd()
 
 export function logError(err)

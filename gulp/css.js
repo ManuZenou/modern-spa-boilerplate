@@ -4,7 +4,7 @@
 ========================================================================
 */
 
-import { $, logError, logChange, devServer } from "./common";
+import { $, logError, logChange, devServer, sourceMapOptions } from "./common";
 
 import fs from "fs"
 import gulp from "gulp"
@@ -82,11 +82,6 @@ var postcss_options =
 
 }
 
-var sourcemap_options = {
-  includeContent: false,
-  sourceRoot: "src"
-}
-
 gulp.task("css:lint", [ "vue:split" ], () =>
   gulp.src("src/main.css", { base: "src" }).
     pipe(postcss(
@@ -141,7 +136,7 @@ gulp.task("css:build", () =>
     pipe($.rename({
       extname: ".bundle.css"
     })).
-    pipe($.sourcemaps.write(".", sourcemap_options)).
+    pipe($.sourcemaps.write(".", sourceMapOptions)).
     pipe(gulp.dest("."))
 )
 
