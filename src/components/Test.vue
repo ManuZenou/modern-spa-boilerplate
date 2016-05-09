@@ -46,4 +46,5 @@
       }
     }
   }
+  console.log("Debug from Test.js")
 </script>
