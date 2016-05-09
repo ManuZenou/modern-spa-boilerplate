@@ -1,0 +1,46 @@
+# Docker image used to build app
+image: "docker.sebastian-software.de/ci/nodejs"
+
+stages:
+  - build
+  - deploy
+
+before_script:
+  - export DOCKER_HOST=${DOCKER_PORT#tcp://} # Production docker host
+  - export LC_ALL="de_DE.UTF-8"              # German language setting
+  - export LANG="de_DE.UTF-8"                # German language setting
+  - export PATH=node_modules/.bin:$PATH      # Add npm binary folder to path
+
+# Other Builds
+build:other:
+  stage: build
+  except:
+    - master
+  script:
+    - npm install
+    - npm update
+    - jspm install
+    - gulp dist
+  cache:
+    paths:
+      - node_modules/
+      - jspm_packages/
+
+# Master Build
+build:master:
+  stage: build
+  only:
+    - master
+  script:
+    - npm install
+    - npm update
+    - jspm install
+    - gulp dist
+    - ls -al dist
+    - cp Dockerfile.template dist/Dockerfile
+    - docker build -t docker.sebastian-software.de/modern-spa-boilerplate dist
+    - docker push docker.sebastian-software.de/modern-spa-boilerplate
+  cache:
+    paths:
+      - node_modules/
+      - jspm_packages/

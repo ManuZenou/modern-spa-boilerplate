@@ -1,0 +1,4 @@
+FROM docker.sebastian-software.de/nginx:1.0.0
+
+MAINTAINER s.werner@sebastian-software.de
+COPY . /usr/share/nginx/html

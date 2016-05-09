@@ -1,0 +1,6 @@
+web:
+  container_name: modern-spa-boilerplate                      # Name of container used by docker
+  image: docker.sebastian-software.de/modern-spa-boilerplate  # Name of docker image used
+  ports:
+  - "80"                                                      # Publish port 80 to consul
+  restart: always                                             # Don't forget :)
