@@ -1,3 +1,4 @@
-*.bundle.js
-jspm.browser.js
-jspm.config.js
+src/*.bundle.js
+src/jspm.browser.js
+src/jspm.config.js
+dist/*
