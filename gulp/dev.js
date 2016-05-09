@@ -8,6 +8,7 @@
 
 import gulp from "gulp"
 import notify from "node-notifier"
+import assetgraph from "assetgraph"
 
 import { $, logError, AppShortTitle, getPath, logChange, devServer } from "./common";
 
@@ -17,6 +18,36 @@ gulp.task("build",
   "css:build",
   "js:build"
 ])
+
+gulp.task("dist", [ "build" ], function(done)
+{
+  var query = assetgraph.query;
+
+  new assetgraph({root: '.'})
+    // .on('addAsset', function (asset) {
+    //  console.log('addAsset', asset.toString());
+    // })
+    .loadAssets('*.html')
+    .populate({
+      followRelations: {
+        hrefType: ['relative', 'rootRelative'],
+        type: query.not([
+          // Keep copying source maps but ignore content for further dependency tracking
+          'SourceMapSource'
+        ])
+      }
+    })
+    .writeAssetsToDisc({
+      isLoaded: true
+    }, 'dist')
+    .run(function (err) {
+      if (err) {
+        console.error("AssetGraph Error: ", err);
+      }
+
+      done();
+    });
+})
 
 gulp.task("watch", [ "build" ], function()
 {
