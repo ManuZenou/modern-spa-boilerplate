@@ -20,7 +20,7 @@ export const AppShortTitle = "MSB"
 
 export const sourceMapOptions = {
   includeContent: false,
-  sourceRoot: "src"
+  destPath: "."
 }
 
 export const CWD = process.cwd()
