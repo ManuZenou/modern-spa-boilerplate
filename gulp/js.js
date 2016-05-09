@@ -24,10 +24,13 @@ gulp.task("js:prep", () =>
     "jspm_packages/system.src.js",
     "jspm.browser.js",
     "jspm.config.js"
-  ]).
+  ], { base : "." }).
   pipe($.sourcemaps.init()).
   pipe($.concat("prep.bundle.js").on("error", logError)).
-  pipe($.sourcemaps.write(".", sourceMapOptions)).
+  pipe($.sourcemaps.write(".", {
+    includeContent: false,
+    destPath: "."
+  })).
   pipe(gulp.dest("."))
 )
 
