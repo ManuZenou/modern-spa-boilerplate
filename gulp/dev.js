@@ -25,7 +25,7 @@ gulp.task("dist", [ "build" ], function(done)
 
   new assetgraph({root: "."})
     .on("addAsset", function (asset) {
-      console.log("addAsset", asset.toString());
+      console.log("AssetGraph Add:", asset.toString());
     })
     .loadAssets("*.html")
     .populate({
@@ -42,7 +42,7 @@ gulp.task("dist", [ "build" ], function(done)
     }, "dist")
     .run(function (err) {
       if (err) {
-        console.error("AssetGraph Error: ", err);
+        console.error("AssetGraph Error:", err);
       }
 
       done();
