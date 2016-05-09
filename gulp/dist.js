@@ -18,7 +18,7 @@ gulp.task("dist", [ "clean-dist", "build" ], function(done)
 {
   var query = assetgraph.query;
 
-  new assetgraph({root: "."})
+  new assetgraph({root: "src"})
     .on("addAsset", function (asset) {
       console.log("AssetGraph Add:", asset.toString());
     })

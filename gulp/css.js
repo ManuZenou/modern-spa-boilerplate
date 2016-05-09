@@ -4,7 +4,7 @@
 ========================================================================
 */
 
-import { $, logError, logChange, devServer, sourceMapOptions } from "./common";
+import { $, logError, logChange, devServer, sourceMapOptions, getPath } from "./common";
 
 import fs from "fs"
 import gulp from "gulp"
@@ -137,9 +137,9 @@ gulp.task("css:build", () =>
       extname: ".bundle.css"
     })).
     pipe($.sourcemaps.write(".", {
-  includeContent: false,
-  destPath: "src"
-})).
+      includeContent: false,
+      destPath: "src"
+    })).
     pipe(gulp.dest("src"))
 )
 
