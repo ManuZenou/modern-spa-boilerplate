@@ -14,14 +14,6 @@ gulp.task("clean-dist", () =>
   del([ "dist" ])
 )
 
-assetgraph.registerTransform(function(queryObj) {
-  return function clearSourceMapRoot(assetGraph) {
-    assetGraph.findAssets({type: "SourceMap"}).forEach(function (mapFile) {
-      delete mapFile.parseTree.sourceRoot;
-    });
-  }
-}, "clearSourceMapRoot")
-
 gulp.task("dist", [ "clean-dist", "build" ], function(done)
 {
   var query = assetgraph.query;
@@ -48,7 +40,7 @@ gulp.task("dist", [ "clean-dist", "build" ], function(done)
     }, function (asset) {
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension;
     })
-    .clearSourceMapRoot()
+    .setSourceMapRoot(null, null)
     .addCacheManifest()
     .writeAssetsToDisc({}, "dist")
     .run(function (err) {
