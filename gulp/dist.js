@@ -31,7 +31,7 @@ gulp.task("dist", [ "clean-dist", "build" ], function(done)
     .moveAssetsInOrder({
       isLoaded: true,
       type: query.not([
-        'Html'
+        "Html"
       ])
     }, function (asset) {
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension;
