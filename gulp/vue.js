@@ -7,7 +7,7 @@
 */
 
 import gulp from "gulp"
-import { $, logChange } from "./common";
+import { $, logChange } from "./common"
 
 gulp.task("vue:split", () =>
   gulp.src("src/**/*.vue").

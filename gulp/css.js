@@ -4,7 +4,7 @@
 ========================================================================
 */
 
-import { $, logError, logChange, devServer, sourceMapOptions, getPath } from "./common";
+import { $, logError, logChange, devServer, sourceMapOptions, getPath } from "./common"
 
 import fs from "fs"
 import gulp from "gulp"
@@ -14,7 +14,7 @@ const $css = loadPlugins("postcss-*")
 
 var autoprefixer_settings =
 {
-  browsers: ["> 2% in DE", "IE 10", "IE 11", "last 3 Chrome versions", "last 3 Firefox versions"],
+  browsers: [ "> 2% in DE", "IE 10", "IE 11", "last 3 Chrome versions", "last 3 Firefox versions" ],
   cascade: false,
   flexbox: "no-2009"
 }

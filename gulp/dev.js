@@ -10,11 +10,11 @@ import gulp from "gulp"
 import notify from "node-notifier"
 import run from "run-sequence"
 
-import { $, logError, AppShortTitle, getPath, logChange, devServer } from "./common";
+import { $, logError, AppShortTitle, getPath, logChange, devServer } from "./common"
 
 gulp.task("build", (done) =>
   run("vue:split", [ "css:build", "js:build" ], done)
-);
+)
 
 gulp.task("watch", [ "build" ], function()
 {

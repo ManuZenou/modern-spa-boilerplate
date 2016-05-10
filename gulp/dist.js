@@ -11,7 +11,7 @@ import assetgraph from "assetgraph"
 import del from "del"
 import run from "run-sequence"
 
-import { $, logError } from "./common";
+import { $, logError } from "./common"
 
 const compressableFiles = [
   "dist/**/*.html",
@@ -28,9 +28,9 @@ gulp.task("clean-dist", () =>
 
 gulp.task("dist", (done) =>
   run([ "clean-dist", "build" ], "dist-copy", "dist-compress", done)
-);
+)
 
-gulp.task("dist-compress", ["dist-compress-zopfli", "dist-compress-brotli"])
+gulp.task("dist-compress", [ "dist-compress-zopfli", "dist-compress-brotli" ])
 
 gulp.task("dist-compress-zopfli", function(done)
 {
@@ -48,20 +48,20 @@ gulp.task("dist-compress-brotli", function(done)
 
 gulp.task("dist-copy", function(done)
 {
-  var query = assetgraph.query;
-  var includeSources = true;
+  var query = assetgraph.query
+  var includeSources = true
 
-  new assetgraph({root: "src"})
-    .on("addAsset", function (asset) {
-      console.log("- Process:", asset.toString());
+  new assetgraph({ root: "src" })
+    .on("addAsset", function(asset) {
+      console.log("- Process:", asset.toString())
     })
     .loadAssets("*.html")
     .populate({
       followRelations: {
-        hrefType: ["relative", "rootRelative"],
+        hrefType: [ "relative", "rootRelative" ],
         type: includeSources ?
           function() { return true } :
-          query.not(["CssSourceMappingUrl", "JavaScriptSourceMappingUrl"])
+          query.not([ "CssSourceMappingUrl", "JavaScriptSourceMappingUrl" ])
       }
     })
 
@@ -84,17 +84,17 @@ gulp.task("dist-copy", function(done)
       type: query.not([
         "Html"
       ])
-    }, function (asset) {
-      return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension;
+    }, function(asset) {
+      return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension
     })
     .setSourceMapRoot(null, null)
     .addCacheManifest()
     .writeAssetsToDisc({}, "dist")
-    .run(function (err) {
+    .run(function(err) {
       if (err) {
-        console.error("AssetGraph Error:", err);
+        console.error("AssetGraph Error:", err)
       }
 
-      done();
-    });
+      done()
+    })
 })

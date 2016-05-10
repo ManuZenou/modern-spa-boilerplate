@@ -32,7 +32,7 @@ export function logError(err)
   notify.notify({
     title: `${AppShortTitle}: Error`,
     message: err.message
-  });
+  })
 
   // Display error in the browser
   browserSync.notify(err.message, 3000)
@@ -48,7 +48,7 @@ export function getPath(event)
 
 export function logChange(event)
 {
-  var cleanPath = getPath(event);
+  var cleanPath = getPath(event)
 
   $.util.log(
     $.util.colors.green("Changed: ") +

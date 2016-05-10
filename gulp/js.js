@@ -6,7 +6,7 @@
 ========================================================================
 */
 
-import { $, logError, logChange, devServer, sourceMapOptions } from "./common";
+import { $, logError, logChange, devServer, sourceMapOptions } from "./common"
 
 import gulp from "gulp"
 import jspm from "jspm"
