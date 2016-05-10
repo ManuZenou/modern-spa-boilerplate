@@ -25,25 +25,18 @@ gulp.task("dist", [ "clean-dist", "build" ], function(done)
     .loadAssets("*.html")
     .populate({
       followRelations: {
-        hrefType: ["relative", "rootRelative"],
-        type: query.not([
-          // Keep copying source maps but ignore content for further dependency tracking
-          "SourceMapSource"
-        ])
+        hrefType: ["relative", "rootRelative"]
       }
     })
     .moveAssetsInOrder({
       isLoaded: true,
       type: query.not([
-        'Html',
-        'SourceMap'
+        'Html'
       ])
     }, function (asset) {
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension;
     })
-    .writeAssetsToDisc({
-      isLoaded: true
-    }, "dist")
+    .writeAssetsToDisc({}, "dist")
     .run(function (err) {
       if (err) {
         console.error("AssetGraph Error:", err);
