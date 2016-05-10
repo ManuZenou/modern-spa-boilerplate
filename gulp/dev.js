@@ -7,16 +7,15 @@
 */
 
 import gulp from "gulp"
-import notify from "node-notifier"
 import run from "run-sequence"
 
-import { $, logError, AppShortTitle, getPath, logChange, devServer } from "./common"
+import { $, logChange, devServer } from "./common"
 
 gulp.task("build", (done) =>
   run("vue:split", [ "css:build", "js:build" ], done)
 )
 
-gulp.task("watch", [ "build" ], function()
+gulp.task("watch", [ "build" ], () =>
 {
   gulp.start("vue:watch")
   gulp.start("css:watch")
@@ -37,8 +36,7 @@ gulp.task("watch", [ "build" ], function()
     )
 })
 
-gulp.task("serve", function()
-{
+gulp.task("serve", () =>
   devServer.init({
     open: false,
     logConnections: true,
@@ -51,6 +49,6 @@ gulp.task("serve", function()
       baseDir: "./src"
     }
   })
-})
+)
 
 gulp.task("default", [ "serve", "watch" ])

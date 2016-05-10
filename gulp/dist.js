@@ -7,7 +7,7 @@
 */
 
 import gulp from "gulp"
-import assetgraph from "assetgraph"
+import AssetGraph from "assetgraph"
 import del from "del"
 import run from "run-sequence"
 
@@ -32,38 +32,36 @@ gulp.task("dist", (done) =>
 
 gulp.task("dist-compress", [ "dist-compress-zopfli", "dist-compress-brotli" ])
 
-gulp.task("dist-compress-zopfli", function(done)
-{
-  return gulp.src(compressableFiles).
+gulp.task("dist-compress-zopfli", () =>
+  gulp.src(compressableFiles).
     pipe($.zopfli()).
     pipe(gulp.dest("dist"))
-})
+)
 
-gulp.task("dist-compress-brotli", function(done)
-{
-  return gulp.src(compressableFiles).
+gulp.task("dist-compress-brotli", () =>
+  gulp.src(compressableFiles).
     pipe($.brotli.compress()).
     pipe(gulp.dest("dist"))
-})
+)
 
 gulp.task("dist-copy", function(done)
 {
-  var query = assetgraph.query
+  var query = AssetGraph.query
   var includeSources = true
 
-  new assetgraph({ root: "src" })
-    .on("addAsset", function(asset) {
+  new AssetGraph({ root: "src" })
+    on("addAsset", function(asset) {
       console.log("- Process:", asset.toString())
-    })
-    .loadAssets("*.html")
-    .populate({
+    }).
+    loadAssets("*.html").
+    populate({
       followRelations: {
         hrefType: [ "relative", "rootRelative" ],
         type: includeSources ?
           function() { return true } :
           query.not([ "CssSourceMappingUrl", "JavaScriptSourceMappingUrl" ])
       }
-    })
+    }).
 
     // Via: https://mntr.dk/2014/getting-started-with-assetgraph/
     /*
@@ -79,18 +77,18 @@ gulp.task("dist-copy", function(done)
     })
     */
 
-    .moveAssetsInOrder({
+    moveAssetsInOrder({
       isLoaded: true,
       type: query.not([
         "Html"
       ])
     }, function(asset) {
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension
-    })
-    .setSourceMapRoot(null, null)
-    .addCacheManifest()
-    .writeAssetsToDisc({}, "dist")
-    .run(function(err) {
+    }).
+    setSourceMapRoot(null, null).
+    addCacheManifest().
+    writeAssetsToDisc({}, "dist").
+    run(function(err) {
       if (err) {
         console.error("AssetGraph Error:", err)
       }

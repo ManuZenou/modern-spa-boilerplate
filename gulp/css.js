@@ -6,7 +6,7 @@
 ========================================================================
 */
 
-import { $, logError, logChange, devServer, sourceMapOptions, getPath } from "./common"
+import { $, logError, logChange, devServer, getPath } from "./common"
 
 import fs from "fs"
 import gulp from "gulp"
@@ -14,7 +14,7 @@ import loadPlugins from "load-plugins"
 
 const $css = loadPlugins("postcss-*")
 
-var autoprefixer_settings =
+const autoprefixerSettings =
 {
   browsers: [ "> 2% in DE", "IE 10", "IE 11", "last 3 Chrome versions", "last 3 Firefox versions" ],
   cascade: false,
@@ -70,7 +70,7 @@ var postcss_processors =
   $css.mediaMinmax,
 
   $css.nested,
-  $css.autoprefixer(autoprefixer_settings),
+  $css.autoprefixer(autoprefixerSettings),
   $css.csso({
     sourceMap: true,
     restructure: false
@@ -100,8 +100,8 @@ gulp.task("css:lint", [ "vue:split" ], () =>
 
       stylelint(),
       doiuse({
-        browsers: autoprefixer_settings.browsers,
-        ignore: ["css-appearance", "text-size-adjust"]
+        browsers: autoprefixerSettings.browsers,
+        ignore: [ "css-appearance", "text-size-adjust" ]
       }),
       immutable(),
       colorguard(),

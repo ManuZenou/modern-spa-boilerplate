@@ -6,7 +6,7 @@
 ========================================================================
 */
 
-import { $, logError, logChange, devServer, sourceMapOptions } from "./common"
+import { $, logError, logChange, devServer } from "./common"
 
 import gulp from "gulp"
 import jspm from "jspm"
@@ -24,7 +24,7 @@ gulp.task("js:prep", () =>
     "src/jspm_packages/system.src.js",
     "src/jspm.browser.js",
     "src/jspm.config.js"
-  ], { base : "src" }).
+  ], { base: "src" }).
   pipe($.sourcemaps.init()).
   pipe($.concat("prep.bundle.js").on("error", logError)).
   pipe($.sourcemaps.write(".", {
@@ -65,7 +65,7 @@ gulp.task("js:format", [ "vue:split" ], () =>
     "gulpfile*.js",
     "gulp/**.js",
     "src/app/**/*.js"
-  ], { base : "." }).
+  ], { base: "." }).
   pipe($.eslint({ fix: true })).
   pipe($.eslint.format()).
   pipe(gulp.dest("."))
@@ -84,9 +84,9 @@ gulp.task("js:watch", () =>
     "src/app/**/*.js"
   ], [ "js:main" ]).
     on("change", logChange).
-    on("change", function(info) {
+    on("change", (info) =>
       jspmBuilder.invalidate(info.path)
-    })
+    )
 
   gulp.watch([
     "src/*.bundle.js"
