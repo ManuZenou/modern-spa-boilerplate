@@ -65,9 +65,10 @@ gulp.task("js:format", [ "vue:split" ], () =>
     "gulpfile*.js",
     "gulp/**.js",
     "src/app/**/*.js"
-  ]).
+  ], { base : "." }).
   pipe($.eslint({ fix: true })).
-  pipe($.eslint.format())
+  pipe($.eslint.format()).
+  pipe(gulp.dest("."))
 )
 
 gulp.task("js:watch", () =>
