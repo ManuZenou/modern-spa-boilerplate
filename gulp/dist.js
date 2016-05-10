@@ -9,12 +9,44 @@
 import gulp from "gulp"
 import assetgraph from "assetgraph"
 import del from "del"
+import run from "run-sequence"
+
+import { $, logError } from "./common";
+
+const compressableFiles = [
+  "dist/**/*.html",
+  "dist/**/*.css",
+  "dist/**/*.js",
+  "dist/**/*.json",
+  "dist/**/*.xml",
+  "dist/**/*.map"
+]
 
 gulp.task("clean-dist", () =>
   del([ "dist" ])
 )
 
-gulp.task("dist", [ "clean-dist", "build" ], function(done)
+gulp.task("dist", (done) =>
+  run([ "clean-dist", "build" ], "dist-copy", "dist-compress", done);
+);
+
+gulp.task("dist-compress", ["dist-compress-zopfli", "dist-compress-brotli"])
+
+gulp.task("dist-compress-zopfli", function(done)
+{
+  return gulp.src(compressableFiles).
+    pipe($.zopfli()).
+    pipe(gulp.dest("dist"))
+})
+
+gulp.task("dist-compress-brotli", function(done)
+{
+  return gulp.src(compressableFiles).
+    pipe($.brotli.compress()).
+    pipe(gulp.dest("dist"))
+})
+
+gulp.task("dist-copy", function(done)
 {
   var query = assetgraph.query;
   var includeSources = true;
