@@ -36,6 +36,7 @@ gulp.task("dist", [ "clean-dist", "build" ], function(done)
     }, function (asset) {
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension;
     })
+    .addCacheManifest()
     .writeAssetsToDisc({}, "dist")
     .run(function (err) {
       if (err) {
