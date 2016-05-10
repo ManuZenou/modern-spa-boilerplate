@@ -37,6 +37,7 @@ export function logError(err)
   // Display error in the browser
   browserSync.notify(err.message, 3000)
 
+  /* eslint no-invalid-this: 0 */
   // Prevent gulp from catching the error and exiting the watch process
   this.emit("end")
 }
