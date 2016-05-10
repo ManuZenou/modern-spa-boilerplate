@@ -25,15 +25,19 @@ assetgraph.registerTransform(function(queryObj) {
 gulp.task("dist", [ "clean-dist", "build" ], function(done)
 {
   var query = assetgraph.query;
+  var includeSources = true;
 
   new assetgraph({root: "src"})
     .on("addAsset", function (asset) {
-      // console.log("AssetGraph Add:", asset.toString());
+      console.log("- Process:", asset.toString());
     })
     .loadAssets("*.html")
     .populate({
       followRelations: {
-        hrefType: ["relative", "rootRelative"]
+        hrefType: ["relative", "rootRelative"],
+        type: includeSources ?
+          function() { return true } :
+          query.not(["CssSourceMappingUrl", "JavaScriptSourceMappingUrl"])
       }
     })
     .moveAssetsInOrder({
