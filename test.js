@@ -22,3 +22,8 @@ test("Running Build", (t) =>
 {
   gulp.start("build")
 })
+
+test("Running Dist", (t) =>
+{
+  gulp.start("dist")
+})
