@@ -32,6 +32,21 @@ gulp.task("dist", [ "clean-dist", "build" ], function(done)
           query.not(["CssSourceMappingUrl", "JavaScriptSourceMappingUrl"])
       }
     })
+
+    // Via: https://mntr.dk/2014/getting-started-with-assetgraph/
+    /*
+    .inlineRelations({
+        type: 'CssImage',
+        to: {
+            isLoaded: true,
+            isInline: false,
+            rawSrc: function (rawSrc) {
+                return rawSrc.length < 4096;
+            }
+        }
+    })
+    */
+
     .moveAssetsInOrder({
       isLoaded: true,
       type: query.not([
