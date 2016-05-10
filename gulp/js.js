@@ -52,7 +52,8 @@ gulp.task("js:build", [ "js:prep", "js:main" ])
 gulp.task("js:lint", [ "vue:split" ], () =>
   gulp.src([
     "gulpfile*.js",
-    "src/**/*.js"
+    "gulp/**.js",
+    "src/app/**/*.js"
   ]).
   pipe($.eslint()).
   pipe($.eslint.format()).
@@ -62,7 +63,8 @@ gulp.task("js:lint", [ "vue:split" ], () =>
 gulp.task("js:format", [ "vue:split" ], () =>
   gulp.src([
     "gulpfile*.js",
-    "src/**/*.js"
+    "gulp/**.js",
+    "src/app/**/*.js"
   ]).
   pipe($.eslint({ fix: true })).
   pipe($.eslint.format())
@@ -78,7 +80,7 @@ gulp.task("js:watch", () =>
     on("change", logChange)
 
   gulp.watch([
-    "src/**/*.js"
+    "src/app/**/*.js"
   ], [ "js:main" ]).
     on("change", logChange).
     on("change", function(info) {
