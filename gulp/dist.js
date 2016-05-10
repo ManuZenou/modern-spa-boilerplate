@@ -27,7 +27,7 @@ gulp.task("clean-dist", () =>
 )
 
 gulp.task("dist", (done) =>
-  run([ "clean-dist", "build" ], "dist-copy", "dist-compress", done);
+  run([ "clean-dist", "build" ], "dist-copy", "dist-compress", done)
 );
 
 gulp.task("dist-compress", ["dist-compress-zopfli", "dist-compress-brotli"])
