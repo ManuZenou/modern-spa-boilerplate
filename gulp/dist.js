@@ -20,7 +20,7 @@ gulp.task("dist", [ "clean-dist", "build" ], function(done)
 
   new assetgraph({root: "src"})
     .on("addAsset", function (asset) {
-      console.log("AssetGraph Add:", asset.toString());
+      // console.log("AssetGraph Add:", asset.toString());
     })
     .loadAssets("*.html")
     .populate({
