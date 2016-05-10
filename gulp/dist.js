@@ -49,7 +49,7 @@ gulp.task("dist-copy", function(done)
   var query = AssetGraph.query
   var includeSources = true
 
-  new AssetGraph({ root: "src" })
+  new AssetGraph({ root: "src" }).
     on("addAsset", function(asset) {
       console.log("- Process:", asset.toString())
     }).
