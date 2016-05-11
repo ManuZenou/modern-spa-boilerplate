@@ -70,6 +70,7 @@ var postcss_processors =
   $css.colorFunction,
   $css.colorHexAlpha,
   $css.flexbugsFixes,
+  $css.clearfix,
   $css.zindex,
 
   // Support for CSS Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#mq-range-context
