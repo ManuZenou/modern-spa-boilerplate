@@ -50,7 +50,7 @@
     "gulp-zopfli": "^1.0.0",
     "html-minifier": "^2.1.2",
     "imagemin": "^5.1.0",
-    "imagemin-jpeg-recompress": "^4.3.0",
+    "imagemin-jpeg-recompress": "^5.0.0",
     "imagemin-mozjpeg": "^6.0.0",
     "imagemin-optipng": "^5.1.0",
     "imagemin-pngquant": "^5.0.0",
