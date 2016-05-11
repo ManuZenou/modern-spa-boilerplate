@@ -19,6 +19,9 @@
     "babel",
     "postcss"
   ],
+  "engines" : {
+    "node" : ">=4 <6"
+  },
   "repository": "https://github.com/sebastian-software/modern-spa-boilerplate.git",
   "author": "Sebastian Werner",
   "license": "Apache-2.0",
