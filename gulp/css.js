@@ -63,7 +63,9 @@ var postcss_processors =
   $css.willChange,
   $css.extend,
 
-  $css.assets,
+  $css.assets({
+    basePath: "src/"
+  }),
   $css.calc,
   $css.gradientTransparencyFix,
   $css.easings,
@@ -78,10 +80,11 @@ var postcss_processors =
 
   $css.nested,
   $css.autoprefixer(autoprefixerSettings),
-  $css.csso({
+
+  /*$css.csso({
     sourceMap: true,
     restructure: false
-  }),
+  }),*/
 
   $css.reporter
 ]

@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'MyWebFont';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face{
+  font-family: "SourceSansPro";
+  font-weight: 700;
+  src: resolve("fonts/sourcesans/SourceSansPro-Black.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "SourceSansPro";
+  font-weight: 600;
+  src: resolve("fonts/sourcesans/SourceSansPro-Bold.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "SourceSansPro";
+  font-weight: 500;
+  src: resolve("fonts/sourcesans/SourceSansPro-Semibold.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "SourceSansPro";
+  font-weight: 400;
+  src: resolve("fonts/sourcesans/SourceSansPro-Regular.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "SourceSansPro";
+  font-weight: 300;
+  src: resolve("fonts/sourcesans/SourceSansPro-Light.otf") format("opentype");
+}
+
+@font-face{
+  font-family: "SourceSansPro";
+  font-weight: 200;
+  src: resolve("fonts/sourcesans/SourceSansPro-ExtraLight.otf") format("opentype");
+}
+
+body{
+  font-family: SourceSansPro;
+  font-weight: 300;
+}
