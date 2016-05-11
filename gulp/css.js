@@ -52,9 +52,13 @@ var postcss_processors =
   $css.import({
     extensions: [ ".css", ".sss" ]
   }),
-  $css.discardComments,
+  $css.discardComments({
+    removeAll: true
+  }),
 
-  $css.advancedVariables,
+  $css.advancedVariables({
+    variables: {}
+  }),
   $css.sassyMixins,
   $css.willChange,
   $css.extend,
