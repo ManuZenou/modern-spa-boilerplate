@@ -22,29 +22,29 @@ const compressableFiles = [
   "dist/**/*.map"
 ]
 
-gulp.task("clean-dist", () =>
+gulp.task("dist:clean", () =>
   del([ "dist" ])
 )
 
 gulp.task("dist", (done) =>
-  run([ "clean-dist", "build" ], "dist-copy", "dist-compress", done)
+  run([ "dist:clean", "build" ], "dist:copy", "dist:compress", done)
 )
 
-gulp.task("dist-compress", [ "dist-compress-zopfli", "dist-compress-brotli" ])
+gulp.task("dist:compress", [ "dist:compress:zopfli", "dist:compress:brotli" ])
 
-gulp.task("dist-compress-zopfli", () =>
+gulp.task("dist:compress:zopfli", () =>
   gulp.src(compressableFiles).
     pipe($.zopfli()).
     pipe(gulp.dest("dist"))
 )
 
-gulp.task("dist-compress-brotli", () =>
+gulp.task("dist:compress:brotli", () =>
   gulp.src(compressableFiles).
     pipe($.brotli.compress()).
     pipe(gulp.dest("dist"))
 )
 
-gulp.task("dist-copy", function(done)
+gulp.task("dist:copy", function(done)
 {
   var query = AssetGraph.query
   var includeSources = true
