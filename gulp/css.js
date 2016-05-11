@@ -65,6 +65,8 @@ var postcss_processors =
   $css.easings,
   $css.colorFunction,
   $css.colorHexAlpha,
+  $css.flexbugsFixes,
+  $css.zindex,
 
   // Support for CSS Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#mq-range-context
   $css.mediaMinmax,
