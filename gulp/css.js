@@ -64,7 +64,7 @@ var postcss_processors =
   $css.extend,
 
   $css.assets({
-    basePath: "src/"
+    relative: "src/"
   }),
   $css.calc,
   $css.gradientTransparencyFix,
