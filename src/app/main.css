@@ -1,6 +1,5 @@
 @import "normalize.css";
+@import "fonts/sourcesans/SourceSansPro";
 @import "components/Layout";
 @import "components/Test";
 @import "sugar";
-
-/*@import "fonts/sourcesans/SourceSansPro";*/
