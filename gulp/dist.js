@@ -19,6 +19,9 @@ const compressableFiles = [
   "dist/**/*.js",
   "dist/**/*.json",
   "dist/**/*.xml",
+  "dist/**/*.svg",
+  "dist/**/*.otf",
+  "dist/**/*.ttf",
   "dist/**/*.map"
 ]
 
