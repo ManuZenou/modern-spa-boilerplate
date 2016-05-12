@@ -33,8 +33,3 @@
   font-weight: 200;
   src: resolve("fonts/sourcesans/SourceSansPro-ExtraLight.otf") format("opentype");
 }
-
-body{
-  font-family: SourceSansPro;
-  font-weight: 300;
-}
