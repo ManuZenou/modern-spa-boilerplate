@@ -90,11 +90,7 @@ gulp.task("dist:copy", function(done)
     // setSourceMapRoot(null, null).
     queue(function setSourceMapRoot(assetGraph) {
       assetGraph.findAssets({type: 'SourceMap'}).forEach(function (mapFile) {
-        if (root) {
-          mapFile.parseTree.sourceRoot = root;
-        } else {
-          delete mapFile.parseTree.sourceRoot;
-        }
+        delete mapFile.parseTree.sourceRoot;
       });
     }).
 
