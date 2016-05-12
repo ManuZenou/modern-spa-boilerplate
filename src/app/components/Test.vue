@@ -2,15 +2,21 @@
   @import "Features.css";
 
   .message {
-    border: 2px solid red;
+    border: 2px solid #333;
+    background: #eee;
+    padding: 1rem;
   }
 
   .title {
-    font-size: 3em;
+    font-size: 3rem;
+    margin-top: 0;
+    border-bottom: 2px solid #333;
   }
 
   .buttonbar {
     width: auto;
+    background: white;
+    padding: 0.5rem;
   }
 
   .cancel {
