@@ -9,5 +9,5 @@ dist
 *.bundle.js*
 
 # These are dynamically generated from .vue files
-src/components/*.css
-src/components/*.js
+src/app/components/*.css
+src/app/components/*.js
