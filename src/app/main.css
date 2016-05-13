@@ -2,4 +2,5 @@
 @import "fonts/sourcesans/SourceSansPro";
 @import "components/Layout";
 @import "components/Test";
+@import "components/Table";
 @import "sugar";
