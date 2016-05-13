@@ -48,6 +48,7 @@
   <div css-module="message">
     <h1 css-module="title">{{title}}</h1>
     <p>{{text}}</p>
+    <p>Base Size: {{base}}</p>
     <div css-module="buttonbar">
       <button css-module="cancel">Cancel</button>
       <button css-module="okay">Save</button>
@@ -56,16 +57,27 @@
 </template>
 
 <script>
+  var shared = {
+    title: "Message Box",
+    text: "Your data was successfully parsed!",
+    base: 0
+  }
+
   import template from "./Message.html"
   export default {
     template: template,
-    data: function()
-    {
-      return {
-        title: "Message Box",
-        text: "Your data was successfully parsed!"
-      }
+    data: function() {
+      return shared
     }
   }
   console.log("Debug from Message.js")
+
+  function update() {
+    shared.base = getComputedStyle(document.documentElement).fontSize
+  }
+
+  window.addEventListener("resize", update, true);
+  window.addEventListener("orientationchange", update, true);
+
+  update();
 </script>

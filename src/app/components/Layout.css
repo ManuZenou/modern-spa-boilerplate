@@ -73,11 +73,9 @@ h1{
 
     /* 1280px -> 1520px */
     @media screen and (width >= 110em) and (width < 130em) {
-      border: 2px solid darkblue;
+      border: 2px solid darkgreen;
       lost-column: 1/7;
     }
   }
-
-
 
 }
