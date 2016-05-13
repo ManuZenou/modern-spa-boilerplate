@@ -1,23 +1,16 @@
 html{
-  font-size: responsive 1em 1.5em; /* min-size, max-size */
+  font-size: responsive 1em 1.25em; /* min-size, max-size */
   font-range: 60em 90em; /* viewport widths between which font-size is fluid */
   background: #eee;
-  min-height: 100%;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  padding: 1rem;
-}
-
-body{
-  font-family: "SourceSansPro";
+  font-family: "SourceSansPro", sans-serif;
+  padding: 1rem 2rem;
   font-weight: 400;
-  max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
   background: white;
-  height: 100%;
 }
 
 h1{

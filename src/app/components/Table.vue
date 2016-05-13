@@ -20,6 +20,7 @@
   white-space: nowrap;
   border-spacing: 0;
   border-collapse: collapse;
+  font-size: 0.8rem;
 
   tr:nth-child(odd){
     background: #eee;
