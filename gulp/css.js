@@ -78,13 +78,13 @@ var postcss_processors =
   $css.clearfix,
   $css.zindex,
   $css.responsiveType,
-  $css.lost,
 
   // Support for CSS Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#mq-range-context
   $css.mediaMinmax,
 
   $css.nested,
   $css.extend,
+  $css.lost,
 
   $css.autoprefixer(autoprefixerSettings),
 
