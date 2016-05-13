@@ -36,6 +36,8 @@ h1{
   font-weight: 200;
 }
 
+@lost gutter 1rem;
+
 .some-grid{
   lost-utility: clearfix;
 
