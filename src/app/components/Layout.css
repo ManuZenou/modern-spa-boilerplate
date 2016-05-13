@@ -26,3 +26,44 @@ body {
 h1{
   font-weight: 200;
 }
+
+.some-grid{
+  lost-utility: clearfix;
+
+  .inner{
+    width: 10rem;
+    height: calc(10rem / 16 * 9);
+    background:#ccc
+  }
+
+  .cell{
+    margin-bottom: 1rem;
+
+    /* 320px -> 640px */
+    @media screen and (width < 40em) {
+      border: 2px solid yellow;
+      lost-column: 1/2;
+    }
+
+    /* 640px -> 960px */
+    @media screen and (width >= 40em) and (width < 50em) {
+      border: 2px solid orange;
+      lost-column: 1/3;
+    }
+
+    /* 960px -> 1200px */
+    @media screen and (width >= 50em) and (width < 65em) {
+      border: 2px solid red;
+      lost-column: 1/4;
+    }
+
+    /* 1200px -> 1440px */
+    @media screen and (width >= 65em) and (width < 80em) {
+      border: 2px solid purple;
+      lost-column: 1/5;
+    }
+  }
+
+
+
+}
