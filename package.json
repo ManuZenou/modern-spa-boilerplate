@@ -60,6 +60,7 @@
     "immutable-css": "^1.1.1",
     "jspm": "^0.17.0-beta.14",
     "load-plugins": "^2.1.0",
+    "lost": "^6.7.2",
     "node-notifier": "^4.5.0",
     "postcss-advanced-variables": "^1.2.2",
     "postcss-assets": "^4.1.0",

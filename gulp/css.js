@@ -28,6 +28,10 @@ import cssstats from "cssstats"
 import autoprefixer from "autoprefixer"
 $css.autoprefixer = autoprefixer
 
+// Load Lost Grid and register with plugin loader
+import lost from "lost"
+$css.lost = lost
+
 // Load linting tools
 import doiuse from "doiuse"
 import stylelint from "stylelint"
@@ -75,6 +79,7 @@ var postcss_processors =
   $css.clearfix,
   $css.zindex,
   $css.responsiveType,
+  $css.lost,
 
   // Support for CSS Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#mq-range-context
   $css.mediaMinmax,
