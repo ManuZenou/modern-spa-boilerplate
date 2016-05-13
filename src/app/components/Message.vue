@@ -7,12 +7,11 @@
     max-width: 25rem;
 
     p{
-      padding: 1rem;
+      padding: 0 1rem;
     }
   }
 
   .title {
-    font-size: 2rem;
     margin-top: 0;
     border-bottom: 1px solid #333;
     padding: 1rem;

@@ -25,10 +25,12 @@ html{
 
 body {
   font-family: "SourceSansPro", sans-serif;
-  font-weight: 400;
   margin-left: auto;
   margin-right: auto;
   background: white;
+
+  /* limit overall size */
+  /* max-width: 60rem; */
 
   @media screen and (orientation: landscape){
     padding: 1rem 2rem;
@@ -37,10 +39,6 @@ body {
   @media screen and (orientation: portrait){
     padding: 0.5rem 1rem;
   }
-}
-
-h1{
-  font-weight: 200;
 }
 
 @lost gutter 1rem;
