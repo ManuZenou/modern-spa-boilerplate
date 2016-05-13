@@ -32,8 +32,10 @@ h1{
 
   .inner{
     width: 10rem;
-    height: calc(10rem / 16 * 9);
-    background:#ccc
+    padding-top: calc(10rem / 1.6180);
+
+    background: #ccc;
+    text-align: center;
   }
 
   .cell{
@@ -51,16 +53,28 @@ h1{
       lost-column: 1/3;
     }
 
-    /* 960px -> 1200px */
+    /* 800px -> 1040px */
     @media screen and (width >= 50em) and (width < 65em) {
       border: 2px solid red;
       lost-column: 1/4;
     }
 
-    /* 1200px -> 1440px */
-    @media screen and (width >= 65em) and (width < 80em) {
+    /* 1040px -> 1280px */
+    @media screen and (width >= 65em) and (width < 90em) {
       border: 2px solid purple;
       lost-column: 1/5;
+    }
+
+    /* 1280px -> 1520px */
+    @media screen and (width >= 90em) and (width < 110em) {
+      border: 2px solid darkblue;
+      lost-column: 1/6;
+    }
+
+    /* 1280px -> 1520px */
+    @media screen and (width >= 110em) and (width < 130em) {
+      border: 2px solid darkblue;
+      lost-column: 1/7;
     }
   }
 
