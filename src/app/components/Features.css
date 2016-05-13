@@ -1,9 +1,14 @@
+%inverted-text{
+  -webkit-font-smoothing: antialiased;
+}
+
 %base-button {
   border: 1px solid #000;
-  padding: 8px 12px;
+  padding: 0.75rem 1rem;
   border-radius: 3px;
   border: none;
   outline: none;
   font-size: inherit;
   color: white;
+  @extend %inverted-text;
 }
