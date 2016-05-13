@@ -4,6 +4,7 @@
   .message {
     border: 2px solid #333;
     background: #eee;
+    max-width: 25rem;
 
     p{
       padding: 1rem;
@@ -62,7 +63,7 @@
     {
       return {
         title: "Message Box",
-        text: "Your data was saved successfully!"
+        text: "Your data was successfully parsed!"
       }
     }
   }
