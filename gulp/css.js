@@ -74,6 +74,7 @@ var postcss_processors =
   $css.flexbugsFixes,
   $css.clearfix,
   $css.zindex,
+  $css.responsiveType,
 
   // Support for CSS Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#mq-range-context
   $css.mediaMinmax,
