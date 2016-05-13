@@ -65,7 +65,6 @@ var postcss_processors =
   }),
   $css.sassyMixins,
   $css.willChange,
-  $css.extend,
 
   $css.assets({
     relative: "src/"
@@ -85,6 +84,8 @@ var postcss_processors =
   $css.mediaMinmax,
 
   $css.nested,
+  $css.extend,
+
   $css.autoprefixer(autoprefixerSettings),
 
   /*$css.csso({
