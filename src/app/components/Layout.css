@@ -5,11 +5,20 @@
 }
 
 html{
-  font-size: responsive 1em 1.25em; /* min-size, max-size */
-  /* translated: 16px => 20px */
+  font-size: 16px;
 
-  font-range: 60em 90em; /* viewport widths between which font-size is fluid */
-  /* translated: 60em = 960px; 90em = 1440px when using the standard browser 16px font size */
+  @media screen and (orientation: landscape){
+    font-size: responsive 1em 1.25em; /* min-size, max-size */
+    /* translated: 16px => 20px */
+
+    font-range: 60em 90em; /* viewport widths between which font-size is fluid */
+    /* translated: 60em = 960px; 90em = 1440px when using the standard browser 16px font size */
+  }
+
+  @media screen and (orientation: portrait){
+    font-size: responsive 1em 1.25em; /* min-size, max-size */
+    font-range: 20em 30em; /* viewport widths between which font-size is fluid */
+  }
 
   background: #eee;
 }
