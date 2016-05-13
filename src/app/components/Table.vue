@@ -20,7 +20,6 @@
   white-space: nowrap;
   border-spacing: 0;
   border-collapse: collapse;
-  font-size: 0.8rem;
 
   tr:nth-child(odd){
     background: #eee;
@@ -37,6 +36,7 @@
 
   td{
     padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
   }
 }
 </style>
