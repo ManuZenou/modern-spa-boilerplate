@@ -13,8 +13,7 @@
 
   .title {
     margin-top: 0;
-    border-bottom: 1px solid #333;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     background: #335;
     color: white;
     @extend %inverted-text;
