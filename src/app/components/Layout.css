@@ -25,11 +25,18 @@ html{
 
 body {
   font-family: "SourceSansPro", sans-serif;
-  padding: 1rem 2rem;
   font-weight: 400;
   margin-left: auto;
   margin-right: auto;
   background: white;
+
+  @media screen and (orientation: landscape){
+    padding: 1rem 2rem;
+  }
+
+  @media screen and (orientation: portrait){
+    padding: 0.5rem 1rem;
+  }
 }
 
 h1{
