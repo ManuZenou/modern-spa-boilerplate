@@ -38,8 +38,8 @@ build:master:
     - gulp dist
     - ls -al dist
     - cp Dockerfile.template dist/Dockerfile
-    - docker build -t docker.sebastian-software.de/modern-spa-boilerplate dist
-    - docker push docker.sebastian-software.de/modern-spa-boilerplate
+    - docker build -t docker.sebastian-software.de/spa dist
+    - docker push docker.sebastian-software.de/spa
   cache:
     paths:
       - node_modules/
