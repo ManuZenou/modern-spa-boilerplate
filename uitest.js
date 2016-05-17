@@ -1,5 +1,3 @@
-//var casper = require("casper").create();
-
 casper.on("remote.message", function (e) {
   console.log(e)
 })
@@ -14,8 +12,8 @@ casper.waitFor(function check() {
 
 casper.then(function() {
   this.echo("Page Title: " + this.getTitle())
-  casper.test.assertElementCount("h1", 2)
-  casper.test.assertElementCount("table", 0)
+  casper.test.assertElementCount("h1", 3)
+  casper.test.assertElementCount("table", 1)
 });
 
 casper.run();
