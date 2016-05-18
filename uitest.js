@@ -2,7 +2,12 @@ casper.on("remote.message", function (e) {
   console.log(e)
 })
 
-casper.start("dist/index.html");
+casper.on("error", function(msg, backtrace) {
+  console.log("FATAL: " + msg);
+  this.exit();
+});
+
+casper.start("http://localhost:8085");
 
 casper.waitFor(function check() {
   return this.evaluate(function() {
