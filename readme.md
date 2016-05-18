@@ -11,6 +11,11 @@
 [npm-version-img]: https://img.shields.io/npm/v/modern-spa-boilerplate.svg
 
 
+## Demo
+
+Check out our [Demo](https://sebastian-software.github.io/modern-spa-boilerplate/) of the distribution build.
+
+
 ## Features
 
 - [x] [Gulp](http://gulpjs.com/) with full ES6 support for task definition
