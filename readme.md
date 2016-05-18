@@ -25,19 +25,21 @@
 - [x] Support [SugarSS](https://github.com/postcss/sugarss) for all imports (even mixed file types)
 - [x] Linting of CSS source files based on [stylelint](https://github.com/stylelint/stylelint)
 - [x] System notifications using [node-notifier](https://github.com/mikaelbr/node-notifier) for updates on rebuilding/errors.
-- [x] Semi-automatic deployment builds using the magic of [AssetGraph](https://github.com/assetgraph/assetgraph) with full support for hashed asset names.
+- [x] Automatic deployment builds using the magic of [AssetGraph](https://github.com/assetgraph/assetgraph) with full support for hashed asset names.
+- [x] Integration of UI testing based on [CasperJS](http://casperjs.org/) and [PhantomJS](http://phantomjs.org/) (Webkit-based) / [SlimerJS](https://slimerjs.org/) (Gecko-based)
+- [x] Dynamic SVG optimization for inlined SVG graphics/icons.
 
 
 ## Features - Not Done
 
 - [ ] Asset Management
-- [ ] Automatic SVG Sprite Sheets
-- [ ] Web Font Integration
 - [ ] Font System PostCSS Plugin
 - [ ] Layout Selector PostCSS Plugin
-- [ ] Deployment with Support for SRI (Subresource Integrity)
-- [ ] API documentation generator
+- [ ] Web Font Integration
+- [ ] Automatic SVG Sprite Sheets
 - [ ] Testing Integration mit Karma Testrunner
+- [ ] API documentation generator
+- [ ] Deployment with Support for SRI (Subresource Integrity)
 
 
 
