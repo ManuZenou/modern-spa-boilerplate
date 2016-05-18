@@ -102,20 +102,10 @@ gulp.task("dist:copy", function(done)
     }, function(asset) {
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension
     }).
-
-    // waiting for release of new assetgraph version
-    // setSourceMapRoot(null, null).
-    /*
-    queue(function setSourceMapRoot(assetGraph) {
-      assetGraph.findAssets({type: 'SourceMap'}).forEach(function (mapFile) {
-        delete mapFile.parseTree.sourceRoot;
-      });
-    }).
-    */
-
     addCacheManifest().
     writeAssetsToDisc({}, "dist").
-    run(function(err) {
+    run(function(err)
+    {
       if (err) {
         console.error("AssetGraph Error:", err)
       }
