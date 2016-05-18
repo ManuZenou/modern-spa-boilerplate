@@ -79,6 +79,8 @@ gulp.task("dist:copy", function(done)
           query.not([ "CssSourceMappingUrl", "JavaScriptSourceMappingUrl" ])
       }
     }).
+    mergeIdenticalAssets().
+    drawGraph("deps.svg").
 
     // Via: https://mntr.dk/2014/getting-started-with-assetgraph/
     /*
