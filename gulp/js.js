@@ -21,6 +21,7 @@ var jspmOptions =
 
 gulp.task("js:prep", () =>
   gulp.src([
+    "src/jspm_packages/system-polyfills.src.js",
     "src/jspm_packages/system.src.js",
     "src/jspm.browser.js",
     "src/jspm.config.js"
