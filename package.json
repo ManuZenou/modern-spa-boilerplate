@@ -27,7 +27,7 @@
   "author": "Sebastian Werner",
   "license": "Apache-2.0",
   "dependencies": {
-    "assetgraph": "github:assetgraph/assetgraph#added-transform-for-processing-sourceroot-of-sourcemaps",
+    "assetgraph": "^2.8.0",
     "async": "^2.0.0-rc.5",
     "autoprefixer": "^6.3.6",
     "babel-preset-es2015": "^6.9.0",
