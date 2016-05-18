@@ -7,7 +7,7 @@ casper.on("error", function(msg, backtrace) {
   this.exit();
 });
 
-casper.start("http://localhost:8085");
+casper.start("src/index.html");
 
 casper.waitFor(function check() {
   return this.evaluate(function() {

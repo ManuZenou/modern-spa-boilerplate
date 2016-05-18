@@ -8,9 +8,7 @@
     "autofix": "gulp js:format && gulp css:format",
     "test": "ava",
     "test:watch": "ava --watch",
-    "test:ui:phantom": "casperjs test --concise --log-level=debug --engine=phantomjs uitest.js",
-    "test:ui:slimer": "casperjs test --concise --log-level=debug --engine=slimerjs uitest.js",
-    "test:ui": "npm run test:ui:phantom && npm run test:ui:slimer",
+    "test:ui": "gulp test:ui",
     "release": "release-it --github.release --npm.publish --non-interactive",
     "release:minor": "release-it --github.release --npm.publish --non-interactive --increment minor",
     "release:major": "release-it --github.release --npm.publish --non-interactive --increment major"
