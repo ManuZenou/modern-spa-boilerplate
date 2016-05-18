@@ -9,9 +9,14 @@
 import gulp from "gulp"
 import AssetGraph from "assetgraph"
 import del from "del"
+import path from "path"
 import run from "run-sequence"
+import child from "child_process"
+import gutil from "gulp-util"
 
-import { $, logError } from "./common"
+const revision = child.execSync("git rev-parse --short HEAD").toString().trim();
+
+import { $, logError, CWD } from "./common"
 
 const compressableFiles = [
   "dist/**/*.html",
@@ -30,7 +35,10 @@ gulp.task("dist:clean", () =>
 )
 
 gulp.task("dist", (done) =>
-  run([ "dist:clean", "build" ], "dist:copy", "dist:compress", done)
+  run([ "dist:clean", "build" ], "dist:copy", "dist:compress", function() {
+    gutil.log(`Distribution Build Ready: ${revision}`)
+    done()
+  })
 )
 
 gulp.task("dist:compress", [ "dist:compress:zopfli", "dist:compress:brotli" ])
@@ -53,8 +61,14 @@ gulp.task("dist:copy", function(done)
   var includeSources = true
 
   new AssetGraph({ root: "src" }).
-    on("addAsset", function(asset) {
-      console.log("- Process:", asset.toString())
+    on("addAsset", function(asset)
+    {
+      if (asset._url)
+      {
+        var fullPath = asset._url.replace("file://", "")
+        var relPath = path.relative(CWD, fullPath)
+        gutil.log(`Adding ${relPath}...`)
+      }
     }).
     loadAssets("*.html").
     populate({
