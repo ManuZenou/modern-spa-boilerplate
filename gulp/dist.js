@@ -14,7 +14,7 @@ import run from "run-sequence"
 import child from "child_process"
 import gutil from "gulp-util"
 
-const revision = child.execSync("git rev-parse --short HEAD").toString().trim();
+const revision = child.execSync("git describe --long --tags --always --dirty").toString().trim();
 
 import { $, logError, CWD } from "./common"
 
