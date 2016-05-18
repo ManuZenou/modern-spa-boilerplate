@@ -94,6 +94,7 @@ var postcss_processors =
     restructure: false
   }),*/
 
+  $css.svgo,
   $css.reporter
 ]
 
