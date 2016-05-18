@@ -139,7 +139,7 @@
     "ava": "^0.14.0",
     "gulp-stylelint": "^2.0.2",
     "stylefmt": "^3.2.1",
-    "stylelint": "^6.3.3",
+    "stylelint": "^6.4.0",
     "stylelint-config-standard": "^7.0.0"
   }
 }
