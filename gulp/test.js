@@ -14,7 +14,7 @@ import { $, logChange, devServer } from "./common"
 
 gulp.task("test:ui", (done) =>
   run([ "test:ui:phantomjs", "test:ui:slimerjs" ], done)
-);
+)
 
 gulp.task("test:ui:phantomjs", [ "build" ], (done) =>
   child.exec("casperjs test --concise --log-level=debug --engine=phantomjs uitest.js", done)
