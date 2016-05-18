@@ -40,11 +40,10 @@ gulp.task("serve", () =>
   devServer.init({
     open: false,
     logConnections: true,
-    logFileChanges: true,
-    reloadOnRestart: true,
-    injectChanges: true,
     logPrefix: "Server",
     logFileChanges: false,
+    reloadOnRestart: true,
+    injectChanges: true,
     notify: true,
     port: 8085,
     server: {
