@@ -105,11 +105,13 @@ gulp.task("dist:copy", function(done)
 
     // waiting for release of new assetgraph version
     // setSourceMapRoot(null, null).
+    /*
     queue(function setSourceMapRoot(assetGraph) {
       assetGraph.findAssets({type: 'SourceMap'}).forEach(function (mapFile) {
         delete mapFile.parseTree.sourceRoot;
       });
     }).
+    */
 
     addCacheManifest().
     writeAssetsToDisc({}, "dist").
