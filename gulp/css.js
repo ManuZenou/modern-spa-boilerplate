@@ -86,6 +86,7 @@ var postcss_processors =
   $css.lost,
   $css.responsiveType,
 
+  $css.pseudoelements,
   $css.autoprefixer(autoprefixerSettings),
 
   /*$css.csso({

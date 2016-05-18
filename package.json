@@ -84,6 +84,7 @@
     "postcss-media-minmax": "^2.1.2",
     "postcss-modules": "^0.4.1",
     "postcss-nested": "^1.0.0",
+    "postcss-pseudoelements": "^3.0.0",
     "postcss-reporter": "^1.3.3",
     "postcss-responsive-type": "^0.3.3",
     "postcss-sassy-mixins": "^2.0.0",
