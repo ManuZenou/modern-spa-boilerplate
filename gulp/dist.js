@@ -55,10 +55,9 @@ gulp.task("dist:compress:brotli", () =>
     pipe(gulp.dest("dist"))
 )
 
-gulp.task("dist:copy", function(done)
+gulp.task("dist:copy", function(done, includeSources = true)
 {
   var query = AssetGraph.query
-  var includeSources = true
 
   new AssetGraph({ root: "src" }).
     on("addAsset", function(asset)
