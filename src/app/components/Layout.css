@@ -23,6 +23,20 @@ html{
   background: #eee;
 }
 
+#vue-root > h1{
+  @layout landscape{
+    &::after{
+      content: " [Layout::Landscape]"
+    }
+  }
+
+  @layout portrait{
+    &::after{
+      content: " [Layout::Portrait]"
+    }
+  }
+}
+
 body {
   font-family: "SourceSansPro", sans-serif;
   margin-left: auto;

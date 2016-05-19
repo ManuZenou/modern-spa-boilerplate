@@ -39,10 +39,6 @@ import stylefmt from "stylefmt"
 import immutable from "immutable-css"
 import colorguard from "colorguard"
 
-import layoutSelector from "postcss-layout-selector"
-import fontSystem from "postcss-font-system"
-
-
 
 
 var postcss_processors =
@@ -65,6 +61,11 @@ var postcss_processors =
   }),
   $css.sassyMixins,
   $css.willChange,
+
+  //$css.fontSystem.default(),
+  $css.layoutSelector.default({
+    layout: "landscape"
+  }),
 
   $css.assets({
     relative: "src/"
