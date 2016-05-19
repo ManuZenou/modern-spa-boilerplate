@@ -33,6 +33,8 @@ Check out our [Demo](https://sebastian-software.github.io/modern-spa-boilerplate
 - [x] Automatic deployment builds using the magic of [AssetGraph](https://github.com/assetgraph/assetgraph) with full support for hashed asset names.
 - [x] Integration of UI testing based on [CasperJS](http://casperjs.org/) and [PhantomJS](http://phantomjs.org/) (Webkit-based) / [SlimerJS](https://slimerjs.org/) (Gecko-based)
 - [x] Dynamic SVG optimization for inlined SVG graphics/icons.
+- [x] Adds information about Git-Version to all HTML files.
+- [x] Favicon hashing + additional IE fallback support
 
 
 ## Features - Not Done
