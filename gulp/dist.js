@@ -59,7 +59,7 @@ gulp.task("dist:copy", function(done, includeSources = true)
 {
   var query = AssetGraph.query
 
-  new AssetGraph({ root: "src" }).
+  new AssetGraph({ root: "src/" }).
     on("addAsset", function(asset)
     {
       if (asset._url)
@@ -95,14 +95,22 @@ gulp.task("dist:copy", function(done, includeSources = true)
     })
     */
 
+    duplicateFavicon().
     moveAssetsInOrder({
       isLoaded: true,
       type: query.not([
         "Html"
       ])
-    }, function(asset) {
+    },
+    function(asset)
+    {
+      if (asset.fileName === "favicon.ico") {
+        return asset.fileName;
+      }
+
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension
     }).
+
     addCacheManifest().
     addDataVersionAttributeToHtmlElement({}, revision).
     writeAssetsToDisc({}, "dist").
