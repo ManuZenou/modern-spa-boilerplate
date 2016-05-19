@@ -5,8 +5,10 @@ npm-debug.log
 dist
 
 # Ignore bundled files
-*.bundle.css*
-*.bundle.js*
+src/*.bundle.css*
+src/*.bundle.js*
+
+deps.svg
 
 # These are dynamically generated from .vue files
 src/app/components/*.css

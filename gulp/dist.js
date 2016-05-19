@@ -104,6 +104,7 @@ gulp.task("dist:copy", function(done, includeSources = true)
       return "/static/" + asset.md5Hex.substr(0, 8) + asset.extension
     }).
     addCacheManifest().
+    addDataVersionAttributeToHtmlElement({}, revision).
     writeAssetsToDisc({}, "dist").
     run(function(err)
     {
