@@ -87,6 +87,8 @@ var postcss_processors =
 
   $css.nested,
   $css.extend,
+  $css.pseudoClassAnyLink,
+  $css.selectorMatches,
   $css.lost,
   $css.responsiveType,
 
