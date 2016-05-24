@@ -2,7 +2,7 @@
 
 [sponsor-img]: https://img.shields.io/badge/Sponsored%20by-Sebastian%20Software-692446.svg
 [sponsor]: https://www.sebastian-software.de
-[ci-img]: https://travis-ci.org/sebastian-software/modern-spa-boilerplate.svg
+[ci-img]: https://travis-ci.org/sebastian-software/modern-spa-boilerplate.svg?branch=master
 [ci]: https://travis-ci.org/sebastian-software/modern-spa-boilerplate
 [deps]: https://david-dm.org/sebastian-software/modern-spa-boilerplate
 [deps-img]: https://david-dm.org/sebastian-software/modern-spa-boilerplate.svg
