@@ -78,7 +78,6 @@ gulp.task("dist:copy", function(done, includeSources = true)
           query.not([ "CssSourceMappingUrl", "JavaScriptSourceMappingUrl" ])
       }
     }).
-    mergeIdenticalAssets().
     drawGraph("deps.svg").
 
     // Via: https://mntr.dk/2014/getting-started-with-assetgraph/
@@ -113,7 +112,9 @@ gulp.task("dist:copy", function(done, includeSources = true)
 
     addCacheManifest().
     addDataVersionAttributeToHtmlElement({}, revision).
-    writeAssetsToDisc({}, "dist").
+    writeAssetsToDisc({
+      isLoaded: true
+    }, "dist").
     run(function(err)
     {
       if (err) {
