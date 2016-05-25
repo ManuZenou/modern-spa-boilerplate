@@ -15,6 +15,7 @@
     <h2>Hello {{firstName}} {{lastName}}!</h2>
     <div><label>Firstname<input :value="firstName" @input="updateFirstnameInput"></label></div>
     <div><label>Lastname<input :value="lastName" @input="updateLastnameInput"></label></div>
+    <div><button @click="clearInput">Clear input</button></div>
     <div v-for="item in usernameInvalid">
       {{item}}
     </div>
@@ -37,8 +38,12 @@
     template: template,
 
     methods: {
-      updateFirstnameInput: function(e) { this.updateFirstname(e.target.value) },
-      updateLastnameInput: function(e) { this.updateLastname(e.target.value) }
+      updateFirstnameInput(e) { this.updateFirstname(e.target.value) },
+      updateLastnameInput(e) { this.updateLastname(e.target.value) },
+      clearInput() {
+        this.updateFirstname("")
+        this.updateLastname("")
+      }
     },
 
     vuex: {

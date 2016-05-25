@@ -4,8 +4,8 @@ import {
 } from "app/vuex/mutation-types"
 
 const state = {
-  firstname: "",
-  lastname: ""
+  firstname: "Unknown",
+  lastname: "User"
 }
 
 const mutations = {
