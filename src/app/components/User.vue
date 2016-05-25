@@ -1,29 +1,73 @@
 <style>
+  @import "Features.css";
+
   .user-input {
     margin-top: 2rem;
     margin-bottom: 2rem;
     margin-left: 1rem;
+
+    input {
+      margin-left: 0.5rem;
+    }
   }
 
-  .user-input input {
-    margin-left: 0.5rem;
+  .invalid {
+    border-color: #F44336;
+  }
+
+  .clear {
+    @extend %base-button;
+    background: #F44336;
+  }
+
+  .okay {
+    @extend %base-button;
+    background: #4CAF50;
+  }
+
+  .error {
+    background: #F44336;
   }
 </style>
 
 <template>
-  <div css-module="user-input">
-    <h2>Hello {{firstName}} {{lastName}}!</h2>
-    <div><label>Firstname<input :value="firstName" @input="updateFirstnameInput"></label></div>
-    <div><label>Lastname<input :value="lastName" @input="updateLastnameInput"></label></div>
-    <div><button @click="clearInput">Clear input</button></div>
-    <div v-for="item in usernameInvalid">
-      {{item}}
+  <message-box>  
+    <template slot="title">Hello {{firstName}} {{lastName}}!</template>
+    <ul v-if="usernameInvalid" css-module="error">
+      <li v-for="item in usernameInvalidList">
+        {{translation[item.error]}}
+      </li>
+    </ul>
+    <div css-module="user-input">
+      <label>
+        Firstname
+        <input :value="firstName" @input="updateFirstnameInput" :class="{['invalid-'+hash]: firstnameInvalid}">
+      </label>
+      <template v-if="firstnameInvalid">
+        <div v-for="item in firstnameInvalidList">
+          {{translation[item.error]}} above
+        </div>
+      </template>
     </div>
-  </div>
+    <div css-module="user-input">
+      <label>
+        Lastname
+        <input :value="lastName" @input="updateLastnameInput" :class="{['invalid-'+hash]: lastnameInvalid}">
+      </label>
+      <template v-if="lastnameInvalid">
+        <div v-for="item in lastnameInvalidList">
+          {{translation[item.error]}} above
+        </div>
+      </template>
+    </div>
+    <button slot="buttonbar" css-module="clear" @click="clearInput">Clear input</button>
+    <button slot="buttonbar" css-module="okay" :disabled="usernameInvalid ? 'disabled' : null">Save</button>
+  </message-box>
 </template>
 
 <script>
   import template from "./User.html"
+  import config from "./User.json!json"
   import {
     updateFirstname,
     updateLastname
@@ -37,6 +81,13 @@
   export default {
     template: template,
 
+    data: () =>
+    {
+      return {
+        translation: languageMap
+      }
+    },
+
     methods: {
       updateFirstnameInput(e) { this.updateFirstname(e.target.value) },
       updateLastnameInput(e) { this.updateLastname(e.target.value) },
@@ -44,6 +95,14 @@
         this.updateFirstname("")
         this.updateLastname("")
       }
+    },
+
+    computed: {
+      usernameInvalid() { return this.usernameInvalidList.length > 0 },
+      firstnameInvalid() { return this.firstnameInvalidList.length > 0 },
+      lastnameInvalid() { return this.lastnameInvalidList.length > 0 },
+
+      hash: () => config.hash
     },
 
     vuex: {
@@ -59,7 +118,9 @@
     },
 
     validators: {
-      usernameInvalid: (validator) => (validator.isInvalid("user") || []).map((inv) => languageMap[inv.error])
+      usernameInvalidList: (validator) => validator.isInvalid("user"),
+      firstnameInvalidList: (validator) => validator.isInvalid("user.firstname"),
+      lastnameInvalidList: (validator) => validator.isInvalid("user.lastname")
     }
   }
 </script>
