@@ -11,4 +11,8 @@
   font-size: inherit;
   color: white;
   @extend %inverted-text;
+
+  &:disabled {
+    filter: grayscale(85%);
+  }
 }
