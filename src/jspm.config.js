@@ -24,6 +24,7 @@ SystemJS.config({
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
+    "json": "github:systemjs/plugin-json@0.1.2",
     "lodash": "npm:lodash@4.11.0",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "normalize.css": "github:necolas/normalize.css@4.0.0",
