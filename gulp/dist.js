@@ -66,7 +66,7 @@ gulp.task("dist:copy", function(done, includeSources = true)
       {
         var fullPath = asset._url.replace("file://", "")
         var relPath = path.relative(CWD, fullPath)
-        gutil.log(`Adding ${relPath}...`)
+        // gutil.log(`Adding ${relPath}...`)
       }
     }).
     loadAssets("*.html").
