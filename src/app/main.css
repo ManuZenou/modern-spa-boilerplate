@@ -3,4 +3,5 @@
 @import "components/Layout";
 @import "components/Message";
 @import "components/Table";
+@import "components/User";
 @import "sugar";

@@ -18,6 +18,8 @@ Check out our [Demo](https://sebastian-software.github.io/modern-spa-boilerplate
 
 ## Features
 
+- [x] [Vuex](http://vuex.vuejs.org/) application architecture for centralized state management
+- [x] [Vuex Validator](https://github.com/sebastian-software/vuex-validator) for (simple and complex) centralized state validation
 - [x] [Gulp](http://gulpjs.com/) with full ES6 support for task definition
 - [x] [JSPM](http://jspm.io) Package Manager for client side package management
 - [x] [PostCSS](http://postcss.org) for advanced CSS features, automatic prefixes and compression

@@ -20,6 +20,7 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
@@ -31,7 +32,9 @@ SystemJS.config({
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
-    "vue": "npm:vue@1.0.18"
+    "vue": "npm:vue@1.0.18",
+    "vuex": "npm:vuex@0.6.3",
+    "vuex-validator": "npm:vuex-validator@0.2.6"
   },
   packages: {
     "github:jspm/nodelibs-buffer@0.2.0-alpha": {
@@ -88,6 +91,11 @@ SystemJS.config({
     "npm:vue@1.0.18": {
       "map": {
         "envify": "npm:envify@3.4.0"
+      }
+    },
+    "npm:vuex-validator@0.2.6": {
+      "map": {
+        "lodash-es": "npm:lodash-es@4.13.1"
       }
     }
   }
