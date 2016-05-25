@@ -13,3 +13,4 @@ deps.svg
 # These are dynamically generated from .vue files
 src/app/components/*.css
 src/app/components/*.js
+src/app/components/*.json
