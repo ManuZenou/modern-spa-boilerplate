@@ -11,6 +11,8 @@ import run from "run-sequence"
 
 import { $, logChange, devServer } from "./common"
 
+import { get as getConfig } from "./config"
+
 gulp.task("build", (done) =>
   run("vue:split", [ "css:build", "js:build" ], done)
 )
@@ -48,7 +50,8 @@ gulp.task("serve", () =>
     port: 8085,
     server: {
       baseDir: "./src"
-    }
+    },
+    middleware: getConfig("browserSync.middleware")
   })
 )
 
