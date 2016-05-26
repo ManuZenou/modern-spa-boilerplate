@@ -1,5 +1,5 @@
 <style>
-  @import "Features.css";
+  @load "Features.css";
 
   .user-input {
     margin-top: 2rem;
@@ -31,7 +31,7 @@
 </style>
 
 <template>
-  <message-box>  
+  <message-box>
     <template slot="title">Hello {{firstName}} {{lastName}}!</template>
     <ul v-if="usernameInvalid" css-module="error">
       <li v-for="item in usernameInvalidList">

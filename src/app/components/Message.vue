@@ -1,5 +1,5 @@
 <style>
-  @import "Features.css";
+  @load "Features.css";
 
   .cancel {
     @extend %base-button;

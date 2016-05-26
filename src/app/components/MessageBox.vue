@@ -1,5 +1,5 @@
 <style>
-  @import "Features.css";
+  @load "Features.css";
 
   .message {
     border: 2px solid #333;
