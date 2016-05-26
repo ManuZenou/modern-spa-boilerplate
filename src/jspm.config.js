@@ -1,4 +1,9 @@
 SystemJS.config({
+  devConfig: {
+    "map": {
+      "plugin-babel": "npm:systemjs-plugin-babel@0.0.8"
+    }
+  },
   transpiler: "plugin-babel",
   packages: {
     "app": {
@@ -29,7 +34,6 @@ SystemJS.config({
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "normalize.css": "github:necolas/normalize.css@4.0.0",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
-    "plugin-babel": "npm:systemjs-plugin-babel@0.0.8",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
