@@ -1,8 +1,8 @@
-@import "normalize.css";
-@import "fonts/sourcesans/SourceSansPro";
-@import "components/Layout";
-@import "components/MessageBox";
-@import "components/Message";
-@import "components/Table";
-@import "components/User";
-@import "sugar";
+@load "normalize.css";
+@load "fonts/sourcesans/SourceSansPro.css";
+@load "components/Layout.css";
+@load "components/MessageBox.css";
+@load "components/Message.css";
+@load "components/Table.css";
+@load "components/User.css";
+@load "sugar.sss";
