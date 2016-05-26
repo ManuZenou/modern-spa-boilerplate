@@ -49,9 +49,12 @@ var postcss_processors =
     silent: true
   }),
   */
+  /*
   $css.import({
     extensions: [ ".css", ".sss" ]
   }),
+  */
+  $css.load.default(),
   $css.discardComments({
     removeAll: true
   }),
@@ -69,9 +72,11 @@ var postcss_processors =
     layout: "landscape"
   }),
 
+  /*
   $css.assets({
     relative: "src/"
   }),
+  */
 
   $css.calc,
   $css.gradientTransparencyFix,
