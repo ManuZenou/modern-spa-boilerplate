@@ -11,9 +11,10 @@ class UserValidator extends BaseValidator
 
   userName(state)
   {
-    if (typeof (state.user.firstname) !== "string")
+    if (typeof state.user.firstname !== "string")
       this.invalid([ "user.firstname" ], "FIRSTNAME_NOT_A_STRING")
-    if (typeof (state.user.lastname) !== "string")
+
+    if (typeof state.user.lastname !== "string")
       this.invalid([ "user.lastname" ], "LASTNAME_NOT_A_STRING")
 
     if (state.user.firstname.length < 2)

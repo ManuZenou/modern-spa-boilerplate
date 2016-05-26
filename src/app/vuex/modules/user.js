@@ -3,12 +3,14 @@ import {
   UPDATE_USER_LASTNAME
 } from "app/vuex/mutation-types"
 
-const state = {
+const state =
+{
   firstname: "Unknown",
   lastname: "User"
 }
 
-const mutations = {
+const mutations =
+{
   [UPDATE_USER_FIRSTNAME](currentState, firstName)
   {
     currentState.firstname = firstName

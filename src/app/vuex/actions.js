@@ -7,6 +7,7 @@ export function updateFirstname({ dispatch }, firstName)
 {
   dispatch(UPDATE_USER_FIRSTNAME, firstName)
 }
+
 export function updateLastname({ dispatch }, lastName)
 {
   dispatch(UPDATE_USER_LASTNAME, lastName)
