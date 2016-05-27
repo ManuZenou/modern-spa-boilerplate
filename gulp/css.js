@@ -106,7 +106,9 @@ var postcss_processors =
   }),*/
 
   $css.svgo,
-  $css.reporter
+  $css.reporter({
+    clearMessages: true
+  })
 ]
 
 var postcss_options =
