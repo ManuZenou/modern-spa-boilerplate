@@ -29,6 +29,8 @@ SystemJS.config({
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
+    "intl": "npm:intl@1.2.4",
+    "intl-relativeformat": "npm:intl-relativeformat@1.3.0",
     "json": "github:systemjs/plugin-json@0.1.2",
     "lodash": "npm:lodash@4.13.1",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
@@ -38,6 +40,7 @@ SystemJS.config({
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
     "vue": "npm:vue@1.0.24",
+    "vue-locale": "npm:vue-locale@0.4.0",
     "vue-router": "npm:vue-router@0.7.13",
     "vuex": "npm:vuex@0.6.3",
     "vuex-validator": "npm:vuex-validator@0.2.7"
@@ -103,6 +106,26 @@ SystemJS.config({
         "string_decoder": "npm:string_decoder@0.10.31",
         "process-nextick-args": "npm:process-nextick-args@1.0.7",
         "core-util-is": "npm:core-util-is@1.0.2"
+      }
+    },
+    "npm:vue-locale@0.4.0": {
+      "map": {
+        "intl": "npm:intl@1.2.4",
+        "intl-format-cache": "npm:intl-format-cache@2.0.5",
+        "intl-locales-supported": "npm:intl-locales-supported@1.0.0",
+        "intl-messageformat": "npm:intl-messageformat@1.3.0",
+        "intl-relativeformat": "npm:intl-relativeformat@1.3.0",
+        "lodash": "npm:lodash@4.13.1"
+      }
+    },
+    "npm:intl-relativeformat@1.3.0": {
+      "map": {
+        "intl-messageformat": "npm:intl-messageformat@1.3.0"
+      }
+    },
+    "npm:intl-messageformat@1.3.0": {
+      "map": {
+        "intl-messageformat-parser": "npm:intl-messageformat-parser@1.2.0"
       }
     }
   }

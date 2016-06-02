@@ -115,10 +115,13 @@
       "jspm": "src/jspm.config.js"
     },
     "dependencies": {
+      "intl": "npm:intl@^1.2.4",
+      "intl-relativeformat": "npm:intl-relativeformat@^1.3.0",
       "json": "github:systemjs/plugin-json@^0.1.2",
       "lodash": "npm:lodash@^4.11.0",
       "normalize.css": "github:necolas/normalize.css@^4.0.0",
       "vue": "npm:vue@^1.0.18",
+      "vue-locale": "npm:vue-locale@^0.4.0",
       "vue-router": "npm:vue-router@^0.7.13",
       "vuex": "npm:vuex@^0.6.3",
       "vuex-validator": "npm:vuex-validator@^0.2.6"

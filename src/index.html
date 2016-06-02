@@ -11,6 +11,10 @@
       <h1>Modern SPA Boilerplate</h1>
 
       <p>
+        {{ "my-message-identifier" | format-message }}
+      </p>
+
+      <p>
         <!-- use v-link directive for navigation. -->
         <a href="#" v-link="{ path: '/user' }">User Component</a>
         <a href="#" v-link="{ path: '/message' }">Message Component</a>
