@@ -119,6 +119,7 @@
       "lodash": "npm:lodash@^4.11.0",
       "normalize.css": "github:necolas/normalize.css@^4.0.0",
       "vue": "npm:vue@^1.0.18",
+      "vue-router": "npm:vue-router@^0.7.13",
       "vuex": "npm:vuex@^0.6.3",
       "vuex-validator": "npm:vuex-validator@^0.2.6"
     },

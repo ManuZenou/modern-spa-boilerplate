@@ -38,6 +38,7 @@ SystemJS.config({
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
     "vue": "npm:vue@1.0.24",
+    "vue-router": "npm:vue-router@0.7.13",
     "vuex": "npm:vuex@0.6.3",
     "vuex-validator": "npm:vuex-validator@0.2.7"
   },

@@ -9,9 +9,16 @@
   <body>
     <div id="vue-root">
       <h1>Modern SPA Boilerplate</h1>
-      <user-component></user-component>
-      <message-component></message-component>
-      <table-component></table-component>
+
+      <p>
+        <!-- use v-link directive for navigation. -->
+        <a href="#" v-link="{ path: '/user' }">User Component</a>
+        <a href="#" v-link="{ path: '/message' }">Message Component</a>
+        <a href="#" v-link="{ path: '/table' }">Table Component</a>
+      </p>
+
+      <!-- route outlet -->
+      <router-view></router-view>
     </div>
 
     <div class="some-grid">
