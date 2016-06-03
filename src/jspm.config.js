@@ -43,6 +43,7 @@ SystemJS.config({
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "intl": "npm:intl@1.2.4",
+    "intl-messageformat": "npm:intl-messageformat@1.3.0",
     "intl-relativeformat": "npm:intl-relativeformat@1.3.0",
     "json": "github:systemjs/plugin-json@0.1.2",
     "lodash": "npm:lodash@4.13.1",
