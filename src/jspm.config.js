@@ -3,7 +3,8 @@ SystemJS.config({
     "paths": {
       "npm:": "src/jspm_packages/npm/",
       "github:": "src/jspm_packages/github/",
-      "app": "src/app/"
+      "app/": "src/app/",
+      "modern-spa-boilerplate/": "src/app/"
     }
   },
   devConfig: {
@@ -13,6 +14,10 @@ SystemJS.config({
   },
   transpiler: "plugin-babel",
   packages: {
+    "modern-spa-boilerplate": {
+      "main": "app/main.js",
+      "format": "esm"
+    },
     "app": {
       "format": "esm",
       "main": "main.js",

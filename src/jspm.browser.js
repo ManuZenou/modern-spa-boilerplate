@@ -1,6 +1,8 @@
 SystemJS.config({
   paths: {
-    "npm:": "/src/jspm_packages/npm/",
-    "github:": "/src/jspm_packages/github/"
+    "npm:": "jspm_packages/npm/",
+    "github:": "jspm_packages/github/",
+    "app:": "app/",
+    "modern-spa-boilerplate/": "app/"
   }
 });
