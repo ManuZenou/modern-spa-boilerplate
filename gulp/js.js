@@ -36,15 +36,11 @@ gulp.task("js:prep", () =>
 
 var jspmBuilder = new jspm.Builder("src", "jspm.config.js")
 
-gulp.task("js:main", () =>
-{
-  // Re-init Builder instance is currently required as it seems.
-  // See also: https://github.com/systemjs/builder/issues/579
+gulp.task("js:main", () => {
   jspmBuilder.bundle("app", "src/main.bundle.js", jspmOptions)
 })
 
-gulp.task("js:deps", () =>
-{
+gulp.task("js:deps", () => {
   jspmBuilder.bundle("app - app/**/*", "src/deps.bundle.js", jspmOptions)
 })
 
