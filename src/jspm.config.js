@@ -1,4 +1,10 @@
 SystemJS.config({
+  nodeConfig: {
+    "paths": {
+      "npm:": "src/jspm_packages/npm/",
+      "github:": "src/jspm_packages/github/"
+    }
+  },
   devConfig: {
     "map": {
       "plugin-babel": "npm:systemjs-plugin-babel@0.0.8"
