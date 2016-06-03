@@ -34,7 +34,7 @@ gulp.task("js:prep", () =>
   pipe(gulp.dest("src"))
 )
 
-var jspmBuilder = new jspm.Builder("src", "jspm.config.js")
+var jspmBuilder = new jspm.Builder(".", "jspm.config.js")
 
 gulp.task("js:main", () => {
   jspmBuilder.bundle("app", "src/main.bundle.js", jspmOptions)
