@@ -33,6 +33,7 @@ SystemJS.config({
   map: {
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
+    "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "intl": "npm:intl@1.2.4",
@@ -45,6 +46,7 @@ SystemJS.config({
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
+    "vm": "github:jspm/nodelibs-vm@0.2.0-alpha",
     "vue": "npm:vue@1.0.24",
     "vue-locale": "npm:vue-locale@0.4.0",
     "vue-router": "npm:vue-router@0.7.13",
