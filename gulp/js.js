@@ -36,13 +36,13 @@ gulp.task("js:prep", () =>
 
 var jspmBuilder = new jspm.Builder(".", "jspm.config.js")
 
-gulp.task("js:main", () => {
+gulp.task("js:main", () =>
   jspmBuilder.bundle("app", "src/main.bundle.js", jspmOptions)
-})
+)
 
-gulp.task("js:deps", () => {
+gulp.task("js:deps", () =>
   jspmBuilder.bundle("app - app/**/*", "src/deps.bundle.js", jspmOptions)
-})
+)
 
 gulp.task("js:build", [ "js:prep", "js:main" ])
 
