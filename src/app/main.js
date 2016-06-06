@@ -1,3 +1,6 @@
+// Waiting for JSPM fix
+/*
+
 import intl_en from "intl/locale-data/json/en.json"
 import intl_de from "intl/locale-data/json/de.json"
 import intl_fr from "intl/locale-data/json/fr.json"
@@ -21,6 +24,7 @@ IntlRelativeFormat.__addLocaleData(relative_fr)
 IntlRelativeFormat.__addLocaleData(relative_es)
 
 console.log("I18N: ", intl_de)
+*/
 
 import Vue from "vue"
 
@@ -28,6 +32,9 @@ import MessageComponent from "app/components/Message"
 import TableComponent from "app/components/Table"
 import UserComponent from "app/components/User"
 import MessageBoxComponent from "app/components/MessageBox"
+
+// Waiting for JSPM fix
+/*
 
 const SELECTED_LANGUAGE = "de"
 const SELECTED_CURRENCY = "EUR"
@@ -46,6 +53,7 @@ Vue.use(VueLocale,
   currency: SELECTED_CURRENCY,
   messages: MESSAGE_TEXTS
 })
+*/
 
 import VueRouter from "vue-router"
 
