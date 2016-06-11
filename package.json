@@ -97,7 +97,7 @@
     "posthtml": "^0.8.7",
     "posthtml-css-modules": "^0.1.0",
     "require-dir": "^0.3.0",
-    "rollup": "^0.26.3",
+    "rollup": "^0.31.1",
     "run-sequence": "^1.2.1",
     "s15e-javascript": "^0.1.18",
     "stylefmt": "^3.4.0",
