@@ -34,7 +34,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-register": "^6.9.0",
     "browser-sync": "^2.12.10",
-    "buble": "^0.10.4",
+    "buble": "^0.12.2",
     "casperjs": "^1.1.1",
     "colorguard": "^1.2.0",
     "cssstats": "^3.0.0-beta.1",
