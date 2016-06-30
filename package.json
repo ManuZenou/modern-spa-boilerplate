@@ -61,7 +61,7 @@
     "imagemin-pngquant": "^5.0.0",
     "imagemin-svgo": "^5.1.0",
     "imagemin-webp": "^4.0.0",
-    "imagemin-zopfli": "^4.2.0",
+    "imagemin-zopfli": "^5.0.0",
     "immutable-css": "^1.1.1",
     "jspm": "^0.17.0-beta.17",
     "load-plugins": "^2.1.0",
