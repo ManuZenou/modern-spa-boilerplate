@@ -100,7 +100,7 @@
     "rollup": "^0.33.0",
     "run-sequence": "^1.2.1",
     "s15e-javascript": "^0.1.18",
-    "stylefmt": "^3.4.0",
+    "stylefmt": "^4.0.0",
     "stylelint": "^6.5.1",
     "stylelint-config-standard": "^10.0.0",
     "vue-template-validator": "^1.1.5"
