@@ -48,7 +48,7 @@
     "gulp-postcss": "^6.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.0.0-alpha",
-    "gulp-stylelint": "^2.0.2",
+    "gulp-stylelint": "^3.0.0",
     "gulp-uglify": "^1.5.4",
     "gulp-util": "^3.0.7",
     "gulp-vuesplit": "^0.5.0",
